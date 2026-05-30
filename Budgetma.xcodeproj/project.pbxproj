@@ -6,13 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		D42435E307A980D46064EE01 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153D0CC740D3BEF4B15ECA1A /* TabBar.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		06B3ECF22FCB676000861F5B /* Budgetma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budgetma.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		153D0CC740D3BEF4B15ECA1A /* TabBar.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -54,7 +49,6 @@
 		2666C4CD5E58E8520203E9ED /* Budgetma */ = {
 			isa = PBXGroup;
 			children = (
-				153D0CC740D3BEF4B15ECA1A /* TabBar.swift */,
 			);
 			path = Budgetma;
 			sourceTree = "<group>";
@@ -133,7 +127,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D42435E307A980D46064EE01 /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

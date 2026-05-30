@@ -29,11 +29,11 @@ struct TabBar: View {
 		}
 		.padding(.horizontal, 18)
 		.padding(.top, 12)
-		.padding(.bottom, 25)
-		.background(.ultraThinMaterial)
-		.clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
-		.padding(.horizontal, 12)
-		.padding(.bottom, 8)
+		.padding(.bottom, 12)
+		// .background(.ultraThinMaterial)
+		// .clipShape(RoundedRectangle(cornerRadius: 28, style: .continuous))
+		// .padding(.horizontal, 12)
+		// .padding(.bottom, 8)
 	}
 
 	@ViewBuilder func tabButton(_ tab: Tab) -> some View {
@@ -45,15 +45,17 @@ struct TabBar: View {
 
 			let impact = UIImpactFeedbackGenerator(style: .light)
 			impact.impactOccurred()
+
 		} label: {
 			VStack(spacing: 6) {
 				Text(tab.icon)
-					.font(.system(size: 20, weight: .semibold))
+					.font(.system(size: 15))
 					.scaleEffect(selected == tab ? 1.2 : 1.0)
 					.opacity(selected == tab ? 1 : 0.45)
 
 				Text(tab.rawValue)
-					.font(.caption2)
+					.font(.caption)
+					.scaleEffect(selected == tab ? 1.2 : 1.0)
 					.opacity(selected == tab ? 1 : 0.45)
 			}
 			.foregroundColor(.primary)

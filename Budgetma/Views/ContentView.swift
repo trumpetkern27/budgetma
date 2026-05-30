@@ -29,7 +29,7 @@ struct ContentView: View {
 						.padding()
 						.tag("Income")
 					case .settings:
-						Text("Settings")
+						SettingsView()
 				}
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -1,0 +1,19 @@
+{
+	"name": "xcode build server",
+	"version": "1.3.0",
+	"bspVersion": "2.2.0",
+	"languages": [
+		"c",
+		"cpp",
+		"objective-c",
+		"objective-cpp",
+		"swift"
+	],
+	"argv": [
+		"/Users/big-z/.local/share/nvim/mason/bin/xcode-build-server"
+	],
+	"workspace": "/Users/big-z/Documents/budgetma/Budgetma.xcodeproj/project.xcworkspace",
+	"build_root": "/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt",
+	"scheme": "Budgetma",
+	"kind": "xcode"
+}

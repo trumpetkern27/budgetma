@@ -61,12 +61,18 @@ struct TabBar: View {
 			}
 			.frame(maxWidth: .infinity)
 			.padding(4)
-			.overlay {
-				if selected == tab {
-					RoundedRectangle(cornerRadius: 12) 
-						.stroke(theme.fgColour, lineWidth: 1)
+			.overlay(
+				Group {
+					if selected == tab {
+						RoundedRectangle(cornerRadius: 12)
+							.stroke(theme.fgColour, lineWidth: 1)
+							// .shadow(color: theme.fgColour.opacity(0.8), radius: 4)
+							// .shadow(color: theme.fgColour.opacity(0.4), radius: 12)
+							// .shadow(color: theme.fgColour.opacity(0.2), radius: 20)
+					}
 				}
-			}
+			)
 		}
+		.shadow(color: selected == tab ? theme.fgColour.opacity(0.8) : .clear, radius: selected == tab ? 8 : 0)
 	}
 }

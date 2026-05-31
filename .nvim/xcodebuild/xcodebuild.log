@@ -1,49 +1,40 @@
 note: Building targets in dependency order
 note: Target dependency graph (1 target)
-[Budgetma] Write Auxiliary File empty-Budgetma.plist
-[Budgetma] Write Auxiliary File Budgetma.SwiftFileList
-[Budgetma] Write Auxiliary File Budgetma.SwiftConstValuesFileList
-[Budgetma] Write Auxiliary File Budgetma.LinkFileList
-[Budgetma] Write Auxiliary File Budgetma_const_extract_protocols.json
-[Budgetma] Write Auxiliary File Budgetma-OutputFileMap.json
-[Budgetma] Write Auxiliary File Budgetma.hmap
-[Budgetma] Write Auxiliary File Budgetma.DependencyStaticMetadataFileList
-[Budgetma] Write Auxiliary File Entitlements-Simulated.plist
-[Budgetma] Write Auxiliary File Budgetma.DependencyMetadataFileList
-[Budgetma] Write Auxiliary File Budgetma-project-headers.hmap
-[Budgetma] Write Auxiliary File Budgetma-own-target-headers.hmap
-[Budgetma] Write Auxiliary File Budgetma-generated-files.hmap
-[Budgetma] Write Auxiliary File Budgetma-all-target-headers.hmap
-[Budgetma] Write Auxiliary File Budgetma-all-non-framework-target-headers.hmap
-[Budgetma] Write Auxiliary File Budgetma-DebugDylibPath-normal-arm64.txt
-[Budgetma] Write Auxiliary File Budgetma-DebugDylibInstallName-normal-arm64.txt
-[Budgetma] Linking __preview.dylib
-[Budgetma] Generate Asset Symbols Assets.xcassets
-[Budgetma] Processing empty-Budgetma.plist
-[Budgetma] Compiling ContentView.swift
-[Budgetma] Compiling GeneratedAssetSymbols.swift
-[Budgetma] Compiling SettingsView.swift
+[!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Extensions/Color.swift (in target 'Budgetma' from project 'Budgetma')
+[!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift (in target 'Budgetma' from project 'Budgetma')
+[!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:7:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
+                didSet {fgColour = Color(hex: fgColourHex) ?? .white}
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+[!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:10:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
+                didSet {bgColour = Color(hex: bgColourHex) ?? .black}
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
 [Budgetma] Compiling TabBar.swift
-[Budgetma] Compiling BudgetmaApp.swift
-[Budgetma] Copy arm64-apple-ios-simulator.swiftmodule -> Budgetma.swiftmodule
-[Budgetma] Copy arm64-apple-ios-simulator.swiftdoc -> Budgetma.swiftdoc
 [Budgetma] Copy arm64-apple-ios-simulator.abi.json -> Budgetma.abi.json
 [Budgetma] Copy arm64-apple-ios-simulator.swiftsourceinfo -> Budgetma.swiftsourceinfo
 [Budgetma] Linking Budgetma.debug.dylib
 note: Using stub executor library with Swift entry point. (in target 'Budgetma' from project 'Budgetma')
 [Budgetma] Linking Budgetma
 [Budgetma] Extract App Intents Metadata
+[Budgetma] Processing empty-Budgetma.plist
 Signing Budgetma.debug.dylib (in target 'Budgetma' from project 'Budgetma')
 Signing __preview.dylib (in target 'Budgetma' from project 'Budgetma')
 Signing Budgetma.app (in target 'Budgetma' from project 'Budgetma')
-[Budgetma] RegisterExecutionPolicyException Budgetma.app
 [Budgetma] Validate Budgetma.app
-[Budgetma] Touching Budgetma.app
 Build Succeeded
 
 -----------------------------
 -- xcodebuild.nvim summary --
 -----------------------------
+
+Warnings:
+   /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:7:46
+    left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
+                    didSet {fgColour = Color(hex: fgColourHex) ?? .white}
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+   /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:10:46
+    left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
+                    didSet {bgColour = Color(hex: bgColourHex) ?? .black}
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
 
   ✔ Build Succeeded
 

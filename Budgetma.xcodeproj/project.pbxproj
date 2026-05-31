@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		52D97C98C5C57652DACEEE7D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2F7F5A7ACE9811ABD39192 /* ThemeManager.swift */; };
+		674838420A48BD8B2A84A490 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C422307460626EFE187C017 /* Color.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		06B3ECF22FCB676000861F5B /* Budgetma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budgetma.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C422307460626EFE187C017 /* Color.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		8A2F7F5A7ACE9811ABD39192 /* ThemeManager.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -49,8 +56,26 @@
 		2666C4CD5E58E8520203E9ED /* Budgetma */ = {
 			isa = PBXGroup;
 			children = (
+				9066943A42386E8689254C75 /* Services */,
+				33C2B4B0A462D517EADDBE6F /* Extensions */,
 			);
 			path = Budgetma;
+			sourceTree = "<group>";
+		};
+		33C2B4B0A462D517EADDBE6F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7C422307460626EFE187C017 /* Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9066943A42386E8689254C75 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8A2F7F5A7ACE9811ABD39192 /* ThemeManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52D97C98C5C57652DACEEE7D /* ThemeManager.swift in Sources */,
+				674838420A48BD8B2A84A490 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

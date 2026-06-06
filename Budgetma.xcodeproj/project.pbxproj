@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		52D97C98C5C57652DACEEE7D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2F7F5A7ACE9811ABD39192 /* ThemeManager.swift */; };
 		674838420A48BD8B2A84A490 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C422307460626EFE187C017 /* Color.swift */; };
+		9ACB1E91C1526CBA810E6665 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AACE0D72A4DA24D1FC0209A /* InputField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06B3ECF22FCB676000861F5B /* Budgetma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budgetma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C422307460626EFE187C017 /* Color.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8A2F7F5A7ACE9811ABD39192 /* ThemeManager.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		8AACE0D72A4DA24D1FC0209A /* InputField.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = InputField.swift; path = InputField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -58,6 +60,7 @@
 			children = (
 				9066943A42386E8689254C75 /* Services */,
 				33C2B4B0A462D517EADDBE6F /* Extensions */,
+				44018148428BE27A0E8776D7 /* Views */,
 			);
 			path = Budgetma;
 			sourceTree = "<group>";
@@ -68,6 +71,24 @@
 				7C422307460626EFE187C017 /* Color.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		44018148428BE27A0E8776D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				72D87FF3D83EDADEC07909CD /* Components */,
+			);
+			name = Views;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		72D87FF3D83EDADEC07909CD /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8AACE0D72A4DA24D1FC0209A /* InputField.swift */,
+			);
+			name = Components;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		9066943A42386E8689254C75 /* Services */ = {
@@ -154,6 +175,7 @@
 			files = (
 				52D97C98C5C57652DACEEE7D /* ThemeManager.swift in Sources */,
 				674838420A48BD8B2A84A490 /* Color.swift in Sources */,
+				9ACB1E91C1526CBA810E6665 /* InputField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

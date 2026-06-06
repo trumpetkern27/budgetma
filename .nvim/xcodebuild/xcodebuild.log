@@ -2,13 +2,17 @@ note: Building targets in dependency order
 note: Target dependency graph (1 target)
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Extensions/Color.swift (in target 'Budgetma' from project 'Budgetma')
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift (in target 'Budgetma' from project 'Budgetma')
+[!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/InputField.swift (in target 'Budgetma' from project 'Budgetma')
 [!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:7:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
                 didSet {fgColour = Color(hex: fgColourHex) ?? .white}
                                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
 [!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:10:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
                 didSet {bgColour = Color(hex: bgColourHex) ?? .black}
                                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-[Budgetma] Compiling TabBar.swift
+[Budgetma] Compiling SettingsView.swift
+[!]  /Users/big-z/Documents/budgetma/Budgetma/Views/SettingsView.swift:72:7: variable 'active' was never mutated; consider changing to 'let' constant
+                var active = try? context.fetch(
+                ~~~ ^
 [Budgetma] Copy arm64-apple-ios-simulator.abi.json -> Budgetma.abi.json
 [Budgetma] Copy arm64-apple-ios-simulator.swiftsourceinfo -> Budgetma.swiftsourceinfo
 [Budgetma] Linking Budgetma.debug.dylib
@@ -35,6 +39,10 @@ Warnings:
     left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
                     didSet {bgColour = Color(hex: bgColourHex) ?? .black}
                                        ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+   /Users/big-z/Documents/budgetma/Budgetma/Views/SettingsView.swift:72:7
+    variable 'active' was never mutated; consider changing to 'let' constant
+                    var active = try? context.fetch(
+                    ~~~ ^
 
   ✔ Build Succeeded
 

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct BudgetmaApp: App {
@@ -16,7 +17,12 @@ struct BudgetmaApp: App {
 				.environmentObject(theme)
 				.foregroundStyle(theme.fgColour)
 				.background(theme.bgColour)
-				.tint(theme.bgColour)
+				.tint(theme.fgColour)
         }
+		.modelContainer(for: [
+			Category.self,
+			Transaction.self,
+			ExpectedTransaction.self
+		])
     }
 }

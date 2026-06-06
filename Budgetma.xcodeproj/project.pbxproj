@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EAB8727767D2210F614D04F /* ThemedForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C820A2420650550DFC3541 /* ThemedForm.swift */; };
 		52D97C98C5C57652DACEEE7D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2F7F5A7ACE9811ABD39192 /* ThemeManager.swift */; };
 		674838420A48BD8B2A84A490 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C422307460626EFE187C017 /* Color.swift */; };
 		9ACB1E91C1526CBA810E6665 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AACE0D72A4DA24D1FC0209A /* InputField.swift */; };
@@ -14,6 +15,7 @@
 
 /* Begin PBXFileReference section */
 		06B3ECF22FCB676000861F5B /* Budgetma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budgetma.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33C820A2420650550DFC3541 /* ThemedForm.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = ThemedForm.swift; path = ThemedForm.swift; sourceTree = "<group>"; };
 		7C422307460626EFE187C017 /* Color.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8A2F7F5A7ACE9811ABD39192 /* ThemeManager.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		8AACE0D72A4DA24D1FC0209A /* InputField.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = InputField.swift; path = InputField.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				8AACE0D72A4DA24D1FC0209A /* InputField.swift */,
+				33C820A2420650550DFC3541 /* ThemedForm.swift */,
 			);
 			name = Components;
 			path = Components;
@@ -176,6 +179,7 @@
 				52D97C98C5C57652DACEEE7D /* ThemeManager.swift in Sources */,
 				674838420A48BD8B2A84A490 /* Color.swift in Sources */,
 				9ACB1E91C1526CBA810E6665 /* InputField.swift in Sources */,
+				1EAB8727767D2210F614D04F /* ThemedForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

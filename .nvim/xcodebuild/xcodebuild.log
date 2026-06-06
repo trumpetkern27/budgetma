@@ -10,10 +10,9 @@ note: Target dependency graph (1 target)
 [!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:10:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
                 didSet {bgColour = Color(hex: bgColourHex) ?? .black}
                                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-[Budgetma] Compiling SettingsView.swift
-[!]  /Users/big-z/Documents/budgetma/Budgetma/Views/SettingsView.swift:113:7: variable 'active' was never mutated; consider changing to 'let' constant
-                var active = try? context.fetch(
-                ~~~ ^
+[Budgetma] Compiling Data.swift
+[Budgetma] Compiling BudgetmaApp.swift
+[Budgetma] Copy arm64-apple-ios-simulator.swiftmodule -> Budgetma.swiftmodule
 [Budgetma] Copy arm64-apple-ios-simulator.abi.json -> Budgetma.abi.json
 [Budgetma] Copy arm64-apple-ios-simulator.swiftsourceinfo -> Budgetma.swiftsourceinfo
 [Budgetma] Linking Budgetma.debug.dylib
@@ -40,10 +39,6 @@ Warnings:
     left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
                     didSet {bgColour = Color(hex: bgColourHex) ?? .black}
                                        ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-   /Users/big-z/Documents/budgetma/Budgetma/Views/SettingsView.swift:113:7
-    variable 'active' was never mutated; consider changing to 'let' constant
-                    var active = try? context.fetch(
-                    ~~~ ^
 
   ✔ Build Succeeded
 

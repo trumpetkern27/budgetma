@@ -28,6 +28,41 @@ struct InputField: View {
 					.tint(theme.fgColour)
 					.listRowBackground(theme.bgColour)
 					.multilineTextAlignment(.trailing)
+
+			}
+			.scrollContentBackground(.hidden)
+			.background(theme.bgColour)
+		}
+	}
+}
+
+struct InputFieldCurrency: View {
+	@EnvironmentObject var theme: ThemeManager
+
+	var field: String
+	@Binding var amount: Decimal
+
+	var body: some View {
+		HStack {
+			Text(field)
+			.foregroundColor(theme.fgColour)
+			.listRowBackground(theme.bgColour)
+			.background(theme.bgColour)
+
+			Spacer()
+
+			ZStack(alignment: .trailing) {
+				TextField("", value: $amount,
+					format: .currency(
+						code: Locale.current.currency?.identifier ?? "USD"
+						)
+					)
+					.foregroundColor(theme.fgColour)
+					.tint(theme.fgColour)
+					.listRowBackground(theme.bgColour)
+					.multilineTextAlignment(.trailing)
+					.keyboardType(.decimalPad)
+
 			}
 			.scrollContentBackground(.hidden)
 			.background(theme.bgColour)

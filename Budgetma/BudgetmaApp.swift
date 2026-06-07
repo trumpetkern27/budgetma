@@ -21,6 +21,7 @@ struct BudgetmaApp: App {
         }
 		.modelContainer(for: [
 			Category.self,
+			Income.self,
 			Transaction.self,
 			ExpectedTransaction.self
 		])

@@ -11,31 +11,30 @@ struct ContentView: View {
 		ZStack(alignment: .bottom) {
 			Group {
 				switch selected {
-					case .home:
-						VStack {
-							Image(systemName: "globe")
-								.imageScale(.large)
-								.foregroundStyle(.tint)
-							Text("Hello, world!")
-						}
-						.padding()
-						.tag("Home")
-					case .expenses:
-						ZStack {
-							Image(systemName: "house")
-						}
-						.padding()
-						.tag("Expenses")
-					case .income:
-						ZStack {
-							Image(systemName: "start")
-						}
-						.padding()
-						.tag("Income")
-					case .settings:
-						NavigationStack{
-							SettingsView()
-						}
+				case .home:
+					VStack {
+						Image(systemName: "globe")
+							.imageScale(.large)
+							.foregroundStyle(.tint)
+						Text("Hello, world!")
+					}
+					.padding()
+					.tag("Home")
+				case .expenses:
+					ZStack {
+						Image(systemName: "house")
+					}
+					.padding()
+					.tag("Expenses")
+				case .income:
+					NavigationStack {
+						IncomeView()
+					}
+					.tag("Income")
+				case .settings:
+					NavigationStack {
+						SettingsView()
+					}
 				}
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)

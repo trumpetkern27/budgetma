@@ -4,41 +4,13 @@ note: Target dependency graph (1 target)
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift (in target 'Budgetma' from project 'Budgetma')
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/InputField.swift (in target 'Budgetma' from project 'Budgetma')
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/ThemedForm.swift (in target 'Budgetma' from project 'Budgetma')
-[!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:7:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
-                didSet {fgColour = Color(hex: fgColourHex) ?? .white}
-                                   ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-[!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:10:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
-                didSet {bgColour = Color(hex: bgColourHex) ?? .black}
-                                   ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-[Budgetma] Compiling Data.swift
-[Budgetma] Compiling BudgetmaApp.swift
-[Budgetma] Copy arm64-apple-ios-simulator.swiftmodule -> Budgetma.swiftmodule
-[Budgetma] Copy arm64-apple-ios-simulator.abi.json -> Budgetma.abi.json
-[Budgetma] Copy arm64-apple-ios-simulator.swiftsourceinfo -> Budgetma.swiftsourceinfo
-[Budgetma] Linking Budgetma.debug.dylib
-note: Using stub executor library with Swift entry point. (in target 'Budgetma' from project 'Budgetma')
-[Budgetma] Linking Budgetma
-[Budgetma] Extract App Intents Metadata
+[!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/IncomeView.swift (in target 'Budgetma' from project 'Budgetma')
 [Budgetma] Processing empty-Budgetma.plist
-Signing Budgetma.debug.dylib (in target 'Budgetma' from project 'Budgetma')
-Signing __preview.dylib (in target 'Budgetma' from project 'Budgetma')
-Signing Budgetma.app (in target 'Budgetma' from project 'Budgetma')
-[Budgetma] Validate Budgetma.app
 Build Succeeded
 
 -----------------------------
 -- xcodebuild.nvim summary --
 -----------------------------
-
-Warnings:
-   /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:7:46
-    left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
-                    didSet {fgColour = Color(hex: fgColourHex) ?? .white}
-                                       ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-   /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:10:46
-    left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
-                    didSet {bgColour = Color(hex: bgColourHex) ?? .black}
-                                       ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
 
   ✔ Build Succeeded
 

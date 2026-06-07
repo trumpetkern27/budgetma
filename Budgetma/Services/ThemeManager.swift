@@ -19,11 +19,40 @@ final class ThemeManager: ObservableObject {
 	}
 
 	func setForeground(_ newValue: Color) {
-		fgColour = newValue
-		fgColourHex = newValue.toHex() ?? "#FFFFFF"
+		if !tooClose(col1: newValue, col2: bgColour) {
+			fgColour = newValue
+			fgColourHex = newValue.toHex() ?? "#FFFFFF"
+		}
 	}
 	func setBackground(_ newValue: Color) {
-		bgColour = newValue
-		bgColourHex = newValue.toHex() ?? "#000000"
+		if !tooClose(col1: newValue, col2: fgColour) {
+			bgColour = newValue
+			bgColourHex = newValue.toHex() ?? "#000000"
+		}
+	}
+
+	func tooClose(col1: Color, col2: Color) -> Bool {
+
+		let uiColor1 = UIColor(col1)
+		var red1: CGFloat = 0
+		var green1: CGFloat = 0
+		var blue1: CGFloat = 0
+		var alpha1: CGFloat = 0
+
+		let uiColor2 = UIColor(col2)
+		var red2: CGFloat = 0
+		var green2: CGFloat = 0
+		var blue2: CGFloat = 0
+		var alpha2: CGFloat = 0
+
+		uiColor1.getRed(&red1, green: &green1, blue: &blue1, alpha: &alpha1)
+		uiColor2.getRed(&red2, green: &green2, blue: &blue2, alpha: &alpha2)
+
+		let distance = pow(red1 - red2, 2) +
+			pow(green1 - green2, 2) +
+			pow(blue1 - blue2, 2)
+
+		return distance < 0.1
+
 	}
 }

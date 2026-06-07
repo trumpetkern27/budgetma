@@ -4,13 +4,13 @@ import SwiftData
 @Model
 final class Transaction {
 	var date: Date
-	var amount: Double
+	var amount: Decimal
 	var category: Category?
 	var note: String
 
 	init(
 		date: Date,
-		amount: Double,
+		amount: Decimal,
 		category: Category?,
 		note: String
 	) {
@@ -45,7 +45,7 @@ final class Category {
 @Model
 final class ExpectedTransaction {
 	var name: String
-	var category: Category?
+	var category: Category
 	var regularity: RecurrenceRule?
 
 	init(
@@ -54,7 +54,7 @@ final class ExpectedTransaction {
 		regularity: RecurrenceRule?
 	) {
 		self.name = name
-		self.category = category
+		self.category = category ?? defaultCategory
 		self.regularity = regularity
 	}
 }
@@ -62,11 +62,20 @@ final class ExpectedTransaction {
 @Model
 final class Income {
 	var name: String
+	var amount: Decimal
+	var regularity: RecurrenceRule?
+	var category: Category?
 
 	init(
 		name: String,
+		amount: Decimal,
+		regularity: RecurrenceRule?,
+		category: Category?
 	) {
 		self.name = name
+		self.amount = amount
+		self.regularity = regularity
+		self.category = category
 	}
 }
 

@@ -108,8 +108,16 @@ struct NewIncomeView: View {
 	@Environment(\.dismiss)
 	private var dismiss
 
+	@Query(
+		filter: #Predicate<Category> {
+			$0.isActive
+		},
+		sort: \Category.name
+	) private var categories: [Category]
+
 	@State private var name = ""
 	@State private var amount: Decimal = 0
+	@State private var category: Category?
 
 	var body: some View {
 		ScrollView {
@@ -118,11 +126,30 @@ struct NewIncomeView: View {
 				.listRowBackground(theme.bgColour)
 				.padding()
 
-				Divider()
-				.foregroundColor(theme.fgColour)
-				.background(theme.fgColour)
-
 				InputFieldCurrency(field: "Amount", amount: $amount)
+				.listRowBackground(theme.bgColour)
+				.padding()
+
+				HStack {
+					Text("Category")
+					.foregroundColor(theme.fgColour)
+					.listRowBackground(theme.bgColour)
+
+					Spacer()
+
+					Picker("Category", selection: $category) {
+						Text("None").tag(nil as Category?)
+						ForEach(categories) { category in
+							Text(category.name)
+							.tag(category as Category?)
+							.foregroundColor(theme.fgColour)
+							.listRowBackground(theme.bgColour)
+						}
+					}
+					.foregroundColor(theme.fgColour)
+					.listRowBackground(theme.bgColour)
+				}
+				.foregroundColor(theme.fgColour)
 				.listRowBackground(theme.bgColour)
 				.padding()
 
@@ -145,7 +172,7 @@ struct NewIncomeView: View {
 							name: name.isEmpty ? "the air" : name,
 							amount: amount,
 							regularity: nil,
-							category: nil
+							category: category
 						)
 					)
 					try? context.save()
@@ -197,6 +224,12 @@ struct SingleIncomeView: View {
 	private var dismiss
 
 	@State var income: Income
+	@Query(
+		filter: #Predicate<Category> {
+			$0.isActive
+		},
+		sort: \Category.name
+	) private var categories: [Category]
 
 	var body: some View {
 
@@ -208,6 +241,41 @@ struct SingleIncomeView: View {
 			InputFieldCurrency(field: "Amount", amount: $income.amount)
 			.listRowBackground(theme.bgColour)
 			.padding()
+
+			HStack {
+				Text("Category")
+				.foregroundColor(theme.fgColour)
+				.listRowBackground(theme.bgColour)
+
+				Spacer()
+
+				Picker("Category", selection: $income.category) {
+					Text("None").tag(nil as Category?)
+					ForEach(categories) { category in
+						Text(category.name)
+						.tag(category as Category?)
+						.foregroundColor(theme.fgColour)
+						.listRowBackground(theme.bgColour)
+					}
+				}
+				.foregroundColor(theme.fgColour)
+				.listRowBackground(theme.bgColour)
+			}
+			.foregroundColor(theme.fgColour)
+			.listRowBackground(theme.bgColour)
+			.padding()
+
+			HStack {
+				Text("Regularity")
+				.foregroundColor(theme.fgColour)
+				.listRowBackground(theme.bgColour)
+
+				Spacer()
+
+				RecurrenceRulePicker(rule: $income.regularity)
+				.foregroundColor(theme.fgColour)
+				.listRowBackground(theme.bgColour)
+			}
 
 			Spacer()
 
@@ -228,6 +296,7 @@ struct SingleIncomeView: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		.scrollContentBackground(.hidden)
 		.background(theme.bgColour)
+		.ignoresSafeArea(.keyboard)
 		.onDisappear {
 			guard !income.name.isEmpty else { return }
 			try? context.save()

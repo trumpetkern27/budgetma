@@ -85,10 +85,6 @@ struct CategoriesView: View {
 						.foregroundColor(theme.fgColour)
 						.listRowBackground(theme.bgColour)
 						.frame(maxWidth: .infinity, alignment: .leading)
-
-						Divider()
-						.foregroundColor(theme.fgColour)
-						.background(theme.fgColour)
 					}
 					.foregroundColor(theme.fgColour)
 					.listRowBackground(theme.bgColour)
@@ -142,10 +138,6 @@ struct CategoryView: View {
 				.listRowBackground(theme.bgColour)
 				.padding()
 
-				Divider()
-				.foregroundColor(theme.fgColour)
-				.background(theme.fgColour)
-
 				InputField(field: "Emoji", placeholder: "😳", text: $category.emoji)
 				.listRowBackground(theme.bgColour)
 				.padding()
@@ -187,10 +179,6 @@ struct NewCategoryView: View {
 				InputField(field: "Name", placeholder: "Something", text: $name)
 				.listRowBackground(theme.bgColour)
 				.padding()
-
-				Divider()
-				.foregroundColor(theme.fgColour)
-				.background(theme.fgColour)
 
 				InputField(field: "Emoji", placeholder: "😳", text: $emoji)
 				.listRowBackground(theme.bgColour)

@@ -8,7 +8,7 @@ struct ContentView: View {
 	@State private var selected: Tab = .home
 
     var body: some View {
-		ZStack(alignment: .bottom) {
+		VStack {
 			Group {
 				switch selected {
 				case .home:
@@ -38,11 +38,11 @@ struct ContentView: View {
 				}
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
-			.safeAreaInset(edge: .bottom) {
-				TabBar(selected: $selected)
-			}
+
+			TabBar(selected: $selected)
 
 		}
+		.ignoresSafeArea(.keyboard)
 		.task {
 			await createDefaultCategoryIfNeeded()
 		}

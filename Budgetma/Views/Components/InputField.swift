@@ -19,19 +19,18 @@ struct InputField: View {
 			ZStack(alignment: .trailing) {
 				if text.isEmpty {
 					Text(placeholder)
-						.foregroundColor(theme.fgColour.opacity(0.8))
-						.listRowBackground(theme.bgColour)
+					.themed()
+					.foregroundColor(theme.fgColour.opacity(0.8))
 				}
 
 				TextField("", text: $text)
-					.foregroundColor(theme.fgColour)
-					.tint(theme.fgColour)
-					.listRowBackground(theme.bgColour)
-					.multilineTextAlignment(.trailing)
+				.themed()
+				.tint(theme.fgColour)
+				.multilineTextAlignment(.trailing)
 
 			}
 			.scrollContentBackground(.hidden)
-			.background(theme.bgColour)
+			.themed()
 		}
 	}
 }
@@ -45,9 +44,7 @@ struct InputFieldCurrency: View {
 	var body: some View {
 		HStack {
 			Text(field)
-			.foregroundColor(theme.fgColour)
-			.listRowBackground(theme.bgColour)
-			.background(theme.bgColour)
+			.themed()
 
 			Spacer()
 
@@ -57,15 +54,14 @@ struct InputFieldCurrency: View {
 						code: Locale.current.currency?.identifier ?? "USD"
 						)
 					)
-					.foregroundColor(theme.fgColour)
+					.themed()
 					.tint(theme.fgColour)
-					.listRowBackground(theme.bgColour)
 					.multilineTextAlignment(.trailing)
 					.keyboardType(.decimalPad)
 
 			}
 			.scrollContentBackground(.hidden)
-			.background(theme.bgColour)
+			.themed()
 		}
 	}
 }

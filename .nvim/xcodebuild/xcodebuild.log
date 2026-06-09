@@ -1,9 +1,12 @@
 note: Building targets in dependency order
 note: Target dependency graph (1 target)
-[Budgetma] Write Auxiliary File Budgetma.SwiftFileList
-[Budgetma] Write Auxiliary File Budgetma.SwiftConstValuesFileList
+note: Removed stale file '/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/ThemedForm-ca9cdb9a783c8cfdc5eb911f7a76b9fd.o'
+note: Removed stale file '/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/ThemedForm-ca9cdb9a783c8cfdc5eb911f7a76b9fd.swiftconstvalues'
+note: Removed stale file '/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/ThemedForm.stringsdata'
 [Budgetma] Write Auxiliary File Budgetma-OutputFileMap.json
 [Budgetma] Write Auxiliary File Budgetma.LinkFileList
+[Budgetma] Write Auxiliary File Budgetma.SwiftConstValuesFileList
+[Budgetma] Write Auxiliary File Budgetma.SwiftFileList
 [!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:7:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
                 didSet {fgColour = Color(hex: fgColourHex) ?? .white}
                                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
@@ -13,15 +16,32 @@ note: Target dependency graph (1 target)
 [!]  /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:173:1: extension declares a conformance of imported type 'Weekday' to imported protocol 'CaseIterable'; this will not behave correctly if the owners of 'Foundation' introduce this conformance in the future
 extension Locale.Weekday: CaseIterable {
 ^
+[Budgetma] Compiling GeneratedAssetSymbols.swift
+[Budgetma] Compiling ThemeManager.swift
+[!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:7:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
+                didSet {fgColour = Color(hex: fgColourHex) ?? .white}
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+[!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:10:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
+                didSet {bgColour = Color(hex: bgColourHex) ?? .black}
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+[Budgetma] Compiling Color.swift
+[Budgetma] Compiling SettingsView.swift
+[!]  /Users/big-z/Documents/budgetma/Budgetma/Views/SettingsView.swift:107:7: variable 'active' was never mutated; consider changing to 'let' constant
+                var active = try? context.fetch(
+                ~~~ ^
+[Budgetma] Compiling BudgetmaApp.swift
+[Budgetma] Compiling InputField.swift
+[Budgetma] Compiling IncomeView.swift
+[Budgetma] Compiling TabBar.swift
+[Budgetma] Compiling ContentView.swift
+[Budgetma] Compiling Data.swift
 [Budgetma] Compiling RecurrenceRulePicker.swift
 [!]  /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:173:1: extension declares a conformance of imported type 'Weekday' to imported protocol 'CaseIterable'; this will not behave correctly if the owners of 'Foundation' introduce this conformance in the future
 extension Locale.Weekday: CaseIterable {
 ^
-[Budgetma] Compiling IncomeView.swift
-[Budgetma] Copy arm64-apple-ios-simulator.swiftmodule -> Budgetma.swiftmodule
 [Budgetma] Copy arm64-apple-ios-simulator.abi.json -> Budgetma.abi.json
+[Budgetma] Copy arm64-apple-ios-simulator.swiftmodule -> Budgetma.swiftmodule
 [Budgetma] Copy arm64-apple-ios-simulator.swiftsourceinfo -> Budgetma.swiftsourceinfo
-[Budgetma] Compiling Data.swift
 [Budgetma] Linking Budgetma.debug.dylib
 note: Using stub executor library with Swift entry point. (in target 'Budgetma' from project 'Budgetma')
 [Budgetma] Linking Budgetma
@@ -34,7 +54,6 @@ Signing Budgetma.app (in target 'Budgetma' from project 'Budgetma')
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Extensions/Color.swift (in target 'Budgetma' from project 'Budgetma')
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift (in target 'Budgetma' from project 'Budgetma')
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/InputField.swift (in target 'Budgetma' from project 'Budgetma')
-[!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/ThemedForm.swift (in target 'Budgetma' from project 'Budgetma')
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/IncomeView.swift (in target 'Budgetma' from project 'Budgetma')
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift (in target 'Budgetma' from project 'Budgetma')
 Build Succeeded
@@ -56,6 +75,10 @@ Warnings:
     extension declares a conformance of imported type 'Weekday' to imported protocol 'CaseIterable'; this will not behave correctly if the owners of 'Foundation' introduce this conformance in the future
     extension Locale.Weekday: CaseIterable {
     ^
+   /Users/big-z/Documents/budgetma/Budgetma/Views/SettingsView.swift:107:7
+    variable 'active' was never mutated; consider changing to 'let' constant
+                    var active = try? context.fetch(
+                    ~~~ ^
 
   ✔ Build Succeeded
 

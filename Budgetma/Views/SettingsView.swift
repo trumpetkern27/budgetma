@@ -13,10 +13,10 @@ struct SettingsView: View {
 					set: { theme.setForeground($0)}
 				))
 				.padding()
-				.listRowBackground(theme.bgColour)
+				.themed()
 
 				Divider()
-				.foregroundColor(theme.fgColour)
+				.themed()
 				.background(theme.fgColour)
 
 				ColorPicker("Background colour", selection: Binding(
@@ -24,24 +24,25 @@ struct SettingsView: View {
 					set: { theme.setBackground($0)}
 				))
 				.padding()
-				.listRowBackground(theme.bgColour)
+				.themed()
 
 				Divider()
-				.foregroundColor(theme.fgColour)
+				.themed()
 				.background(theme.fgColour)
 
 				NavigationLink("Categories") {
 					CategoriesView()
+					.themed()
 				}
 				.frame(maxWidth: .infinity, alignment: .leading)
 				.padding()
-				.listRowBackground(theme.bgColour)
+				.themed()
 			}
 			.scrollContentBackground(.hidden)
-			.background(theme.bgColour)
+			.themed()
 		}
 		.scrollContentBackground(.hidden)
-		.background(theme.bgColour)
+		.themed()
 	}
 
 }
@@ -68,8 +69,7 @@ struct CategoriesView: View {
 						} label: {
 							HStack {
 								Text("\(category.emoji) \(category.name)")
-								.foregroundColor(theme.fgColour)
-								.listRowBackground(theme.bgColour)
+								.themed()
 
 								Spacer()
 
@@ -80,15 +80,11 @@ struct CategoriesView: View {
 								}
 							}
 						}
-						.listRowBackground(theme.bgColour)
 						.padding()
-						.foregroundColor(theme.fgColour)
-						.listRowBackground(theme.bgColour)
+						.themed()
 						.frame(maxWidth: .infinity, alignment: .leading)
 					}
-					.foregroundColor(theme.fgColour)
-					.listRowBackground(theme.bgColour)
-					.background(theme.bgColour)
+					.themed()
 
 				}
 				NavigationLink {
@@ -97,14 +93,14 @@ struct CategoriesView: View {
 					Label("New Category", systemImage: "plus")
 				}
 				.padding()
-				.listRowBackground(theme.bgColour)
+				.themed()
 				.frame(maxWidth: .infinity, alignment: .leading)
 			}
 			.scrollContentBackground(.hidden)
-			.background(theme.bgColour)
+			.themed()
 		}
 		.scrollContentBackground(.hidden)
-		.background(theme.bgColour)
+		.themed()
 	}
 
 	private func delete(_ category: Category) {
@@ -135,18 +131,18 @@ struct CategoryView: View {
 		ScrollView {
 			VStack {
 				InputField(field: "Name", placeholder: "Something", text: $category.name)
-				.listRowBackground(theme.bgColour)
 				.padding()
+				.themed()
 
 				InputField(field: "Emoji", placeholder: "😳", text: $category.emoji)
-				.listRowBackground(theme.bgColour)
 				.padding()
+				.themed()
 			}
 			.scrollContentBackground(.hidden)
-			.background(theme.bgColour)
+			.themed()
 		}
 		.scrollContentBackground(.hidden)
-		.background(theme.bgColour)
+		.themed()
 		.onDisappear {
 			if category.name == "" && category.emoji == "" {
 				return
@@ -177,18 +173,18 @@ struct NewCategoryView: View {
 		ScrollView {
 			VStack(spacing: 0) {
 				InputField(field: "Name", placeholder: "Something", text: $name)
-				.listRowBackground(theme.bgColour)
 				.padding()
+				.themed()
 
 				InputField(field: "Emoji", placeholder: "😳", text: $emoji)
-				.listRowBackground(theme.bgColour)
 				.padding()
+				.themed()
 			}
 			.scrollContentBackground(.hidden)
-			.background(theme.bgColour)
+			.themed()
 		}
 		.scrollContentBackground(.hidden)
-		.background(theme.bgColour)
+		.themed()
 		.toolbar {
 			ToolbarItem(placement: .cancellationAction) {
 				Button("Cancel") {

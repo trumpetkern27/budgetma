@@ -35,18 +35,15 @@ struct IncomeView: View {
 								} label: {
 									HStack {
 										Text(income.name)
-										.foregroundColor(theme.fgColour)
-										.listRowBackground(theme.bgColour)
+										.themed()
 
 										Spacer()
 
 										Text(income.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-										.foregroundColor(theme.fgColour)
-										.listRowBackground(theme.bgColour)
+										.themed()
 									}
 								}
-								.listRowBackground(theme.bgColour)
-								.foregroundColor(theme.fgColour)
+								.themed()
 							}
 						}
 					} header: {
@@ -59,18 +56,15 @@ struct IncomeView: View {
 						}
 					}
 					.padding()
-					.foregroundColor(theme.fgColour)
-					.listRowBackground(theme.bgColour)
+					.themed()
 					.frame(maxWidth: .infinity, alignment: .leading)
 
 					Divider()
-					.foregroundColor(theme.fgColour)
+					.themed()
 					.background(theme.fgColour)
 				}
 			}
-			.foregroundColor(theme.fgColour)
-			.listRowBackground(theme.bgColour)
-			.background(theme.bgColour)
+			.themed()
 
 			NavigationLink {
 				NewIncomeView()
@@ -78,15 +72,12 @@ struct IncomeView: View {
 				Label("New Income", systemImage: "plus")
 			}
 			.padding()
-			.foregroundColor(theme.fgColour)
-			.listRowBackground(theme.bgColour)
+			.themed()
 			.frame(maxWidth: .infinity, alignment: .leading)
 
 		}
 		.scrollContentBackground(.hidden)
-		.foregroundColor(theme.fgColour)
-		.background(theme.bgColour)
-		.listRowBackground(theme.bgColour)
+		.themed()
 
 	}
 
@@ -123,17 +114,16 @@ struct NewIncomeView: View {
 		ScrollView {
 			VStack(spacing: 0) {
 				InputField(field: "Name", placeholder: "the air", text: $name)
-				.listRowBackground(theme.bgColour)
 				.padding()
+				.themed()
 
 				InputFieldCurrency(field: "Amount", amount: $amount)
-				.listRowBackground(theme.bgColour)
 				.padding()
+				.themed()
 
 				HStack {
 					Text("Category")
-					.foregroundColor(theme.fgColour)
-					.listRowBackground(theme.bgColour)
+					.themed()
 
 					Spacer()
 
@@ -142,23 +132,20 @@ struct NewIncomeView: View {
 						ForEach(categories) { category in
 							Text(category.name)
 							.tag(category as Category?)
-							.foregroundColor(theme.fgColour)
-							.listRowBackground(theme.bgColour)
+							.themed()
 						}
 					}
-					.foregroundColor(theme.fgColour)
-					.listRowBackground(theme.bgColour)
+					.themed()
 				}
-				.foregroundColor(theme.fgColour)
-				.listRowBackground(theme.bgColour)
 				.padding()
+				.themed()
 
 			}
 			.scrollContentBackground(.hidden)
-			.background(theme.bgColour)
+			.themed()
 		}
 		.scrollContentBackground(.hidden)
-		.background(theme.bgColour)
+		.themed()
 		.toolbar {
 			ToolbarItem(placement: .cancellationAction) {
 				Button("Cancel") {
@@ -235,17 +222,16 @@ struct SingleIncomeView: View {
 
 		VStack(spacing: 0) {
 			InputField(field: "Name", placeholder: "the air", text: $income.name)
-			.listRowBackground(theme.bgColour)
 			.padding()
+			.themed()
 
 			InputFieldCurrency(field: "Amount", amount: $income.amount)
-			.listRowBackground(theme.bgColour)
 			.padding()
+			.themed()
 
 			HStack {
 				Text("Category")
-				.foregroundColor(theme.fgColour)
-				.listRowBackground(theme.bgColour)
+				.themed()
 
 				Spacer()
 
@@ -254,27 +240,22 @@ struct SingleIncomeView: View {
 					ForEach(categories) { category in
 						Text(category.name)
 						.tag(category as Category?)
-						.foregroundColor(theme.fgColour)
-						.listRowBackground(theme.bgColour)
+						.themed()
 					}
 				}
-				.foregroundColor(theme.fgColour)
-				.listRowBackground(theme.bgColour)
+				.themed()
 			}
-			.foregroundColor(theme.fgColour)
-			.listRowBackground(theme.bgColour)
 			.padding()
+			.themed()
 
 			HStack {
 				Text("Regularity")
-				.foregroundColor(theme.fgColour)
-				.listRowBackground(theme.bgColour)
+				.themed()
 
 				Spacer()
 
 				RecurrenceRulePicker(rule: $income.regularity)
-				.foregroundColor(theme.fgColour)
-				.listRowBackground(theme.bgColour)
+				.themed()
 			}
 
 			Spacer()
@@ -295,7 +276,7 @@ struct SingleIncomeView: View {
 		}
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		.scrollContentBackground(.hidden)
-		.background(theme.bgColour)
+		.themed()
 		.ignoresSafeArea(.keyboard)
 		.onDisappear {
 			guard !income.name.isEmpty else { return }

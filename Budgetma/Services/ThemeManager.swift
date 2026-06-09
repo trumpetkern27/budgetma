@@ -56,3 +56,17 @@ final class ThemeManager: ObservableObject {
 
 	}
 }
+
+struct Themed: ViewModifier {
+	@EnvironmentObject var theme: ThemeManager
+	func body(content: Content) -> some View {
+		content
+			.foregroundColor(theme.fgColour)
+			.background(theme.bgColour)
+			.listRowBackground(theme.bgColour)
+	}
+}
+
+extension View {
+	func themed() -> some View { self.modifier(Themed()) }
+}

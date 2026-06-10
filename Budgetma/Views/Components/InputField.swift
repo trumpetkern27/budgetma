@@ -19,19 +19,17 @@ struct InputField: View {
 			ZStack(alignment: .trailing) {
 				if text.isEmpty {
 					Text(placeholder)
-					.themed()
 					.foregroundColor(theme.fgColour.opacity(0.8))
 				}
 
 				TextField("", text: $text)
-				.themed()
 				.tint(theme.fgColour)
 				.multilineTextAlignment(.trailing)
 
 			}
 			.scrollContentBackground(.hidden)
-			.themed()
 		}
+		.themed()
 	}
 }
 
@@ -44,7 +42,6 @@ struct InputFieldCurrency: View {
 	var body: some View {
 		HStack {
 			Text(field)
-			.themed()
 
 			Spacer()
 
@@ -54,14 +51,13 @@ struct InputFieldCurrency: View {
 						code: Locale.current.currency?.identifier ?? "USD"
 						)
 					)
-					.themed()
 					.tint(theme.fgColour)
 					.multilineTextAlignment(.trailing)
 					.keyboardType(.decimalPad)
 
 			}
 			.scrollContentBackground(.hidden)
-			.themed()
 		}
+		.themed()
 	}
 }

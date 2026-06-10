@@ -13,10 +13,8 @@ struct SettingsView: View {
 					set: { theme.setForeground($0)}
 				))
 				.padding()
-				.themed()
 
 				Divider()
-				.themed()
 				.background(theme.fgColour)
 
 				ColorPicker("Background colour", selection: Binding(
@@ -24,22 +22,17 @@ struct SettingsView: View {
 					set: { theme.setBackground($0)}
 				))
 				.padding()
-				.themed()
 
 				Divider()
-				.themed()
 				.background(theme.fgColour)
 
 				NavigationLink("Categories") {
 					CategoriesView()
-					.themed()
 				}
 				.frame(maxWidth: .infinity, alignment: .leading)
 				.padding()
-				.themed()
 			}
 			.scrollContentBackground(.hidden)
-			.themed()
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
@@ -69,7 +62,6 @@ struct CategoriesView: View {
 						} label: {
 							HStack {
 								Text("\(category.emoji) \(category.name)")
-								.themed()
 
 								Spacer()
 
@@ -81,10 +73,8 @@ struct CategoriesView: View {
 							}
 						}
 						.padding()
-						.themed()
 						.frame(maxWidth: .infinity, alignment: .leading)
 					}
-					.themed()
 
 				}
 				NavigationLink {
@@ -93,11 +83,9 @@ struct CategoriesView: View {
 					Label("New Category", systemImage: "plus")
 				}
 				.padding()
-				.themed()
 				.frame(maxWidth: .infinity, alignment: .leading)
 			}
 			.scrollContentBackground(.hidden)
-			.themed()
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
@@ -132,14 +120,11 @@ struct CategoryView: View {
 			VStack {
 				InputField(field: "Name", placeholder: "Something", text: $category.name)
 				.padding()
-				.themed()
 
 				InputField(field: "Emoji", placeholder: "😳", text: $category.emoji)
 				.padding()
-				.themed()
 			}
 			.scrollContentBackground(.hidden)
-			.themed()
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
@@ -174,14 +159,11 @@ struct NewCategoryView: View {
 			VStack(spacing: 0) {
 				InputField(field: "Name", placeholder: "Something", text: $name)
 				.padding()
-				.themed()
 
 				InputField(field: "Emoji", placeholder: "😳", text: $emoji)
 				.padding()
-				.themed()
 			}
 			.scrollContentBackground(.hidden)
-			.themed()
 		}
 		.scrollContentBackground(.hidden)
 		.themed()

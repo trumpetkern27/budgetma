@@ -42,6 +42,7 @@ struct ContentView: View {
 			TabBar(selected: $selected)
 
 		}
+		.themed()
 		.ignoresSafeArea(.keyboard)
 		.task {
 			await createDefaultCategoryIfNeeded()

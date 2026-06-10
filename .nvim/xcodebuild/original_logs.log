@@ -1,7 +1,7 @@
 Command line invocation:
     /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild build -project /Users/big-z/Documents/budgetma/Budgetma.xcodeproj -scheme Budgetma -destination id=AF819C46-6F0E-4A39-82C4-6397227ED54C -resultBundlePath /Users/big-z/Documents/budgetma/.nvim/xcodebuild/build.xcresult -parallelizeTargets
 
-2026-06-09 12:46:56.861 xcodebuild[45388:2656742] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-06-10 12:53:23.607 xcodebuild[50161:2762083] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
 Writing result bundle at path:
 	/Users/big-z/Documents/budgetma/.nvim/xcodebuild/build.xcresult
 
@@ -24,9 +24,9 @@ GatherProvisioningInputs
 
 CreateBuildDescription
 
-ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -x c -c /dev/null
-
 ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/big-z/Documents/budgetma/Budgetma/Assets.xcassets
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -x c -c /dev/null
 
 ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
 
@@ -34,34 +34,17 @@ ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeD
 
 ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
 
-Build description signature: bb98bd078fbf5f72c632157854443c15
-Build description path: /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/XCBuildData/bb98bd078fbf5f72c632157854443c15.xcbuilddata
-note: Removed stale file '/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/ThemedForm-ca9cdb9a783c8cfdc5eb911f7a76b9fd.o'
-
-note: Removed stale file '/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/ThemedForm-ca9cdb9a783c8cfdc5eb911f7a76b9fd.swiftconstvalues'
-
-note: Removed stale file '/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/ThemedForm.stringsdata'
-
+Build description signature: 0992cd5c2aaa10b4be1d98b12b5ea0b0
+Build description path: /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/XCBuildData/0992cd5c2aaa10b4be1d98b12b5ea0b0.xcbuilddata
 ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk /Users/big-z/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F73-6cfe768891a92b912361537c460fe42b.sdkstatcache
     cd /Users/big-z/Documents/budgetma/Budgetma.xcodeproj
     /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -o /Users/big-z/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F73-6cfe768891a92b912361537c460fe42b.sdkstatcache
 
-WriteAuxiliaryFile /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma-OutputFileMap.json (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    write-file /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma-OutputFileMap.json
-
-WriteAuxiliaryFile /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.LinkFileList (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    write-file /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.LinkFileList
-
-WriteAuxiliaryFile /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.SwiftConstValuesFileList (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    write-file /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.SwiftConstValuesFileList
-
-WriteAuxiliaryFile /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.SwiftFileList (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    write-file /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.SwiftFileList
-
+warning: Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Extensions/Color.swift (in target 'Budgetma' from project 'Budgetma')
+warning: Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift (in target 'Budgetma' from project 'Budgetma')
+warning: Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/InputField.swift (in target 'Budgetma' from project 'Budgetma')
+warning: Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/IncomeView.swift (in target 'Budgetma' from project 'Budgetma')
+warning: Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift (in target 'Budgetma' from project 'Budgetma')
 SwiftDriver Budgetma normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Budgetma' from project 'Budgetma')
     cd /Users/big-z/Documents/budgetma
     builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Budgetma -Onone @/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.SwiftFileList -DDEBUG -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios26.2-simulator -g -module-cache-path /Users/big-z/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator -F /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64 -c -j6 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/big-z/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F73-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/big-z/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/big-z/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/big-z/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma_const_extract_protocols.json -Xcc -iquote -Xcc /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Budgetma-generated-files.hmap -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Budgetma-own-target-headers.hmap -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Budgetma-all-target-headers.hmap -Xcc -iquote -Xcc /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Budgetma-project-headers.hmap -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/DerivedSources-normal/arm64 -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/DerivedSources/arm64 -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma-Swift.h -working-directory /Users/big-z/Documents/budgetma -experimental-emit-module-separately -disable-cmo
@@ -79,91 +62,25 @@ EmitSwiftModule normal arm64 (in target 'Budgetma' from project 'Budgetma')
                 didSet {bgColour = Color(hex: bgColourHex) ?? .black}
                                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
                                                           
-/Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:173:1: warning: extension declares a conformance of imported type 'Weekday' to imported protocol 'CaseIterable'; this will not behave correctly if the owners of 'Foundation' introduce this conformance in the future
+/Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:159:1: warning: extension declares a conformance of imported type 'Weekday' to imported protocol 'CaseIterable'; this will not behave correctly if the owners of 'Foundation' introduce this conformance in the future
 extension Locale.Weekday: CaseIterable {
 ^
-/Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:173:1: note: add '@retroactive' to silence this warning
+/Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:159:1: note: add '@retroactive' to silence this warning
 extension Locale.Weekday: CaseIterable {
 ^                         ~~~~~~~~~~~~
                           @retroactive CaseIterable
 
-SwiftCompile normal arm64 Compiling\ GeneratedAssetSymbols.swift /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Budgetma' from project 'Budgetma')
-
-SwiftCompile normal arm64 /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    
-
-SwiftCompile normal arm64 Compiling\ ThemeManager.swift,\ Color.swift /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift /Users/big-z/Documents/budgetma/Budgetma/Extensions/Color.swift (in target 'Budgetma' from project 'Budgetma')
-
-SwiftCompile normal arm64 /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    
-/Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:7:46: warning: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
-                didSet {fgColour = Color(hex: fgColourHex) ?? .white}
-                                   ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-                                                          
-/Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:10:46: warning: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
-                didSet {bgColour = Color(hex: bgColourHex) ?? .black}
-                                   ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-                                                          
-
-SwiftCompile normal arm64 /Users/big-z/Documents/budgetma/Budgetma/Extensions/Color.swift (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    
-
-SwiftCompile normal arm64 Compiling\ SettingsView.swift,\ BudgetmaApp.swift /Users/big-z/Documents/budgetma/Budgetma/Views/SettingsView.swift /Users/big-z/Documents/budgetma/Budgetma/BudgetmaApp.swift (in target 'Budgetma' from project 'Budgetma')
-SwiftCompile normal arm64 /Users/big-z/Documents/budgetma/Budgetma/Views/SettingsView.swift (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    
-/Users/big-z/Documents/budgetma/Budgetma/Views/SettingsView.swift:107:7: warning: variable 'active' was never mutated; consider changing to 'let' constant
-                var active = try? context.fetch(
-                ~~~ ^
-                let
-
-SwiftCompile normal arm64 /Users/big-z/Documents/budgetma/Budgetma/BudgetmaApp.swift (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    
-
-SwiftCompile normal arm64 Compiling\ InputField.swift,\ IncomeView.swift /Users/big-z/Documents/budgetma/Budgetma/Views/Components/InputField.swift /Users/big-z/Documents/budgetma/Budgetma/Views/IncomeView.swift (in target 'Budgetma' from project 'Budgetma')
-SwiftCompile normal arm64 /Users/big-z/Documents/budgetma/Budgetma/Views/Components/InputField.swift (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    
-
-SwiftCompile normal arm64 /Users/big-z/Documents/budgetma/Budgetma/Views/IncomeView.swift (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    
-
-SwiftCompile normal arm64 Compiling\ TabBar.swift,\ ContentView.swift /Users/big-z/Documents/budgetma/Budgetma/Views/Components/TabBar.swift /Users/big-z/Documents/budgetma/Budgetma/Views/ContentView.swift (in target 'Budgetma' from project 'Budgetma')
-
-SwiftCompile normal arm64 /Users/big-z/Documents/budgetma/Budgetma/Views/Components/TabBar.swift (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    
-
-SwiftCompile normal arm64 /Users/big-z/Documents/budgetma/Budgetma/Views/ContentView.swift (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    
-
-SwiftCompile normal arm64 Compiling\ Data.swift,\ RecurrenceRulePicker.swift /Users/big-z/Documents/budgetma/Budgetma/Models/Data.swift /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift (in target 'Budgetma' from project 'Budgetma')
-SwiftCompile normal arm64 /Users/big-z/Documents/budgetma/Budgetma/Models/Data.swift (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    
-
+SwiftCompile normal arm64 Compiling\ RecurrenceRulePicker.swift /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift (in target 'Budgetma' from project 'Budgetma')
 SwiftCompile normal arm64 /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift (in target 'Budgetma' from project 'Budgetma')
     cd /Users/big-z/Documents/budgetma
     
-/Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:173:1: warning: extension declares a conformance of imported type 'Weekday' to imported protocol 'CaseIterable'; this will not behave correctly if the owners of 'Foundation' introduce this conformance in the future
+/Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:159:1: warning: extension declares a conformance of imported type 'Weekday' to imported protocol 'CaseIterable'; this will not behave correctly if the owners of 'Foundation' introduce this conformance in the future
 extension Locale.Weekday: CaseIterable {
 ^
-/Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:173:1: note: add '@retroactive' to silence this warning
+/Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:159:1: note: add '@retroactive' to silence this warning
 extension Locale.Weekday: CaseIterable {
 ^                         ~~~~~~~~~~~~
                           @retroactive CaseIterable
-
-SwiftDriverJobDiscovery normal arm64 Compiling GeneratedAssetSymbols.swift (in target 'Budgetma' from project 'Budgetma')
-
-SwiftDriverJobDiscovery normal arm64 Compiling ThemeManager.swift, Color.swift (in target 'Budgetma' from project 'Budgetma')
-
-SwiftDriverJobDiscovery normal arm64 Compiling TabBar.swift, ContentView.swift (in target 'Budgetma' from project 'Budgetma')
 
 SwiftDriverJobDiscovery normal arm64 Emitting module for Budgetma (in target 'Budgetma' from project 'Budgetma')
 
@@ -171,23 +88,15 @@ SwiftDriver\ Compilation\ Requirements Budgetma normal arm64 com.apple.xcode.too
     cd /Users/big-z/Documents/budgetma
     builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Budgetma -Onone @/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.SwiftFileList -DDEBUG -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios26.2-simulator -g -module-cache-path /Users/big-z/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator -F /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64 -c -j6 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/big-z/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator26.5-23F73-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/big-z/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/big-z/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/big-z/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma_const_extract_protocols.json -Xcc -iquote -Xcc /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Budgetma-generated-files.hmap -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Budgetma-own-target-headers.hmap -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Budgetma-all-target-headers.hmap -Xcc -iquote -Xcc /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Budgetma-project-headers.hmap -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/DerivedSources-normal/arm64 -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/DerivedSources/arm64 -Xcc -I/Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma-Swift.h -working-directory /Users/big-z/Documents/budgetma -experimental-emit-module-separately -disable-cmo
 
-Copy /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.swiftmodule/arm64-apple-ios-simulator.abi.json /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.abi.json (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.abi.json /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.swiftmodule/arm64-apple-ios-simulator.abi.json
-
-Copy /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.swiftmodule/arm64-apple-ios-simulator.swiftmodule /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.swiftmodule (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.swiftmodule /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.swiftmodule/arm64-apple-ios-simulator.swiftmodule
-
 Copy /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.swiftsourceinfo (in target 'Budgetma' from project 'Budgetma')
     cd /Users/big-z/Documents/budgetma
     builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.swiftsourceinfo /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
 
-SwiftDriverJobDiscovery normal arm64 Compiling SettingsView.swift, BudgetmaApp.swift (in target 'Budgetma' from project 'Budgetma')
+Copy /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.swiftmodule/arm64-apple-ios-simulator.abi.json /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.abi.json (in target 'Budgetma' from project 'Budgetma')
+    cd /Users/big-z/Documents/budgetma
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.abi.json /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.swiftmodule/arm64-apple-ios-simulator.abi.json
 
-SwiftDriverJobDiscovery normal arm64 Compiling InputField.swift, IncomeView.swift (in target 'Budgetma' from project 'Budgetma')
-
-SwiftDriverJobDiscovery normal arm64 Compiling Data.swift, RecurrenceRulePicker.swift (in target 'Budgetma' from project 'Budgetma')
+SwiftDriverJobDiscovery normal arm64 Compiling RecurrenceRulePicker.swift (in target 'Budgetma' from project 'Budgetma')
 
 SwiftDriver\ Compilation Budgetma normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Budgetma' from project 'Budgetma')
     cd /Users/big-z/Documents/budgetma
@@ -209,16 +118,16 @@ Ld /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpum
 ExtractAppIntentsMetadata (in target 'Budgetma' from project 'Budgetma')
     cd /Users/big-z/Documents/budgetma
     /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name Budgetma --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk --xcode-version 17F42 --platform-family iOS --deployment-target 26.2 --bundle-identifier the-kern.com.Budgetma --output /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app --target-triple arm64-apple-ios26.2-simulator --binary-file /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Budgetma --dependency-file /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma_dependency_info.dat --stringsdata-file /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.SwiftFileList --metadata-file-list /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Budgetma.DependencyMetadataFileList --static-metadata-file-list /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Budgetma.DependencyStaticMetadataFileList --swift-const-vals-list /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/Objects-normal/arm64/Budgetma.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
-2026-06-09 12:47:01.348 appintentsmetadataprocessor[45424:2656999] Starting appintentsmetadataprocessor export
-2026-06-09 12:47:01.352 appintentsmetadataprocessor[45424:2656999] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
-
-CopySwiftLibs /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app (in target 'Budgetma' from project 'Budgetma')
-    cd /Users/big-z/Documents/budgetma
-    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Budgetma.debug.dylib --scan-folder /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Frameworks --scan-folder /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/PlugIns --scan-folder /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/SystemExtensions --scan-folder /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+2026-06-10 12:53:32.439 appintentsmetadataprocessor[50190:2762296] Starting appintentsmetadataprocessor export
+2026-06-10 12:53:32.451 appintentsmetadataprocessor[50190:2762296] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
 
 ProcessInfoPlistFile /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Info.plist /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/empty-Budgetma.plist (in target 'Budgetma' from project 'Budgetma')
     cd /Users/big-z/Documents/budgetma
     builtin-infoPlistUtility /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/empty-Budgetma.plist -producttype com.apple.product-type.application -genpkginfo /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/assetcatalog_generated_info.plist -o /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Info.plist
+
+CopySwiftLibs /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app (in target 'Budgetma' from project 'Budgetma')
+    cd /Users/big-z/Documents/budgetma
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Budgetma.debug.dylib --scan-folder /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Frameworks --scan-folder /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/PlugIns --scan-folder /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/SystemExtensions --scan-folder /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Intermediates.noindex/Budgetma.build/Debug-iphonesimulator/Budgetma.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
 
 CodeSign /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app/Budgetma.debug.dylib (in target 'Budgetma' from project 'Budgetma')
     cd /Users/big-z/Documents/budgetma
@@ -246,11 +155,6 @@ Validate /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapkl
     cd /Users/big-z/Documents/budgetma
     builtin-validationUtility /Users/big-z/Library/Developer/Xcode/DerivedData/Budgetma-ecrnksjfaapklsbgpumhciziwdlt/Build/Products/Debug-iphonesimulator/Budgetma.app -shallow-bundle -infoplist-subpath Info.plist
 
-warning: Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Extensions/Color.swift (in target 'Budgetma' from project 'Budgetma')
-warning: Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift (in target 'Budgetma' from project 'Budgetma')
-warning: Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/InputField.swift (in target 'Budgetma' from project 'Budgetma')
-warning: Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/IncomeView.swift (in target 'Budgetma' from project 'Budgetma')
-warning: Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift (in target 'Budgetma' from project 'Budgetma')
 
 Result bundle written to path:
 	/Users/big-z/Documents/budgetma/.nvim/xcodebuild/build.xcresult

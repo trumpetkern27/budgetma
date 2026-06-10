@@ -35,15 +35,12 @@ struct IncomeView: View {
 								} label: {
 									HStack {
 										Text(income.name)
-										.themed()
 
 										Spacer()
 
 										Text(income.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-										.themed()
 									}
 								}
-								.themed()
 							}
 						}
 					} header: {
@@ -56,15 +53,12 @@ struct IncomeView: View {
 						}
 					}
 					.padding()
-					.themed()
 					.frame(maxWidth: .infinity, alignment: .leading)
 
 					Divider()
-					.themed()
 					.background(theme.fgColour)
 				}
 			}
-			.themed()
 
 			NavigationLink {
 				NewIncomeView()
@@ -72,7 +66,6 @@ struct IncomeView: View {
 				Label("New Income", systemImage: "plus")
 			}
 			.padding()
-			.themed()
 			.frame(maxWidth: .infinity, alignment: .leading)
 
 		}
@@ -115,15 +108,12 @@ struct NewIncomeView: View {
 			VStack(spacing: 0) {
 				InputField(field: "Name", placeholder: "the air", text: $name)
 				.padding()
-				.themed()
 
 				InputFieldCurrency(field: "Amount", amount: $amount)
 				.padding()
-				.themed()
 
 				HStack {
 					Text("Category")
-					.themed()
 
 					Spacer()
 
@@ -132,17 +122,13 @@ struct NewIncomeView: View {
 						ForEach(categories) { category in
 							Text(category.name)
 							.tag(category as Category?)
-							.themed()
 						}
 					}
-					.themed()
 				}
 				.padding()
-				.themed()
 
 			}
 			.scrollContentBackground(.hidden)
-			.themed()
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
@@ -223,15 +209,12 @@ struct SingleIncomeView: View {
 		VStack(spacing: 0) {
 			InputField(field: "Name", placeholder: "the air", text: $income.name)
 			.padding()
-			.themed()
 
 			InputFieldCurrency(field: "Amount", amount: $income.amount)
 			.padding()
-			.themed()
 
 			HStack {
 				Text("Category")
-				.themed()
 
 				Spacer()
 
@@ -240,22 +223,17 @@ struct SingleIncomeView: View {
 					ForEach(categories) { category in
 						Text(category.name)
 						.tag(category as Category?)
-						.themed()
 					}
 				}
-				.themed()
 			}
 			.padding()
-			.themed()
 
 			HStack {
 				Text("Regularity")
-				.themed()
 
 				Spacer()
 
 				RecurrenceRulePicker(rule: $income.regularity)
-				.themed()
 			}
 
 			Spacer()

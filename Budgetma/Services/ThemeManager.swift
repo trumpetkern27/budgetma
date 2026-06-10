@@ -55,6 +55,18 @@ final class ThemeManager: ObservableObject {
 		return distance < 0.1
 
 	}
+
+	func applySegmentedControlAppearance() {
+		UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(fgColour)
+		UISegmentedControl.appearance().backgroundColor = UIColor(bgColour)
+		UISegmentedControl.appearance().setTitleTextAttributes(
+			[.foregroundColor: UIColor(bgColour)], for: .selected
+		)
+		UISegmentedControl.appearance().setTitleTextAttributes(
+			[.foregroundColor: UIColor(fgColour)], for: .normal
+		)
+
+	}
 }
 
 struct Themed: ViewModifier {
@@ -64,6 +76,10 @@ struct Themed: ViewModifier {
 			.foregroundColor(theme.fgColour)
 			.background(theme.bgColour)
 			.listRowBackground(theme.bgColour)
+			.scrollContentBackground(.hidden)
+			.onAppear { theme.applySegmentedControlAppearance() }
+			.onChange(of: theme.fgColour) {_, _ in theme.applySegmentedControlAppearance() }
+			.onChange(of: theme.bgColour) {_, _ in theme.applySegmentedControlAppearance() }
 	}
 }
 

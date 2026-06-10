@@ -26,37 +26,21 @@ struct RecurrenceRulePicker: View {
 
 				Picker("Frequency", selection: $frequency) {
 					Text("Daily").tag(Calendar.RecurrenceRule.Frequency.daily)
-						.foregroundColor(theme.fgColour)
-						.listRowBackground(theme.bgColour)
 					Text("Weekly").tag(Calendar.RecurrenceRule.Frequency.weekly)
-						.foregroundColor(theme.fgColour)
-						.listRowBackground(theme.bgColour)
 					Text("Monthly").tag(Calendar.RecurrenceRule.Frequency.monthly)
-						.foregroundColor(theme.fgColour)
-						.listRowBackground(theme.bgColour)
 					Text("Annually").tag(Calendar.RecurrenceRule.Frequency.yearly)
-						.foregroundColor(theme.fgColour)
-						.listRowBackground(theme.bgColour)
 				}
-					.foregroundColor(theme.fgColour)
-					.listRowBackground(theme.bgColour)
-					.pickerStyle(.segmented)
-					.padding()
+				.pickerStyle(.segmented)
+				.padding()
 
 				Divider()
 
 				HStack {
 					Text("Every")
-						.foregroundColor(theme.fgColour)
-						.listRowBackground(theme.bgColour)
 					Spacer()
 					Stepper("\(interval) \(frequencyLabel)", value: $interval, in: 1...99)
-						.foregroundColor(theme.fgColour)
-						.listRowBackground(theme.bgColour)
 				}
-					.foregroundColor(theme.fgColour)
-					.listRowBackground(theme.bgColour)
-					.padding()
+				.padding()
 
 				if frequency == .weekly {
 					Divider()
@@ -70,8 +54,6 @@ struct RecurrenceRulePicker: View {
 							}
 							.frame(maxWidth: .infinity)
 							.padding(.vertical, 6)
-							.background(theme.bgColour)
-							.foregroundColor(theme.fgColour)
 							.clipShape(RoundedRectangle(cornerRadius: 8))
 							.overlay {
 								RoundedRectangle(cornerRadius: 8)
@@ -109,6 +91,7 @@ struct RecurrenceRulePicker: View {
 				}
 			}
 		}
+		.themed()
 		.onChange(of: enabled) { _, _ in commit() }
 		.onChange(of: frequency) { _, _ in commit() }
 		.onChange(of: interval) { _, _ in commit() }
@@ -117,7 +100,10 @@ struct RecurrenceRulePicker: View {
 		.onChange(of: endDate) { _, _ in commit() }
 		.onChange(of: occurrenceCount) { _, _ in commit() }
 		.onAppear { load() }
-
+		.overlay {
+			RoundedRectangle(cornerRadius: 12) 
+				.stroke(theme.fgColour, lineWidth: 1)
+		}
 	}
 
 	private var frequencyLabel: String {

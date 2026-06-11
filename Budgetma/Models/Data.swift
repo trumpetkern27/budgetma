@@ -44,18 +44,41 @@ final class Category {
 
 @Model
 final class ExpectedTransaction {
+	var amount: Decimal
 	var name: String
-	var category: Category
 	var regularity: RecurrenceRule?
+	var category: Category?
 
 	init(
 		name: String,
-		category: Category?,
-		regularity: RecurrenceRule?
+		amount: Decimal,
+		regularity: RecurrenceRule?,
+		category: Category?
 	) {
 		self.name = name
-		self.category = category ?? defaultCategory
+		self.amount = amount
 		self.regularity = regularity
+		self.category = category
+	}
+}
+
+@Model
+final class Envelope {
+	var amount: Decimal
+	var name: String
+	var regularity: RecurrenceRule?
+	var category: Category?
+
+	init(
+		name: String,
+		amount: Decimal,
+		regularity: RecurrenceRule?,
+		category: Category?
+	) {
+		self.name = name
+		self.amount = amount
+		self.regularity = regularity
+		self.category = category
 	}
 }
 
@@ -144,7 +167,6 @@ final class RecurrenceRule {
 		} else if let count = occuranceCount {
 			end = .afterOccurrences(count)
 		}
-		
 		let months = monthsOfYear.map { Calendar.RecurrenceRule.Month($0) }
 
 		return Calendar.RecurrenceRule(

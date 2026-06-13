@@ -68,17 +68,20 @@ final class Envelope {
 	var name: String
 	var regularity: RecurrenceRule?
 	var category: Category?
+	var carryOver: Bool
 
 	init(
 		name: String,
 		amount: Decimal,
 		regularity: RecurrenceRule?,
-		category: Category?
+		category: Category?,
+		carryOver: Bool = false
 	) {
 		self.name = name
 		self.amount = amount
 		self.regularity = regularity
 		self.category = category
+		self.carryOver = carryOver
 	}
 }
 

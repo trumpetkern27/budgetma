@@ -5,22 +5,20 @@ note: Target dependency graph (1 target)
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/InputField.swift (in target 'Budgetma' from project 'Budgetma')
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/IncomeView.swift (in target 'Budgetma' from project 'Budgetma')
 [!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift (in target 'Budgetma' from project 'Budgetma')
+[!] Skipping duplicate build file in Compile Sources build phase: /Users/big-z/Documents/budgetma/Budgetma/Views/ExpenseView.swift (in target 'Budgetma' from project 'Budgetma')
+[Budgetma] Compiling BudgetmaApp.swift
 [!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:7:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
                 didSet {fgColour = Color(hex: fgColourHex) ?? .white}
                                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
 [!]  /Users/big-z/Documents/budgetma/Budgetma/Services/ThemeManager.swift:10:46: left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
                 didSet {bgColour = Color(hex: bgColourHex) ?? .black}
                                    ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-[!]  /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:159:1: extension declares a conformance of imported type 'Weekday' to imported protocol 'CaseIterable'; this will not behave correctly if the owners of 'Foundation' introduce this conformance in the future
+[!]  /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:157:1: extension declares a conformance of imported type 'Weekday' to imported protocol 'CaseIterable'; this will not behave correctly if the owners of 'Foundation' introduce this conformance in the future
 extension Locale.Weekday: CaseIterable {
 ^
-[Budgetma] Compiling RecurrenceRulePicker.swift
-[!]  /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:159:1: extension declares a conformance of imported type 'Weekday' to imported protocol 'CaseIterable'; this will not behave correctly if the owners of 'Foundation' introduce this conformance in the future
-extension Locale.Weekday: CaseIterable {
-^
-[Budgetma] Copy arm64-apple-ios-simulator.swiftsourceinfo -> Budgetma.swiftsourceinfo
-[Budgetma] Copy arm64-apple-ios-simulator.abi.json -> Budgetma.abi.json
 [Budgetma] Linking Budgetma.debug.dylib
+[Budgetma] Copy arm64-apple-ios-simulator.abi.json -> Budgetma.abi.json
+[Budgetma] Copy arm64-apple-ios-simulator.swiftsourceinfo -> Budgetma.swiftsourceinfo
 note: Using stub executor library with Swift entry point. (in target 'Budgetma' from project 'Budgetma')
 [Budgetma] Linking Budgetma
 [Budgetma] Extract App Intents Metadata
@@ -44,7 +42,7 @@ Warnings:
     left side of nil coalescing operator '??' has non-optional type 'Color', so the right side is never used
                     didSet {bgColour = Color(hex: bgColourHex) ?? .black}
                                        ~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
-   /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:159:1
+   /Users/big-z/Documents/budgetma/Budgetma/Views/Components/RecurrenceRulePicker.swift:157:1
     extension declares a conformance of imported type 'Weekday' to imported protocol 'CaseIterable'; this will not behave correctly if the owners of 'Foundation' introduce this conformance in the future
     extension Locale.Weekday: CaseIterable {
     ^

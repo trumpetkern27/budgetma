@@ -23,7 +23,8 @@ struct BudgetmaApp: App {
 			Category.self,
 			Income.self,
 			Transaction.self,
-			ExpectedTransaction.self
+			ExpectedTransaction.self,
+			Envelope.self
 		])
     }
 }

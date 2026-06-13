@@ -17,8 +17,6 @@ struct RecurrenceRulePicker: View {
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
 			Toggle("Repeats", isOn: $enabled)
-				.foregroundColor(theme.fgColour)
-				.listRowBackground(theme.bgColour)
 				.padding()
 
 			if enabled {

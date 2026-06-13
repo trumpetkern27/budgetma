@@ -21,10 +21,9 @@ struct ContentView: View {
 					.padding()
 					.tag("Home")
 				case .expenses:
-					ZStack {
-						Image(systemName: "house")
+					NavigationStack {
+						ExpenseView()
 					}
-					.padding()
 					.tag("Expenses")
 				case .income:
 					NavigationStack {

@@ -1,0 +1,556 @@
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x14377a760> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x14377a760> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x14377a760> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x14377a760> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+2026-06-13 20:12:14.698 Budgetma[29690:533529] invalid mode 'kCFRunLoopCommonModes' provided to CFRunLoopRunSpecific - break on _CFRunLoopError_RunCalledWithInvalidMode to debug. This message will only appear once per execution.
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166d2edc0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166d2edc0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166d2edc0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166d2edc0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+SwiftData.DefaultStore save failed with error: Error Domain=NSCocoaErrorDomain Code=256 "The file “default.store” couldn’t be opened." UserInfo={NSFilePath=/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store, NSSQLiteErrorDomain=1}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e74620> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e74620> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e74620> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e74620> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd83c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd83c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd83c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd83c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDo
+main = 1;
+}
+SwiftData.DefaultStore save failed with error: Error Domain=NSCocoaErrorDomain Code=256 "The file “default.store” couldn’t be opened." UserInfo={NSFilePath=/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store, NSSQLiteErrorDomain=1}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e750a0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e750a0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e750a0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e750a0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd9ec0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd9ec0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd9ec0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd9ec0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+SwiftData.DefaultStore save failed with error: Error Domain=NSCocoaErrorDomain Code=256 "The file “default.store” couldn’t be opened." UserInfo={NSFilePath=/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store, NSSQLiteErrorDomain=1}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e75180> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e75180> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e75180> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e75180> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd8b40> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd8b40> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd8b40> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd8b40> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+SwiftData.DefaultStore save failed with error: Error Domain=NSCocoaErrorDomain Code=256 "The file “default.store” couldn’t be opened." UserInfo={NSFilePath=/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store, NSSQLiteErrorDomain=1}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd95c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd95c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd95c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd95c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+SwiftData.DefaultStore save failed with error: Error Domain=NSCocoaErrorDomain Code=256 "The file “default.store” couldn’t be opened." UserInfo={NSFilePath=/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store, NSSQLiteErrorDomain=1}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fb58c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fb58c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fb58c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fb58c0> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+SwiftData.DefaultStore save failed with error: Error Domain=NSCocoaErrorDomain Code=256 "The file “default.store” couldn’t be opened." UserInfo={NSFilePath=/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store, NSSQLiteErrorDomain=1}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fb5200> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fb5200> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fb5200> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fb5200> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+SwiftData.DefaultStore save failed with error: Error Domain=NSCocoaErrorDomain Code=256 "The file “default.store” couldn’t be opened." UserInfo={NSFilePath=/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store, NSSQLiteErrorDomain=1}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e76220> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e76220> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e76220> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e76220> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e74460> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e74460> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e74460> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e74460> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fda640> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fda640> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fda640> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fda640> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+SwiftData.DefaultStore save failed with error: Error Domain=NSCocoaErrorDomain Code=256 "The file “default.store” couldn’t be opened." UserInfo={NSFilePath=/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store, NSSQLiteErrorDomain=1}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e76680> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e76680> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e76680> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLFetchRequestContext: 0x166e76680> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'no such column: t0.ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd8c00> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd8c00> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd8c00> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fd8c00> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+SwiftData.DefaultStore save failed with error: Error Domain=NSCocoaErrorDomain Code=256 "The file “default.store” couldn’t be opened." UserInfo={NSFilePath=/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store, NSSQLiteErrorDomain=1}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fda580> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fda580> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fda580> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: -executeRequest: encountered exception = I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo = {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+CoreData: error: (1) I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER'
+CoreData: error: SQLCore dispatchRequest: exception handling request: <NSSQLSaveChangesRequestContext: 0x166fda580> , I/O error for database at /Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store.  SQLite error code:1, 'table ZEXPECTEDTRANSACTION has no column named ZCARRYOVER' with userInfo of {
+    NSFilePath = "/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store";
+    NSSQLiteErrorDomain = 1;
+}
+SwiftData.DefaultStore save failed with error: Error Domain=NSCocoaErrorDomain Code=256 "The file “default.store” couldn’t be opened." UserInfo={NSFilePath=/Users/big-z/Library/Developer/CoreSimulator/Devices/AF819C46-6F0E-4A39-82C4-6397227ED54C/data/Containers/Data/Application/5FE559B5-9D83-4F03-8D35-4F151BD92AB3/Library/Application Support/default.store, NSSQLiteErrorDomain=1}

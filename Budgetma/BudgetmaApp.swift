@@ -20,11 +20,17 @@ struct BudgetmaApp: App {
 				.tint(theme.fgColour)
         }
 		.modelContainer(for: [
-			Category.self,
-			Income.self,
+			// transactions
 			Transaction.self,
+			Expense.self,
+			Income.self,
+			// expected transactions
 			ExpectedTransaction.self,
-			Envelope.self
+			ExpectedIncome.self,
+			ExpectedExpense.self,
+			Envelope.self,
+			// category
+			Category.self
 		])
     }
 }

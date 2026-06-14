@@ -4,7 +4,7 @@ import SwiftData
 // main view
 struct ExpenseView: View {
 	@EnvironmentObject var theme: ThemeManager
-	@Query private var expectedTransactions: [ExpectedTransaction]
+	@Query private var expectedTransactions: [ExpectedExpense]
 	@Query private var envelopes: [Envelope]
 
 	@State var expandedTransactionCategories: Set<String> = []
@@ -12,7 +12,7 @@ struct ExpenseView: View {
 	@State private var transactionsExpanded: Bool = false
 	@State private var envelopesExpanded: Bool = false
 
-	var groupedTransactions: [(key: String, category: Category?, transactions: [ExpectedTransaction])] {
+	var groupedTransactions: [(key: String, category: Category?, transactions: [ExpectedExpense])] {
 		let dict = Dictionary(grouping: expectedTransactions) {transaction in 
 			transaction.category?.name ?? "__uncategorized__"
 		}
@@ -64,7 +64,7 @@ struct ExpenseView: View {
 										SingleExpectedTransactionView(transaction: transaction)
 									} label: {
 										HStack {
-											Text(transaction.name)
+											Text("\(transaction.category!.emoji)  \(transaction.name)")
 
 											Spacer()
 
@@ -213,7 +213,7 @@ struct NewTransactionView: View {
 			ToolbarItem(placement: .confirmationAction) {
 				Button("Save") {
 					context.insert(
-						ExpectedTransaction(
+						ExpectedExpense(
 							name: name.isEmpty ? "the air" : name,
 							amount: amount,
 							regularity: nil,
@@ -312,7 +312,7 @@ struct SingleExpectedTransactionView: View {
 	@Environment(\.dismiss)
 	private var dismiss
 
-	@State var transaction: ExpectedTransaction
+	@State var transaction: ExpectedExpense
 	@Query(
 		filter: #Predicate<Category> {
 			$0.isActive
@@ -451,33 +451,5 @@ struct SingleEnvelopeView: View {
 			guard !envelope.name.isEmpty else { return }
 			try? context.save()
 		}
-	}
-}
-
-struct SectionHeader: View {
-	let title: String
-	@Binding var isExpanded: Bool
-
-	var body: some View {
-		Button(action: onTap) {
-			HStack {
-				Text(title)
-					.font(.headline)
-					.foregroundStyle(.primary)
-				Spacer()
-				Image(systemName: "chevron.right")
-					.font(.caption)
-					.foregroundStyle(.tertiary)
-					.rotationEffect(.degrees(isExpanded ? 90 : 0))
-					.animation(.easeInOut(duration: 0.2), value: isExpanded)
-			}
-			.contentShape(Rectangle())
-		}
-		.buttonStyle(.plain)
-		.themed()
-	}
-
-	private func onTap() {
-		isExpanded = !isExpanded
 	}
 }

@@ -12,10 +12,10 @@ extension Color {
 		let red = Double((int >> 16) & 0xff) / 255
 		let green = Double((int >> 8) & 0xff) / 255
 		let blue = Double(int & 0xff) / 255
-		
 		self.init(red: red, green: green, blue: blue)
 	}
 
+	// convert color to hex string
 	func toHex() -> String? {
 		let uiColor = UIColor(self)
 		var red: CGFloat = 0

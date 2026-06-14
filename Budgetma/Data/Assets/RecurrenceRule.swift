@@ -1,110 +1,11 @@
 import SwiftUI
 import SwiftData
 
-@Model
-final class Transaction {
-	var date: Date
-	var amount: Decimal
-	var category: Category?
-	var note: String
-
-	init(
-		date: Date,
-		amount: Decimal,
-		category: Category?,
-		note: String
-	) {
-		self.date = date
-		self.amount = amount
-		self.category = category
-		self.note = note
-	}
-}
-
-@Model
-final class Category {
-	@Attribute(.unique)
-	var id: UUID
-	@Attribute(.unique)
-	var name: String
-	var emoji: String
-	var isActive: Bool
-
-	init(
-		name: String,
-		emoji: String,
-		isActive: Bool = true
-	) {
-		self.id = UUID()
-		self.name = name
-		self.emoji = emoji
-		self.isActive = isActive
-	}
-}
-
-@Model
-final class ExpectedTransaction {
-	var amount: Decimal
-	var name: String
-	var regularity: RecurrenceRule?
-	var category: Category?
-
-	init(
-		name: String,
-		amount: Decimal,
-		regularity: RecurrenceRule?,
-		category: Category?
-	) {
-		self.name = name
-		self.amount = amount
-		self.regularity = regularity
-		self.category = category
-	}
-}
-
-@Model
-final class Envelope {
-	var amount: Decimal
-	var name: String
-	var regularity: RecurrenceRule?
-	var category: Category?
-	var carryOver: Bool
-
-	init(
-		name: String,
-		amount: Decimal,
-		regularity: RecurrenceRule?,
-		category: Category?,
-		carryOver: Bool = false
-	) {
-		self.name = name
-		self.amount = amount
-		self.regularity = regularity
-		self.category = category
-		self.carryOver = carryOver
-	}
-}
-
-@Model
-final class Income {
-	var name: String
-	var amount: Decimal
-	var regularity: RecurrenceRule?
-	var category: Category?
-
-	init(
-		name: String,
-		amount: Decimal,
-		regularity: RecurrenceRule?,
-		category: Category?
-	) {
-		self.name = name
-		self.amount = amount
-		self.regularity = regularity
-		self.category = category
-	}
-}
-
+/* --- Recurrence Rule Model ---
+ * imitating the ios recurrence rule
+ * bc it would be way too easy if you could just store a Calendar.RecurrenceRule in a @Model
+ * i mean why would anyone want to do that
+ */
 @Model
 final class RecurrenceRule {
 	var frequencyRaw: Int
@@ -145,6 +46,7 @@ final class RecurrenceRule {
 		self.setPositions = setPositions
 	}
 
+	// convert to the real recurrence rule
 	func toRecurranceRule() -> Calendar.RecurrenceRule? {
 		guard let freq = Calendar.RecurrenceRule.Frequency(rawValue: frequencyRaw) else {
 			return nil
@@ -187,6 +89,7 @@ final class RecurrenceRule {
 
 	}
 
+	// convert from real recurrence rule
 	static func from(_ rule: Calendar.RecurrenceRule) -> RecurrenceRule {
 		let weekdays: [(Locale.Weekday, Int?)] = rule.weekdays.map {weekday in
 			switch weekday {
@@ -220,5 +123,3 @@ final class RecurrenceRule {
 		)
 	}
 }
-
-let defaultCategory = Category(name: "Misc", emoji: "🗿")

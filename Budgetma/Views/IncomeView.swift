@@ -4,11 +4,11 @@ import SwiftData
 // main view
 struct IncomeView: View {
 	@EnvironmentObject var theme: ThemeManager
-	@Query private var incomes: [Income]
+	@Query private var incomes: [ExpectedIncome]
 
 	@State var expandedCategories: Set<String> = []
 
-	var grouped: [(key: String, category: Category?, incomes: [Income])] {
+	var grouped: [(key: String, category: Category?, incomes: [ExpectedIncome])] {
 		let dict = Dictionary(grouping: incomes) {income in 
 			income.category?.name ?? "__uncategorized__"
 		}
@@ -141,7 +141,7 @@ struct NewIncomeView: View {
 			ToolbarItem(placement: .confirmationAction) {
 				Button("Save") {
 					context.insert(
-						Income(
+						ExpectedIncome(
 							name: name.isEmpty ? "the air" : name,
 							amount: amount,
 							regularity: nil,
@@ -196,7 +196,7 @@ struct SingleIncomeView: View {
 	@Environment(\.dismiss)
 	private var dismiss
 
-	@State var income: Income
+	@State var income: ExpectedIncome
 	@Query(
 		filter: #Predicate<Category> {
 			$0.isActive

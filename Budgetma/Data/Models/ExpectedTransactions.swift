@@ -11,17 +11,20 @@ import SwiftData
 class ExpectedTransaction {
 	var amount: Decimal
 	var name: String
+	var startDate: Date
 	var regularity: RecurrenceRule?
 	var category: Category?
 
 	init(
 		name: String,
 		amount: Decimal,
+		startDate: Date,
 		regularity: RecurrenceRule?,
 		category: Category?
 	) {
 		self.name = name
 		self.amount = amount
+		self.startDate = startDate
 		self.regularity = regularity
 		self.category = category
 	}
@@ -37,12 +40,14 @@ final class ExpectedIncome: ExpectedTransaction {
 	override init(
 		name: String,
 		amount: Decimal,
+		startDate: Date,
 		regularity: RecurrenceRule?,
 		category: Category?
 	) {
 		super.init(
 			name: name,
 			amount: amount,
+			startDate: startDate,
 			regularity: regularity,
 			category: category
 		)
@@ -60,12 +65,14 @@ final class ExpectedExpense: ExpectedTransaction {
 	override init(
 		name: String,
 		amount: Decimal,
+		startDate: Date,
 		regularity: RecurrenceRule?,
 		category: Category?
 	) {
 		super.init(
 			name: name,
 			amount: amount,
+			startDate: startDate,
 			regularity: regularity,
 			category: category
 		)
@@ -90,6 +97,7 @@ final class Envelope: ExpectedTransaction {
 	init(
 		name: String,
 		amount: Decimal,
+		startDate: Date,
 		regularity: RecurrenceRule?,
 		category: Category?,
 		carryOver: Bool = false
@@ -98,6 +106,7 @@ final class Envelope: ExpectedTransaction {
 		super.init(
 			name: name,
 			amount: amount,
+			startDate: startDate,
 			regularity: regularity,
 			category: category
 		)

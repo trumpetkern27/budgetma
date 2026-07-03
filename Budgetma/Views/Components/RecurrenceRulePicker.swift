@@ -3,6 +3,10 @@ import SwiftData
 
 struct RecurrenceRulePicker: View {
 	@EnvironmentObject var theme: ThemeManager
+
+	@Environment(\.modelContext)
+	private var context
+
 	@Binding var rule: RecurrenceRule?
 	@Binding var startDate: Date
 	@State private var enabled: Bool = false
@@ -127,21 +131,27 @@ struct RecurrenceRulePicker: View {
 		guard enabled else { rule = nil; return}
 		let weekdays: [(Locale.Weekday, Int?)] = selectedWeekdays.map { ($0, nil ) }
 
-		switch endMode {
-		case .never:
-			rule = RecurrenceRule(
-				frequency: frequency, interval: interval, daysOfWeek: weekdays
-			)
-		case .onDate:
-			rule = RecurrenceRule(
-				frequency: frequency, interval: interval, endDate: endDate, daysOfWeek: weekdays
-			)
-		case .afterCount:
-			rule = RecurrenceRule(
-				frequency: frequency, interval: interval, occuranceCount: occurrenceCount, daysOfWeek: weekdays
-			)
-		}
+		let (endDateValue, countValue): (Date?, Int?) = {
+			switch endMode {
+			case .never: return (nil, nil)
+			case .onDate: return (endDate, nil)
+			case .afterCount: return (nil, occurrenceCount)
+			}
+		}()
 
+		if let existing = rule {
+			existing.frequencyRaw = frequency.rawValue
+			existing.interval = interval
+			existing.endDate = endDateValue
+			existing.occuranceCount = countValue
+			existing.daysOfWeekEncoded = weekdays.map { "\($0.0.rawValue),\($0.1 ?? 0)" }
+		} else {
+			let newRule = RecurrenceRule(
+				frequency: frequency, interval: interval, endDate: endDateValue, occuranceCount: countValue, daysOfWeek: weekdays
+			)
+			context.insert(newRule)
+			rule = newRule
+		}
 	}
 
 	private func load() {

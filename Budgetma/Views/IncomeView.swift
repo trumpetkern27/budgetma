@@ -46,6 +46,7 @@ struct IncomeView: View {
 					} header: {
 						CategoryHeader(
 							name: group.category?.name ?? "Uncategorized",
+							emoji: group.category?.emoji ?? "🍌",
 							total: group.incomes.reduce(0) { $0 + $1.amount },
 							isExpanded: expandedCategories.contains(group.key)
 						) {
@@ -87,6 +88,7 @@ struct IncomeView: View {
 // category header
 struct CategoryHeader: View {
 	let name: String
+	let emoji: String
 	let total: Decimal
 	let isExpanded: Bool
 	let onTap: () -> Void
@@ -94,7 +96,7 @@ struct CategoryHeader: View {
 	var body: some View {
 		Button(action: onTap) {
 			HStack {
-				Text(name)
+				Text("\(emoji) \(name)")
 					.font(.headline)
 					.foregroundStyle(.primary)
 				Spacer()
@@ -220,12 +222,17 @@ struct SingleIncomeView: View {
 								name: name.isEmpty ? "the air" : name,
 								amount: amount,
 								startDate: startDate,
-								regularity: nil,
+								regularity: regularity,
 								category: category
 							)
 						)
 					}
-					try? context.save()
+					do {
+						try context.save()
+						print("regularity id right after save: \(String(describing: income?.regularity?.persistentModelID))")
+					} catch {
+						print("SAVE FAILED: \(error)")
+					}
 					dismiss()
 				}
 			}

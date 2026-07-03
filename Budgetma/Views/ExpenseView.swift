@@ -53,6 +53,7 @@ struct ExpenseView: View {
 						VStack {
 							CategoryHeader(
 								name: group.category?.name ?? "Uncategorized",
+								emoji: group.category?.emoji ?? "🍌",
 								total: group.transactions.reduce(0) { $0 + $1.amount },
 								isExpanded: expandedTransactionCategories.contains(group.key)
 							) {
@@ -100,6 +101,7 @@ struct ExpenseView: View {
 						VStack {
 							CategoryHeader(
 								name: group.category?.name ?? "Uncategorized",
+								emoji: group.category?.emoji ?? "🍌",
 								total: group.envelopes.reduce(0) { $0 + $1.amount },
 								isExpanded: expandedEnvelopeCategories.contains(group.key)
 							) {
@@ -111,7 +113,7 @@ struct ExpenseView: View {
 										SingleEnvelopeView(envelope: envelope)
 									} label: {
 										HStack {
-											Text(envelope.name)
+											Text("\(envelope.category?.emoji ?? "🍌")  \(envelope.name)")
 
 											Spacer()
 
@@ -261,7 +263,7 @@ struct SingleExpectedTransactionView: View {
 								name: name.isEmpty ? "the air" : name,
 								amount: amount,
 								startDate: startDate,
-								regularity: nil,
+								regularity: regularity,
 								category: category
 							)
 						)

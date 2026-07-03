@@ -4,6 +4,7 @@ import SwiftData
 struct RecurrenceRulePicker: View {
 	@EnvironmentObject var theme: ThemeManager
 	@Binding var rule: RecurrenceRule?
+	@Binding var startDate: Date
 	@State private var enabled: Bool = false
 	@State private var frequency: Calendar.RecurrenceRule.Frequency = .monthly
 	@State private var interval: Int = 1
@@ -61,6 +62,12 @@ struct RecurrenceRulePicker: View {
 					}
 					.padding()
 				}
+
+				Divider()
+
+				DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
+					.padding(.horizontal)
+					.padding(.bottom)
 
 				Divider()
 

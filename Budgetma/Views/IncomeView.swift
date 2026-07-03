@@ -9,7 +9,7 @@ struct IncomeView: View {
 	@State var expandedCategories: Set<String> = []
 
 	var grouped: [(key: String, category: Category?, incomes: [ExpectedIncome])] {
-		let dict = Dictionary(grouping: incomes) {income in 
+		let dict = Dictionary(grouping: incomes) {income in
 			income.category?.name ?? "__uncategorized__"
 		}
 		return dict.keys
@@ -29,7 +29,7 @@ struct IncomeView: View {
 				ForEach(grouped, id: \.key) {group in
 					Section {
 						if expandedCategories.contains(group.key) {
-							ForEach(group.incomes) { income in 
+							ForEach(group.incomes) { income in
 								NavigationLink {
 									SingleIncomeView(income: income)
 								} label: {
@@ -61,7 +61,7 @@ struct IncomeView: View {
 			}
 
 			NavigationLink {
-				NewIncomeView()
+				SingleIncomeView(income: nil)
 			} label: {
 				Label("New Income", systemImage: "plus")
 			}
@@ -79,79 +79,6 @@ struct IncomeView: View {
 			expandedCategories.remove(key)
 		} else {
 			expandedCategories.insert(key)
-		}
-	}
-}
-
-struct NewIncomeView: View {
-	@EnvironmentObject var theme: ThemeManager
-
-	@Environment(\.modelContext)
-	private var context
-
-	@Environment(\.dismiss)
-	private var dismiss
-
-	@Query(
-		filter: #Predicate<Category> {
-			$0.isActive
-		},
-		sort: \Category.name
-	) private var categories: [Category]
-
-	@State private var name = ""
-	@State private var amount: Decimal = 0
-	@State private var category: Category?
-
-	var body: some View {
-		ScrollView {
-			VStack(spacing: 0) {
-				InputField(field: "Name", placeholder: "the air", text: $name)
-				.padding()
-
-				InputFieldCurrency(field: "Amount", amount: $amount)
-				.padding()
-
-				HStack {
-					Text("Category")
-
-					Spacer()
-
-					Picker("Category", selection: $category) {
-						Text("None").tag(nil as Category?)
-						ForEach(categories) { category in
-							Text(category.name)
-							.tag(category as Category?)
-						}
-					}
-				}
-				.padding()
-
-			}
-			.scrollContentBackground(.hidden)
-		}
-		.scrollContentBackground(.hidden)
-		.themed()
-		.toolbar {
-			ToolbarItem(placement: .cancellationAction) {
-				Button("Cancel") {
-					dismiss()
-				}
-			}
-			ToolbarItem(placement: .confirmationAction) {
-				Button("Save") {
-					context.insert(
-						ExpectedIncome(
-							name: name.isEmpty ? "the air" : name,
-							amount: amount,
-							regularity: nil,
-							category: category
-						)
-					)
-					try? context.save()
-					dismiss()
-				}
-			}
 		}
 	}
 }
@@ -196,7 +123,13 @@ struct SingleIncomeView: View {
 	@Environment(\.dismiss)
 	private var dismiss
 
-	@State var income: ExpectedIncome
+	@State var income: ExpectedIncome?
+	@State private var name: String
+	@State private var amount: Decimal
+	@State private var startDate: Date
+	@State private var regularity: RecurrenceRule?
+	@State private var category: Category?
+
 	@Query(
 		filter: #Predicate<Category> {
 			$0.isActive
@@ -204,61 +137,109 @@ struct SingleIncomeView: View {
 		sort: \Category.name
 	) private var categories: [Category]
 
+	init(income: ExpectedIncome?) {
+		_income = State(initialValue: income)
+		_name = State(initialValue: income?.name ?? "")
+		_amount = State(initialValue: income?.amount ?? 0)
+		_startDate = State(initialValue: income?.startDate ?? Date.now)
+		_regularity = State(initialValue: income?.regularity)
+		_category = State(initialValue: income?.category)
+	}
+
 	var body: some View {
 
-		VStack(spacing: 0) {
-			InputField(field: "Name", placeholder: "the air", text: $income.name)
-			.padding()
+		ScrollView {
+			VStack(spacing: 0) {
+				InputField(field: "Name", placeholder: "the air", text: $name)
+				.padding()
 
-			InputFieldCurrency(field: "Amount", amount: $income.amount)
-			.padding()
+				InputFieldCurrency(field: "Amount", amount: $amount)
+				.padding()
 
-			HStack {
-				Text("Category")
+				HStack {
+					Text("Category")
 
-				Spacer()
+					Spacer()
 
-				Picker("Category", selection: $income.category) {
-					Text("None").tag(nil as Category?)
-					ForEach(categories) { category in
-						Text(category.name)
-						.tag(category as Category?)
+					Picker("Category", selection: $category) {
+						Text("None").tag(nil as Category?)
+						ForEach(categories) { category in
+							Text(category.name)
+							.tag(category as Category?)
+						}
 					}
 				}
-			}
-			.padding()
+				.padding()
 
-			HStack {
-				Text("Regularity")
+				HStack {
+					Text("Regularity")
 
-				Spacer()
+					Spacer()
 
-				RecurrenceRulePicker(rule: $income.regularity)
-			}
-
-			Spacer()
-
-			HStack {
-				Spacer()
-
-				Button(role: .destructive) {
-					context.delete(income)
-					dismiss()
-				} label: {
-					Label("", systemImage: "trash")
+					RecurrenceRulePicker(rule: $regularity, startDate: $startDate)
 				}
 
 				Spacer()
-			}
 
+				HStack {
+					Spacer()
+
+					Button(role: .destructive) {
+						if let income {
+							context.delete(income)
+						}
+						dismiss()
+					} label: {
+						Label("", systemImage: "trash")
+					}
+
+					Spacer()
+				}
+			}
+			.scrollContentBackground(.hidden)
 		}
-		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		.scrollContentBackground(.hidden)
 		.themed()
-		.ignoresSafeArea(.keyboard)
-		.onDisappear {
-			guard !income.name.isEmpty else { return }
-			try? context.save()
+		.toolbar {
+			ToolbarItem(placement: .cancellationAction) {
+				Button("Cancel") {
+					dismiss()
+				}
+			}
+			ToolbarItem(placement: .confirmationAction) {
+				Button("Save") {
+					if let income {
+						income.name = name
+						income.amount = amount
+						income.startDate = startDate
+						income.regularity = regularity
+						income.category = category
+					} else {
+						context.insert(
+							ExpectedIncome(
+								name: name.isEmpty ? "the air" : name,
+								amount: amount,
+								startDate: startDate,
+								regularity: nil,
+								category: category
+							)
+						)
+					}
+					try? context.save()
+					dismiss()
+				}
+			}
 		}
+
+
+		// }
+		// .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+		// .scrollContentBackground(.hidden)
+		// .themed()
+		// .ignoresSafeArea(.keyboard)
+		// .onDisappear {
+		// 	guard !income.name.isEmpty else { return }
+		// 	try? context.save()
+		// }
 	}
 }

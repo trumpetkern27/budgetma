@@ -1,1 +1,5 @@
-.nvim
+/.nvim
+/.vscode
+/.git
+*.md
+!README.md

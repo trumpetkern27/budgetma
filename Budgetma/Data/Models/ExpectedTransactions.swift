@@ -18,7 +18,7 @@ class ExpectedTransaction {
 	init(
 		name: String,
 		amount: Decimal,
-		startDate: Date,
+		startDate: Date = .now,
 		regularity: RecurrenceRule?,
 		category: Category?
 	) {
@@ -40,7 +40,7 @@ final class ExpectedIncome: ExpectedTransaction {
 	override init(
 		name: String,
 		amount: Decimal,
-		startDate: Date,
+		startDate: Date = .now,
 		regularity: RecurrenceRule?,
 		category: Category?
 	) {
@@ -65,7 +65,7 @@ final class ExpectedExpense: ExpectedTransaction {
 	override init(
 		name: String,
 		amount: Decimal,
-		startDate: Date,
+		startDate: Date = .now,
 		regularity: RecurrenceRule?,
 		category: Category?
 	) {
@@ -97,7 +97,7 @@ final class Envelope: ExpectedTransaction {
 	init(
 		name: String,
 		amount: Decimal,
-		startDate: Date,
+		startDate: Date = .now,
 		regularity: RecurrenceRule?,
 		category: Category?,
 		carryOver: Bool = false

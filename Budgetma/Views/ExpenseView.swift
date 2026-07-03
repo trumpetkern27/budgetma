@@ -13,7 +13,7 @@ struct ExpenseView: View {
 	@State private var envelopesExpanded: Bool = false
 
 	var groupedTransactions: [(key: String, category: Category?, transactions: [ExpectedExpense])] {
-		let dict = Dictionary(grouping: expectedTransactions) {transaction in 
+		let dict = Dictionary(grouping: expectedTransactions) {transaction in
 			transaction.category?.name ?? "__uncategorized__"
 		}
 		return dict.keys
@@ -26,7 +26,7 @@ struct ExpenseView: View {
 	}
 
 	var groupedEnvelopes: [(key: String, category: Category?, envelopes: [Envelope])] {
-		let dict = Dictionary(grouping: envelopes) {envelope in 
+		let dict = Dictionary(grouping: envelopes) {envelope in
 			envelope.category?.name ?? "__uncategorized__"
 		}
 		return dict.keys
@@ -59,7 +59,7 @@ struct ExpenseView: View {
 								toggleTransactionCategory(group.key)
 							}
 							if expandedTransactionCategories.contains(group.key) {
-								ForEach(group.transactions) { transaction in 
+								ForEach(group.transactions) { transaction in
 									NavigationLink {
 										SingleExpectedTransactionView(transaction: transaction)
 									} label: {
@@ -106,7 +106,7 @@ struct ExpenseView: View {
 								toggleEnvelopeCategory(group.key)
 							}
 							if expandedEnvelopeCategories.contains(group.key) {
-								ForEach(group.envelopes) { envelope in 
+								ForEach(group.envelopes) { envelope in
 									NavigationLink {
 										SingleEnvelopeView(envelope: envelope)
 									} label: {
@@ -173,6 +173,7 @@ struct NewTransactionView: View {
 
 	@State private var name = ""
 	@State private var amount: Decimal = 0
+	@State private var startDate: Date = Date.now
 	@State private var category: Category?
 
 	var body: some View {
@@ -216,6 +217,7 @@ struct NewTransactionView: View {
 						ExpectedExpense(
 							name: name.isEmpty ? "the air" : name,
 							amount: amount,
+							startDate: startDate,
 							regularity: nil,
 							category: category
 						)
@@ -244,6 +246,7 @@ struct NewEnvelopeView: View {
 
 	@State private var name = ""
 	@State private var amount: Decimal = 0
+	@State private var startDate: Date = Date.now
 	@State private var category: Category?
 	@State private var carryOver: Bool = false
 
@@ -291,6 +294,7 @@ struct NewEnvelopeView: View {
 						Envelope(
 							name: name.isEmpty ? "the air" : name,
 							amount: amount,
+							startDate: startDate,
 							regularity: nil,
 							category: category,
 							carryOver: carryOver
@@ -349,7 +353,7 @@ struct SingleExpectedTransactionView: View {
 
 				Spacer()
 
-				RecurrenceRulePicker(rule: $transaction.regularity)
+				RecurrenceRulePicker(rule: $transaction.regularity, startDate: $transaction.startDate)
 			}
 
 			Spacer()
@@ -424,7 +428,7 @@ struct SingleEnvelopeView: View {
 
 				Spacer()
 
-				RecurrenceRulePicker(rule: $envelope.regularity)
+				RecurrenceRulePicker(rule: $envelope.regularity, startDate: $envelope.startDate)
 			}
 
 			Spacer()

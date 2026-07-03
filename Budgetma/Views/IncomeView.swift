@@ -180,6 +180,7 @@ struct SingleIncomeView: View {
 
 					RecurrenceRulePicker(rule: $regularity, startDate: $startDate)
 				}
+				.padding()
 
 				Spacer()
 

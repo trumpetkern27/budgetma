@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		52D97C98C5C57652DACEEE7D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2F7F5A7ACE9811ABD39192 /* ThemeManager.swift */; };
 		548ED74DDA49751E92151916 /* ExpectedTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1EFD787106FC56CCEC9B40 /* ExpectedTransactions.swift */; };
+		58F2A87062C0651F75C8A6B8 /* DatePill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4B5F7EDDF7570E1801E508 /* DatePill.swift */; };
 		674838420A48BD8B2A84A490 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C422307460626EFE187C017 /* Color.swift */; };
 		6F705DDEF24E486CD899A76F /* ExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36CD3F9F3B4EBB38585D74 /* ExpenseView.swift */; };
 		721E136ACDA99A794541FF47 /* RecurrenceRulePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A33494152345FE94398312 /* RecurrenceRulePicker.swift */; };
@@ -25,6 +26,7 @@
 		09495D9F4C08EF940D851C79 /* Category.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Category.swift; sourceTree = "<group>"; };
 		38758B94761A63823870F79D /* IncomeView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = IncomeView.swift; path = IncomeView.swift; sourceTree = "<group>"; };
 		42E40E7092AD0564567B5449 /* SectionHeader.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = SectionHeader.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		5C4B5F7EDDF7570E1801E508 /* DatePill.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = DatePill.swift; path = DatePill.swift; sourceTree = "<group>"; };
 		67F8D5945E528E9B410FA146 /* CategoryListNav.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = CategoryListNav.swift; path = CategoryListNav.swift; sourceTree = "<group>"; };
 		72A33494152345FE94398312 /* RecurrenceRulePicker.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = RecurrenceRulePicker.swift; path = RecurrenceRulePicker.swift; sourceTree = "<group>"; };
 		7C422307460626EFE187C017 /* Color.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				72A33494152345FE94398312 /* RecurrenceRulePicker.swift */,
 				42E40E7092AD0564567B5449 /* SectionHeader.swift */,
 				67F8D5945E528E9B410FA146 /* CategoryListNav.swift */,
+				5C4B5F7EDDF7570E1801E508 /* DatePill.swift */,
 			);
 			name = Components;
 			path = Components;
@@ -235,6 +238,7 @@
 				548ED74DDA49751E92151916 /* ExpectedTransactions.swift in Sources */,
 				B573E2C7926F39A1B3EA647C /* Category.swift in Sources */,
 				CD9815AD5C1823D41E81B31E /* RecurrenceRule.swift in Sources */,
+				58F2A87062C0651F75C8A6B8 /* DatePill.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

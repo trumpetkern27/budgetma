@@ -57,6 +57,8 @@ struct RecurrenceRulePicker: View {
 							}
 							.frame(maxWidth: .infinity)
 							.padding(.vertical, 6)
+							.background(onn ? theme.fgColour : theme.bgColour)
+							.foregroundColor(onn ? theme.bgColour : theme.fgColour)
 							.clipShape(RoundedRectangle(cornerRadius: 8))
 							.overlay {
 								RoundedRectangle(cornerRadius: 8)
@@ -69,7 +71,7 @@ struct RecurrenceRulePicker: View {
 
 				Divider()
 
-				DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
+				DatePill(label: "Start Date", date: $startDate)
 					.padding(.horizontal)
 					.padding(.bottom)
 
@@ -84,7 +86,7 @@ struct RecurrenceRulePicker: View {
 				.padding()
 
 				if endMode == .onDate {
-					DatePicker("End Date", selection: $endDate, displayedComponents: .date)
+					DatePill(label: "End Date", date: $endDate)
 						.padding(.horizontal)
 						.padding(.bottom)
 				}
@@ -110,8 +112,10 @@ struct RecurrenceRulePicker: View {
 		.onChange(of: occurrenceCount) { _, _ in commit() }
 		.onAppear { load() }
 		.overlay {
-			RoundedRectangle(cornerRadius: 12) 
-				.stroke(theme.fgColour, lineWidth: 1)
+			if enabled {
+				RoundedRectangle(cornerRadius: 12) 
+					.stroke(theme.fgColour, lineWidth: 1)
+			}
 		}
 	}
 

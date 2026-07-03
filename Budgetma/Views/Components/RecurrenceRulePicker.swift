@@ -150,6 +150,7 @@ struct RecurrenceRulePicker: View {
 				frequency: frequency, interval: interval, endDate: endDateValue, occuranceCount: countValue, daysOfWeek: weekdays
 			)
 			context.insert(newRule)
+			try? context.save()
 			rule = newRule
 		}
 	}

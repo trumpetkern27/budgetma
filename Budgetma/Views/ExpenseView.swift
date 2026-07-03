@@ -64,7 +64,7 @@ struct ExpenseView: View {
 										SingleExpectedTransactionView(transaction: transaction)
 									} label: {
 										HStack {
-											Text("\(transaction.category!.emoji)  \(transaction.name)")
+											Text("\(transaction.category?.emoji ?? "🍌")  \(transaction.name)")
 
 											Spacer()
 
@@ -81,7 +81,7 @@ struct ExpenseView: View {
 						.frame(maxWidth: .infinity, alignment: .leading)
 					}
 					NavigationLink {
-						NewTransactionView()
+						SingleExpectedTransactionView(transaction: nil)
 					} label: {
 						Label("New Expected Transaction", systemImage: "plus")
 					}
@@ -128,7 +128,7 @@ struct ExpenseView: View {
 						.frame(maxWidth: .infinity, alignment: .leading)
 					}
 					NavigationLink {
-						NewEnvelopeView()
+						SingleEnvelopeView(envelope: nil)
 					} label: {
 						Label("New Envelope", systemImage: "plus")
 					}
@@ -157,157 +157,6 @@ struct ExpenseView: View {
 	}
 }
 
-struct NewTransactionView: View {
-	@Environment(\.modelContext)
-	private var context
-
-	@Environment(\.dismiss)
-	private var dismiss
-
-	@Query(
-		filter: #Predicate<Category> {
-			$0.isActive
-		},
-		sort: \Category.name
-	) private var categories: [Category]
-
-	@State private var name = ""
-	@State private var amount: Decimal = 0
-	@State private var startDate: Date = Date.now
-	@State private var category: Category?
-
-	var body: some View {
-		ScrollView {
-			VStack(spacing: 0) {
-				InputField(field: "Name", placeholder: "the air", text: $name)
-				.padding()
-
-				InputFieldCurrency(field: "Amount", amount: $amount)
-				.padding()
-
-				HStack {
-					Text("Category")
-
-					Spacer()
-
-					Picker("Category", selection: $category) {
-						Text("None").tag(nil as Category?)
-						ForEach(categories) { category in
-							Text(category.name)
-							.tag(category as Category?)
-						}
-					}
-				}
-				.padding()
-
-			}
-			.scrollContentBackground(.hidden)
-		}
-		.scrollContentBackground(.hidden)
-		.themed()
-		.toolbar {
-			ToolbarItem(placement: .cancellationAction) {
-				Button("Cancel") {
-					dismiss()
-				}
-			}
-			ToolbarItem(placement: .confirmationAction) {
-				Button("Save") {
-					context.insert(
-						ExpectedExpense(
-							name: name.isEmpty ? "the air" : name,
-							amount: amount,
-							startDate: startDate,
-							regularity: nil,
-							category: category
-						)
-					)
-					try? context.save()
-					dismiss()
-				}
-			}
-		}
-	}
-}
-
-struct NewEnvelopeView: View {
-	@Environment(\.modelContext)
-	private var context
-
-	@Environment(\.dismiss)
-	private var dismiss
-
-	@Query(
-		filter: #Predicate<Category> {
-			$0.isActive
-		},
-		sort: \Category.name
-	) private var categories: [Category]
-
-	@State private var name = ""
-	@State private var amount: Decimal = 0
-	@State private var startDate: Date = Date.now
-	@State private var category: Category?
-	@State private var carryOver: Bool = false
-
-	var body: some View {
-		ScrollView {
-			VStack(spacing: 0) {
-				InputField(field: "Name", placeholder: "the air", text: $name)
-				.padding()
-
-				InputFieldCurrency(field: "Amount", amount: $amount)
-				.padding()
-
-				HStack {
-					Text("Category")
-
-					Spacer()
-
-					Picker("Category", selection: $category) {
-						Text("None").tag(nil as Category?)
-						ForEach(categories) { category in
-							Text(category.name)
-							.tag(category as Category?)
-						}
-					}
-				}
-				.padding()
-
-				Toggle("Carry Over", isOn: $carryOver)
-				.padding()
-
-			}
-			.scrollContentBackground(.hidden)
-		}
-		.scrollContentBackground(.hidden)
-		.themed()
-		.toolbar {
-			ToolbarItem(placement: .cancellationAction) {
-				Button("Cancel") {
-					dismiss()
-				}
-			}
-			ToolbarItem(placement: .confirmationAction) {
-				Button("Save") {
-					context.insert(
-						Envelope(
-							name: name.isEmpty ? "the air" : name,
-							amount: amount,
-							startDate: startDate,
-							regularity: nil,
-							category: category,
-							carryOver: carryOver
-						)
-					)
-					try? context.save()
-					dismiss()
-				}
-			}
-		}
-	}
-}
-
 // view for single expected transaction crud
 struct SingleExpectedTransactionView: View {
 	@Environment(\.modelContext)
@@ -316,7 +165,12 @@ struct SingleExpectedTransactionView: View {
 	@Environment(\.dismiss)
 	private var dismiss
 
-	@State var transaction: ExpectedExpense
+	@State var transaction: ExpectedExpense?
+	@State private var name = ""
+	@State private var amount: Decimal
+	@State private var startDate: Date
+	@State private var category: Category?
+	@State private var regularity: RecurrenceRule?
 	@Query(
 		filter: #Predicate<Category> {
 			$0.isActive
@@ -324,62 +178,107 @@ struct SingleExpectedTransactionView: View {
 		sort: \Category.name
 	) private var categories: [Category]
 
+	init(transaction: ExpectedExpense?) {
+		_transaction = State(initialValue: transaction)
+		_name = State(initialValue: transaction?.name ?? "")
+		_amount = State(initialValue: transaction?.amount ?? 0)
+		_startDate = State(initialValue: transaction?.startDate ?? Date.now)
+		_regularity = State(initialValue: transaction?.regularity)
+		_category = State(initialValue: transaction?.category)
+	}
+
 	var body: some View {
 
-		VStack(spacing: 0) {
-			InputField(field: "Name", placeholder: "the air", text: $transaction.name)
-			.padding()
+		ScrollView {
+			VStack(spacing: 0) {
+				InputField(field: "Name", placeholder: "the air", text: $name)
+				.padding()
 
-			InputFieldCurrency(field: "Amount", amount: $transaction.amount)
-			.padding()
+				InputFieldCurrency(field: "Amount", amount: $amount)
+				.padding()
 
-			HStack {
-				Text("Category")
+				HStack {
+					Text("Category")
 
-				Spacer()
+					Spacer()
 
-				Picker("Category", selection: $transaction.category) {
-					Text("None").tag(nil as Category?)
-					ForEach(categories) { category in
-						Text(category.name)
-						.tag(category as Category?)
+					Picker("Category", selection: $category) {
+						Text("None").tag(nil as Category?)
+						ForEach(categories) { category in
+							Text(category.name)
+							.tag(category as Category?)
+						}
 					}
 				}
-			}
-			.padding()
+				.padding()
 
-			HStack {
-				Text("Regularity")
+				HStack {
+					Text("Regularity")
 
-				Spacer()
+					Spacer()
 
-				RecurrenceRulePicker(rule: $transaction.regularity, startDate: $transaction.startDate)
-			}
-
-			Spacer()
-
-			HStack {
-				Spacer()
-
-				Button(role: .destructive) {
-					context.delete(transaction)
-					dismiss()
-				} label: {
-					Label("", systemImage: "trash")
+					RecurrenceRulePicker(rule: $regularity, startDate: $startDate)
 				}
 
 				Spacer()
-			}
 
+				HStack {
+					Spacer()
+
+					Button(role: .destructive) {
+						if let transaction {
+							context.delete(transaction)
+						}
+						dismiss()
+					} label: {
+						Label("", systemImage: "trash")
+					}
+
+					Spacer()
+				}
+
+			}
 		}
-		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		.scrollContentBackground(.hidden)
 		.themed()
-		.ignoresSafeArea(.keyboard)
-		.onDisappear {
-			guard !transaction.name.isEmpty else { return }
-			try? context.save()
+		.toolbar {
+			ToolbarItem(placement: .cancellationAction) {
+				Button("Cancel") {
+					dismiss()
+				}
+			}
+			ToolbarItem(placement: .confirmationAction) {
+				Button("Save") {
+					if let transaction {
+						transaction.name = name
+						transaction.amount = amount
+						transaction.startDate = startDate
+						transaction.regularity = regularity
+						transaction.category = category
+					} else {
+						context.insert(
+							ExpectedExpense(
+								name: name.isEmpty ? "the air" : name,
+								amount: amount,
+								startDate: startDate,
+								regularity: nil,
+								category: category
+							)
+						)
+					}
+					try? context.save()
+					dismiss()
+				}
+			}
 		}
+		// .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+		// .scrollContentBackground(.hidden)
+		// .themed()
+		// .ignoresSafeArea(.keyboard)
+		// .onDisappear {
+		// 	guard !transaction.name.isEmpty else { return }
+		// 	try? context.save()
+		// }
 	}
 }
 
@@ -391,7 +290,14 @@ struct SingleEnvelopeView: View {
 	@Environment(\.dismiss)
 	private var dismiss
 
-	@State var envelope: Envelope
+	@State var envelope: Envelope?
+	@State private var name: String
+	@State private var amount: Decimal
+	@State private var startDate: Date
+	@State private var category: Category?
+	@State private var carryOver: Bool
+	@State private var regularity: RecurrenceRule?
+
 	@Query(
 		filter: #Predicate<Category> {
 			$0.isActive
@@ -399,61 +305,110 @@ struct SingleEnvelopeView: View {
 		sort: \Category.name
 	) private var categories: [Category]
 
+	init(envelope: Envelope?) {
+		_envelope = State(initialValue: envelope)
+		_name = State(initialValue: envelope?.name ?? "")
+		_amount = State(initialValue: envelope?.amount ?? 0)
+		_startDate = State(initialValue: envelope?.startDate ?? Date.now)
+		_category = State(initialValue: envelope?.category)
+		_carryOver = State(initialValue: envelope?.carryOver ?? false)
+		_regularity = State(initialValue: regularity)
+	}
+
 	var body: some View {
+		ScrollView {
+			VStack(spacing: 0) {
+				InputField(field: "Name", placeholder: "the air", text: $name)
+				.padding()
 
-		VStack(spacing: 0) {
-			InputField(field: "Name", placeholder: "the air", text: $envelope.name)
-			.padding()
+				InputFieldCurrency(field: "Amount", amount: $amount)
+				.padding()
 
-			InputFieldCurrency(field: "Amount", amount: $envelope.amount)
-			.padding()
+				HStack {
+					Text("Category")
 
-			HStack {
-				Text("Category")
+					Spacer()
 
-				Spacer()
-
-				Picker("Category", selection: $envelope.category) {
-					Text("None").tag(nil as Category?)
-					ForEach(categories) { category in
-						Text(category.name)
-						.tag(category as Category?)
+					Picker("Category", selection: $category) {
+						Text("None").tag(nil as Category?)
+						ForEach(categories) { category in
+							Text(category.name)
+							.tag(category as Category?)
+						}
 					}
 				}
-			}
-			.padding()
+				.padding()
 
-			HStack {
-				Text("Regularity")
+				HStack {
+					Text("Regularity")
 
-				Spacer()
+					Spacer()
 
-				RecurrenceRulePicker(rule: $envelope.regularity, startDate: $envelope.startDate)
-			}
-
-			Spacer()
-
-			HStack {
-				Spacer()
-
-				Button(role: .destructive) {
-					context.delete(envelope)
-					dismiss()
-				} label: {
-					Label("", systemImage: "trash")
+					RecurrenceRulePicker(rule: $regularity, startDate: $startDate)
 				}
 
 				Spacer()
-			}
 
+				HStack {
+					Spacer()
+
+					Button(role: .destructive) {
+						if let envelope {
+							context.delete(envelope)
+						}
+						dismiss()
+					} label: {
+						Label("", systemImage: "trash")
+					}
+
+					Spacer()
+				}
+
+			}
+			.scrollContentBackground(.hidden)
 		}
-		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		.scrollContentBackground(.hidden)
 		.themed()
-		.ignoresSafeArea(.keyboard)
-		.onDisappear {
-			guard !envelope.name.isEmpty else { return }
-			try? context.save()
+		.toolbar {
+			ToolbarItem(placement: .cancellationAction) {
+				Button("Cancel") {
+					dismiss()
+				}
+			}
+			ToolbarItem(placement: .confirmationAction) {
+				Button("Save") {
+					if let envelope {
+						envelope.name = name
+						envelope.name = name
+						envelope.amount = amount
+						envelope.startDate = startDate
+						envelope.regularity = regularity
+						envelope.category = category
+						envelope.carryOver = carryOver
+					} else {
+						context.insert(
+							Envelope(
+								name: name.isEmpty ? "the air" : name,
+								amount: amount,
+								startDate: startDate,
+								regularity: nil,
+								category: category,
+								carryOver: carryOver
+							)
+						)
+					}
+					try? context.save()
+					dismiss()
+				}
+			}
 		}
+		// .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+		// .scrollContentBackground(.hidden)
+		// .themed()
+		// .ignoresSafeArea(.keyboard)
+		// .onDisappear {
+		// 	guard !envelope.name.isEmpty else { return }
+		// 	try? context.save()
+		// }
 	}
 }

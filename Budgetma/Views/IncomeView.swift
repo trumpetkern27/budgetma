@@ -238,16 +238,5 @@ struct SingleIncomeView: View {
 				}
 			}
 		}
-
-
-		// }
-		// .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-		// .scrollContentBackground(.hidden)
-		// .themed()
-		// .ignoresSafeArea(.keyboard)
-		// .onDisappear {
-		// 	guard !income.name.isEmpty else { return }
-		// 	try? context.save()
-		// }
 	}
 }

@@ -273,14 +273,6 @@ struct SingleExpectedTransactionView: View {
 				}
 			}
 		}
-		// .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-		// .scrollContentBackground(.hidden)
-		// .themed()
-		// .ignoresSafeArea(.keyboard)
-		// .onDisappear {
-		// 	guard !transaction.name.isEmpty else { return }
-		// 	try? context.save()
-		// }
 	}
 }
 
@@ -404,13 +396,5 @@ struct SingleEnvelopeView: View {
 				}
 			}
 		}
-		// .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-		// .scrollContentBackground(.hidden)
-		// .themed()
-		// .ignoresSafeArea(.keyboard)
-		// .onDisappear {
-		// 	guard !envelope.name.isEmpty else { return }
-		// 	try? context.save()
-		// }
 	}
 }

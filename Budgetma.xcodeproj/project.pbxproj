@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0781232F51731BB0A5314B65 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680269474383583DAC5E7E3C /* HomeView.swift */; };
 		52D97C98C5C57652DACEEE7D /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2F7F5A7ACE9811ABD39192 /* ThemeManager.swift */; };
 		548ED74DDA49751E92151916 /* ExpectedTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1EFD787106FC56CCEC9B40 /* ExpectedTransactions.swift */; };
 		58F2A87062C0651F75C8A6B8 /* DatePill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4B5F7EDDF7570E1801E508 /* DatePill.swift */; };
 		674838420A48BD8B2A84A490 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C422307460626EFE187C017 /* Color.swift */; };
 		6F705DDEF24E486CD899A76F /* ExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE36CD3F9F3B4EBB38585D74 /* ExpenseView.swift */; };
 		721E136ACDA99A794541FF47 /* RecurrenceRulePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A33494152345FE94398312 /* RecurrenceRulePicker.swift */; };
+		89B890A8BD5658C15B40B1C6 /* UpcomingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7834CA8E1B0C8F2C834FD94F /* UpcomingItem.swift */; };
 		9452F2691B0CE3BBE35EA05F /* CategoryListNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F8D5945E528E9B410FA146 /* CategoryListNav.swift */; };
 		99AEFCE5BC6A0BBE01B0E73C /* IncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38758B94761A63823870F79D /* IncomeView.swift */; };
 		9ACB1E91C1526CBA810E6665 /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AACE0D72A4DA24D1FC0209A /* InputField.swift */; };
@@ -30,7 +32,9 @@
 		42E40E7092AD0564567B5449 /* SectionHeader.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = SectionHeader.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		5C4B5F7EDDF7570E1801E508 /* DatePill.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = DatePill.swift; path = DatePill.swift; sourceTree = "<group>"; };
 		67F8D5945E528E9B410FA146 /* CategoryListNav.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = CategoryListNav.swift; path = CategoryListNav.swift; sourceTree = "<group>"; };
+		680269474383583DAC5E7E3C /* HomeView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		72A33494152345FE94398312 /* RecurrenceRulePicker.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = RecurrenceRulePicker.swift; path = RecurrenceRulePicker.swift; sourceTree = "<group>"; };
+		7834CA8E1B0C8F2C834FD94F /* UpcomingItem.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = UpcomingItem.swift; path = UpcomingItem.swift; sourceTree = "<group>"; };
 		7C422307460626EFE187C017 /* Color.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8A2F7F5A7ACE9811ABD39192 /* ThemeManager.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		8AACE0D72A4DA24D1FC0209A /* InputField.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = InputField.swift; path = InputField.swift; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				E40783EEDCC479DD41C50601 /* RecurrenceRule.swift */,
+				7834CA8E1B0C8F2C834FD94F /* UpcomingItem.swift */,
 			);
 			name = Assets;
 			path = Assets;
@@ -119,6 +124,7 @@
 				72D87FF3D83EDADEC07909CD /* Components */,
 				38758B94761A63823870F79D /* IncomeView.swift */,
 				CE36CD3F9F3B4EBB38585D74 /* ExpenseView.swift */,
+				680269474383583DAC5E7E3C /* HomeView.swift */,
 			);
 			name = Views;
 			path = Views;
@@ -243,6 +249,8 @@
 				CD9815AD5C1823D41E81B31E /* RecurrenceRule.swift in Sources */,
 				58F2A87062C0651F75C8A6B8 /* DatePill.swift in Sources */,
 				EBCB7E37BFD6118D526A9FA3 /* RecurrenceProjector.swift in Sources */,
+				0781232F51731BB0A5314B65 /* HomeView.swift in Sources */,
+				89B890A8BD5658C15B40B1C6 /* UpcomingItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,13 +12,9 @@ struct ContentView: View {
 			Group {
 				switch selected {
 				case .home:
-					VStack {
-						Image(systemName: "globe")
-							.imageScale(.large)
-							.foregroundStyle(.tint)
-						Text("Hello, world!")
+					NavigationStack {
+						HomeView()
 					}
-					.padding()
 					.tag("Home")
 				case .expenses:
 					NavigationStack {

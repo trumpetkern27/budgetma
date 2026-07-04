@@ -19,11 +19,13 @@
 		B573E2C7926F39A1B3EA647C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09495D9F4C08EF940D851C79 /* Category.swift */; };
 		CD9815AD5C1823D41E81B31E /* RecurrenceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40783EEDCC479DD41C50601 /* RecurrenceRule.swift */; };
 		D79DEECA38237F44A7D9B503 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E40E7092AD0564567B5449 /* SectionHeader.swift */; };
+		EBCB7E37BFD6118D526A9FA3 /* RecurrenceProjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE49F3BAE54878495E7290D /* RecurrenceProjector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06B3ECF22FCB676000861F5B /* Budgetma.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Budgetma.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09495D9F4C08EF940D851C79 /* Category.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Category.swift; sourceTree = "<group>"; };
+		1BE49F3BAE54878495E7290D /* RecurrenceProjector.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = RecurrenceProjector.swift; path = RecurrenceProjector.swift; sourceTree = "<group>"; };
 		38758B94761A63823870F79D /* IncomeView.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = IncomeView.swift; path = IncomeView.swift; sourceTree = "<group>"; };
 		42E40E7092AD0564567B5449 /* SectionHeader.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = SectionHeader.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		5C4B5F7EDDF7570E1801E508 /* DatePill.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = DatePill.swift; path = DatePill.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				8A2F7F5A7ACE9811ABD39192 /* ThemeManager.swift */,
+				1BE49F3BAE54878495E7290D /* RecurrenceProjector.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				B573E2C7926F39A1B3EA647C /* Category.swift in Sources */,
 				CD9815AD5C1823D41E81B31E /* RecurrenceRule.swift in Sources */,
 				58F2A87062C0651F75C8A6B8 /* DatePill.swift in Sources */,
+				EBCB7E37BFD6118D526A9FA3 /* RecurrenceProjector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

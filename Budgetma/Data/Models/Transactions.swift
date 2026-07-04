@@ -11,8 +11,8 @@ class Transaction {
 	var name: String
 	var date: Date
 	var amount: Decimal
-	var category: Category?
-	var note: String?
+	var category: Category? = nil
+	var note: String? = nil
 
 	init(
 		name: String,
@@ -45,8 +45,8 @@ final class Expense: Transaction {
 		amount: Decimal,
 		category: Category?,
 		note: String?,
-		expectedExpense: ExpectedExpense?,
-		envelope: Envelope
+		expectedExpense: ExpectedExpense? = nil,
+		envelope: Envelope? = nil
 	) {
 		self.expectedExpense = expectedExpense
 		self.envelope = envelope
@@ -72,9 +72,9 @@ final class Income: Transaction {
 		name: String,
 		date: Date,
 		amount: Decimal,
-		category: Category?,
-		note: String?,
-		expectedExpense: ExpectedIncome?
+		category: Category? = nil,
+		note: String? = nil,
+		expectedExpense: ExpectedIncome? = nil
 	) {
 		super.init(
 			name: name,

@@ -4,10 +4,12 @@ import SwiftData
 struct HomeView: View {
 	@EnvironmentObject var theme: ThemeManager
 
+	// settings
 	@AppStorage("calendarViewFrequency") private var frequency: Calendar.RecurrenceRule.Frequency = .monthly
 	@AppStorage("calendarViewInterval") private var interval: Int = 1
 	@AppStorage("calendarViewStartDate") private var startDate: Date = .now
 
+	// expected transactions / envelopes
 	@Query private var expectedIncomes: [ExpectedIncome]
 	@Query private var expectedExpenses: [ExpectedExpense]
 	@Query private var envelopes: [Envelope]
@@ -120,19 +122,20 @@ struct HomeView: View {
 				}
 			}
 
-			LazyVGrid(columns: columns, spacing: 8) {
+			LazyVGrid(columns: columns, spacing: 0) {
 				ForEach(calendarCells) { cell in 
 					if let date = cell.date {
 						dayCell(for: date)
 					} else {
-						Color.clear.frame(height: 32)
+						Color.clear.frame(height: 52)
+						.overlay { RoundedRectangle(cornerRadius: 0).stroke(.secondary, lineWidth: 1) }
 					}
 				}
 			}
 		}
 	}
 
-	private let columns = Array(repeating: GridItem(.flexible(), spacing: 4), count: 7)
+	private let columns = Array(repeating: GridItem(.flexible(), spacing: 0), count: 7)
 	private struct CalendarCell: Identifiable {
 		let id: Int
 		let date: Date?
@@ -187,20 +190,28 @@ struct HomeView: View {
 	private func dayCell(for date: Date) -> some View {
 		let calendar = Calendar.current
 		let isToday = calendar.isDateInToday(date)
-		let hasItems = groupedByDay.contains { calendar.isDate($0.day, inSameDayAs: date) }
+		let dayItems = groupedByDay.first { calendar.isDate($0.day, inSameDayAs: date) }?.items ?? []
+		let hasItems = !dayItems.isEmpty
+		let net = dayItems.reduce(Decimal(0)) {$0 + ($1.isIncome ? $1.amount : -$1.amount) }
 
 		return VStack(spacing: 2) {
 			Text("\(calendar.component(.day, from: date))")
-				.frame(width: 32, height: 32)
+				.frame(width: 32, height: 20)
 				.background(isToday ? theme.fgColour : .clear)
 				.foregroundColor(isToday ? theme.bgColour : theme.fgColour)
 				.clipShape(Circle())
 
-				Circle()
-					.fill(theme.fgColour)
-					.frame(width: 4, height: 4)
-					.opacity(hasItems ? 1 : 0)
+			Text(net, format: .currency(code: Locale.current.currency?.identifier ?? "USD").precision(.fractionLength(0)))
+				.font(.system(size: 9, weight: .medium))
+				.monospacedDigit()
+				.lineLimit(1)
+				.minimumScaleFactor(0.6)
+				.foregroundStyle(net >= 0 ? .green : .red)
+				.opacity(hasItems ? 1 : 0)
+				.frame(width: 32, height: 32)
 		}
+		.frame(maxWidth: .infinity, alignment: .top)
+		.overlay{ RoundedRectangle(cornerRadius: 0).stroke(.secondary, lineWidth: 1) }
 	}
 }
 

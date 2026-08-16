@@ -47,9 +47,10 @@ enum EnvelopeLedger {
 		expenses: [Expense],
 		in range: Range<Date>,
 		amendments: [AmendmentPoint] = [],
+		suspensions: [SuspensionSpan] = [],
 		calendar: Calendar = .current
 	) -> [Period] {
-		let snapshot = envelope.snapshot(amendments: amendments)
+		let snapshot = envelope.snapshot(amendments: amendments, suspensions: suspensions)
 
 		/* funding dates bound the periods, and they are *days*, not instants.
 		 *
@@ -114,6 +115,7 @@ enum EnvelopeLedger {
 		expenses: [Expense],
 		asOf date: Date = .now,
 		amendments: [AmendmentPoint] = [],
+		suspensions: [SuspensionSpan] = [],
 		calendar: Calendar = .current
 	) -> Period? {
 		// look back far enough to accumulate a sensible carryover chain without
@@ -126,6 +128,7 @@ enum EnvelopeLedger {
 			expenses: expenses,
 			in: lookback..<lookahead,
 			amendments: amendments,
+			suspensions: suspensions,
 			calendar: calendar
 		)
 		return all.last { $0.start <= date } ?? all.first

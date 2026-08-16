@@ -15,10 +15,11 @@ other periods are defined against. It's also what lets a projection run to any
 horizon without the database growing at all.
 
 Real life deviates from rules, so deviations — and *only* deviations — get
-stored, in two shapes:
+stored, in three shapes:
 
 - `OccurrenceOverride` — *this one occurrence* was skipped, moved or re-priced
-- `ScheduleAmendment` — *from this date on* it's a different number
+- `ScheduleAmendment` — *from this date on* it's a different **amount**
+- `ScheduleSuspension` — between these dates it didn't **exist** at all
 
 The second one exists because editing an amount is ambiguous and getting it
 wrong corrupts history. You get a raise; if that rewrote the base amount, every
@@ -31,8 +32,19 @@ then the latest amendment effective on or before it, then any per-occurrence
 override. The specific exception wins over the standing change — otherwise you
 could never record a one-off deviation from a post-raise salary.
 
-Both are keyed on the base `ExpectedTransaction`, so one model each covers
+All three are keyed on the base `ExpectedTransaction`, so one model each covers
 income, expenses and envelopes.
+
+**Archiving is a suspension, not a delete.** You really did pay for Hulu for
+eight months, and those occurrences have been reconciled against real
+transactions — deleting the expected item would orphan that history and silently
+restate eight months of budgets. An open-ended suspension (`until == nil`) *is*
+what "archived" means; the flag isn't stored separately, so the two can't
+disagree. Restoring closes the span rather than removing it, which keeps the gap
+a fact: cancel in March, come back in December at a new price (an amendment), and
+the projector correctly produces nothing at all for those nine months. Cancelling
+again opens another span, so it survives a subscription you keep flip-flopping
+on.
 
 ## Layers
 
@@ -221,6 +233,25 @@ Adding one means writing an `ActualsImporter` conformance and a
 - `ImportPipeline` persistence
 - `ActualMatcher`, which decides what an incoming actual settles — and is the
   *same* matcher the manual log screen uses, so the two can't drift apart
+
+## Adjusting several things at once
+
+`PlanAdjustView` exists because the per-item editors answer "add a subscription"
+and not the thing people actually do when money is tight: sit down, look at
+everything at once, and trade one thing off against another — drop a
+subscription, add £10 to groceries, take £20 off dining out. That's one decision
+across several items and it needs one screen.
+
+Rows are ordered by **projected cost over the horizon**, not by the headline
+amount, because £15/week quietly outranks £40/month and the sticker price hides
+that. The running total is the point of the screen: it says whether the
+trade-offs you just made actually add up to enough. Nothing is written until you
+save, and what's written is an amendment from today.
+
+Goal contributions appear in the list too, but take a different path on save —
+a goal's schedule lives on the `Goal` and has no amendment mechanism, so editing
+one is a straight edit. Without that branch the field would accept a change and
+silently drop it.
 
 ## Recommendations
 

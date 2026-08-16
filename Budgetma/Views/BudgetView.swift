@@ -21,6 +21,7 @@ struct BudgetView: View {
 	@Query private var goals: [Goal]
 	@Query private var overrides: [OccurrenceOverride]
 	@Query private var amendments: [ScheduleAmendment]
+	@Query private var suspensions: [ScheduleSuspension]
 	@Query private var transactions: [Transaction]
 
 	@AppStorage("budgetFollowsPeriod") private var followsPeriod: Bool = true
@@ -98,7 +99,8 @@ struct BudgetView: View {
 			expenses: expectedExpenses,
 			envelopes: envelopes,
 			goals: goals,
-			amendments: amendments
+			amendments: amendments,
+			suspensions: suspensions
 		)
 	}
 
@@ -109,9 +111,13 @@ struct BudgetView: View {
 	/// amendments change what an occurrence is worth without changing the item's
 	/// own fields, so the snapshot signature alone can't see them
 	private var amendmentSignature: String {
-		amendments
+		let changes = amendments
 			.map { "\($0.effectiveFrom.timeIntervalSince1970)|\($0.amount)" }
 			.joined(separator: ",")
+		let paused = suspensions
+			.map { "\($0.from.timeIntervalSince1970)|\($0.until?.timeIntervalSince1970 ?? 0)" }
+			.joined(separator: ",")
+		return changes + "/" + paused
 	}
 
 	private var inputSignature: String {
@@ -632,6 +638,7 @@ struct BudgetView: View {
 		let lookahead = calendar.date(byAdding: .year, value: 1, to: range.upperBound) ?? range.upperBound
 
 		let index = AmendmentIndex(amendments)
+		let paused = SuspensionIndex(suspensions)
 
 		return envelopes.flatMap { envelope -> [EnvelopeLine] in
 			let periods = EnvelopeLedger.periods(
@@ -639,6 +646,7 @@ struct BudgetView: View {
 				expenses: expenses,
 				in: lookback..<lookahead,
 				amendments: index.points(for: envelope.persistentModelID),
+				suspensions: paused.spans(for: envelope.persistentModelID),
 				calendar: calendar
 			)
 

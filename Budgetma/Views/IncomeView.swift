@@ -5,11 +5,12 @@ import SwiftData
 struct IncomeView: View {
 	@EnvironmentObject var theme: ThemeManager
 	@Query private var incomes: [ExpectedIncome]
+	@Query private var suspensions: [ScheduleSuspension]
 
 	@State var expandedCategories: Set<String> = []
 
 	var grouped: [(key: String, category: Category?, incomes: [ExpectedIncome])] {
-		let dict = Dictionary(grouping: incomes) {income in
+		let dict = Dictionary(grouping: incomes.filter { !$0.isArchived(in: suspensions) }) {income in
 			income.category?.name ?? "__uncategorized__"
 		}
 		return dict.keys
@@ -69,6 +70,11 @@ struct IncomeView: View {
 			.padding()
 			.frame(maxWidth: .infinity, alignment: .leading)
 
+			ArchivedSection(title: "Archived income", items: incomes) { item in
+				if let income = item as? ExpectedIncome {
+					SingleIncomeView(income: income)
+				}
+			}
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
@@ -192,6 +198,9 @@ struct SingleIncomeView: View {
 						startDate: income.startDate
 					)
 					.padding()
+
+					ArchiveButton(expected: income)
+						.padding(.horizontal)
 				}
 
 				Spacer()

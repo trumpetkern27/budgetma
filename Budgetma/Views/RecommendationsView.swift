@@ -20,6 +20,7 @@ struct RecommendationsView: View {
 	@Query private var goals: [Goal]
 	@Query private var overrides: [OccurrenceOverride]
 	@Query private var amendments: [ScheduleAmendment]
+	@Query private var suspensions: [ScheduleSuspension]
 	@Query private var transactions: [Transaction]
 
 	/// how far back to look for patterns
@@ -92,7 +93,8 @@ struct RecommendationsView: View {
 				expenses: expectedExpenses,
 				envelopes: envelopes,
 				goals: goals,
-				amendments: amendments
+				amendments: amendments,
+				suspensions: suspensions
 			),
 			overrides: OverrideIndex(overrides),
 			in: range

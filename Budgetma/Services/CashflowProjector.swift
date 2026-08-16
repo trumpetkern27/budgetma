@@ -72,6 +72,11 @@ nonisolated enum CashflowProjector {
 			emitted += 1
 			if emitted > occurrenceCap { break }
 
+			// a cancelled item produces nothing while it's cancelled -- checked
+			// before anything else, since a suspended occurrence has no amount
+			// worth resolving
+			if schedule.isSuspended(on: occurrence) { continue }
+
 			var date = occurrence
 			/* amendments first, then the per-occurrence override.
 			 *

@@ -29,18 +29,24 @@ struct BudgetService {
 		expenses: [ExpectedExpense] = [],
 		envelopes: [Envelope] = [],
 		goals: [Goal] = [],
-		amendments: [ScheduleAmendment] = []
+		amendments: [ScheduleAmendment] = [],
+		suspensions: [ScheduleSuspension] = []
 	) -> [ScheduleSnapshot] {
 		let index = AmendmentIndex(amendments)
+		let paused = SuspensionIndex(suspensions)
 
 		func points(_ id: PersistentIdentifier?) -> [AmendmentPoint] {
 			guard let id, !index.isEmpty else { return [] }
 			return index.points(for: id)
 		}
+		func spans(_ id: PersistentIdentifier?) -> [SuspensionSpan] {
+			guard let id, !paused.isEmpty else { return [] }
+			return paused.spans(for: id)
+		}
 
-		return incomes.map { $0.snapshot(amendments: points($0.persistentModelID)) }
-			+ expenses.map { $0.snapshot(amendments: points($0.persistentModelID)) }
-			+ envelopes.map { $0.snapshot(amendments: points($0.persistentModelID)) }
+		return incomes.map { $0.snapshot(amendments: points($0.persistentModelID), suspensions: spans($0.persistentModelID)) }
+			+ expenses.map { $0.snapshot(amendments: points($0.persistentModelID), suspensions: spans($0.persistentModelID)) }
+			+ envelopes.map { $0.snapshot(amendments: points($0.persistentModelID), suspensions: spans($0.persistentModelID)) }
 			// a goal's contribution schedule isn't an ExpectedTransaction, so it
 			// has no amendments to resolve -- change the contribution and the
 			// simulator is the place that shows you what it does
@@ -54,7 +60,8 @@ struct BudgetService {
 			expenses: fetch(ExpectedExpense.self),
 			envelopes: fetch(Envelope.self),
 			goals: includeGoals ? fetch(Goal.self) : [],
-			amendments: fetch(ScheduleAmendment.self)
+			amendments: fetch(ScheduleAmendment.self),
+			suspensions: fetch(ScheduleSuspension.self)
 		)
 	}
 

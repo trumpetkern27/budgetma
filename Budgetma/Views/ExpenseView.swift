@@ -6,6 +6,7 @@ struct ExpenseView: View {
 	@EnvironmentObject var theme: ThemeManager
 	@Query private var expectedTransactions: [ExpectedExpense]
 	@Query private var envelopes: [Envelope]
+	@Query private var suspensions: [ScheduleSuspension]
 
 	@State var expandedTransactionCategories: Set<String> = []
 	@State var expandedEnvelopeCategories: Set<String> = []
@@ -21,8 +22,18 @@ struct ExpenseView: View {
 		_envelopesExpanded = State(initialValue: focus == .envelopes)
 	}
 
+	/// archived items are still real and still own their history -- they just
+	/// aren't part of the plan any more, so they don't belong in the live list
+	var liveTransactions: [ExpectedExpense] {
+		expectedTransactions.filter { !$0.isArchived(in: suspensions) }
+	}
+
+	var liveEnvelopes: [Envelope] {
+		envelopes.filter { !$0.isArchived(in: suspensions) }
+	}
+
 	var groupedTransactions: [(key: String, category: Category?, transactions: [ExpectedExpense])] {
-		let dict = Dictionary(grouping: expectedTransactions) {transaction in
+		let dict = Dictionary(grouping: liveTransactions) {transaction in
 			transaction.category?.name ?? "__uncategorized__"
 		}
 		return dict.keys
@@ -35,7 +46,7 @@ struct ExpenseView: View {
 	}
 
 	var groupedEnvelopes: [(key: String, category: Category?, envelopes: [Envelope])] {
-		let dict = Dictionary(grouping: envelopes) {envelope in
+		let dict = Dictionary(grouping: liveEnvelopes) {envelope in
 			envelope.category?.name ?? "__uncategorized__"
 		}
 		return dict.keys
@@ -96,6 +107,12 @@ struct ExpenseView: View {
 						Label("New Expected Transaction", systemImage: "plus")
 					}
 					.padding()
+
+					ArchivedSection(title: "Archived expenses", items: expectedTransactions) { item in
+						if let expense = item as? ExpectedExpense {
+							SingleExpectedTransactionView(transaction: expense)
+						}
+					}
 				}
 			}
 
@@ -144,6 +161,12 @@ struct ExpenseView: View {
 						Label("New Envelope", systemImage: "plus")
 					}
 					.padding()
+
+					ArchivedSection(title: "Archived envelopes", items: envelopes) { item in
+						if let envelope = item as? Envelope {
+							SingleEnvelopeView(envelope: envelope)
+						}
+					}
 				}
 			}
 		}
@@ -240,6 +263,9 @@ struct SingleExpectedTransactionView: View {
 						startDate: transaction.startDate
 					)
 					.padding()
+
+					ArchiveButton(expected: transaction)
+						.padding(.horizontal)
 				}
 
 				Spacer()

@@ -30,7 +30,10 @@ extension Schedulable {
 	/// projection can't touch them off the main actor. snapshotting on the main
 	/// actor and projecting from snapshots fixes that -- and as a bonus the
 	/// rule conversion happens once per item instead of once per occurrence.
-	func snapshot(amendments: [AmendmentPoint] = []) -> ScheduleSnapshot {
+	func snapshot(
+		amendments: [AmendmentPoint] = [],
+		suspensions: [SuspensionSpan] = []
+	) -> ScheduleSnapshot {
 		ScheduleSnapshot(
 			sourceID: scheduleID,
 			name: scheduleName,
@@ -39,7 +42,8 @@ extension Schedulable {
 			start: scheduleStart,
 			rule: scheduleRule?.toRecurranceRule(),
 			kind: scheduleKind,
-			amendments: amendments
+			amendments: amendments,
+			suspensions: suspensions
 		)
 	}
 }
@@ -59,6 +63,8 @@ nonisolated struct ScheduleSnapshot: Sendable {
 	let kind: EventKind
 	/// "from this date it's worth this instead", ascending by date
 	var amendments: [AmendmentPoint] = []
+	/// stretches where this item didn't exist at all -- a cancelled subscription
+	var suspensions: [SuspensionSpan] = []
 
 	var sign: FlowSign { kind.sign }
 
@@ -67,6 +73,12 @@ nonisolated struct ScheduleSnapshot: Sendable {
 	/// the latest amendment on or before the occurrence wins; occurrences before
 	/// the first amendment keep the original amount, which is what stops a raise
 	/// rewriting the paychecks you already reconciled.
+	/// whether the item exists at all on a given date
+	func isSuspended(on date: Date) -> Bool {
+		guard !suspensions.isEmpty else { return false }
+		return suspensions.contains { $0.contains(date) }
+	}
+
 	func amount(effectiveOn date: Date) -> Decimal {
 		guard !amendments.isEmpty else { return amount }
 
@@ -94,7 +106,8 @@ nonisolated struct ScheduleSnapshot: Sendable {
 			start: start,
 			rule: rule,
 			kind: kind,
-			amendments: []
+			amendments: [],
+			suspensions: []
 		)
 	}
 }

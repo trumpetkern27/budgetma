@@ -20,6 +20,7 @@ struct PlanView: View {
 	@Query private var goals: [Goal]
 	@Query private var overrides: [OccurrenceOverride]
 	@Query private var amendments: [ScheduleAmendment]
+	@Query private var suspensions: [ScheduleSuspension]
 	@Query private var transactions: [Transaction]
 
 	@AppStorage("planHorizonCount") private var horizonCount: Int = 1
@@ -54,7 +55,8 @@ struct PlanView: View {
 			expenses: expectedExpenses,
 			envelopes: envelopes,
 			goals: goals,
-			amendments: amendments
+			amendments: amendments,
+			suspensions: suspensions
 		)
 	}
 
@@ -70,9 +72,13 @@ struct PlanView: View {
 	/// amendments change what an occurrence is worth without changing the item's
 	/// own fields, so the snapshot signature alone can't see them
 	private var amendmentSignature: String {
-		amendments
+		let changes = amendments
 			.map { "\($0.effectiveFrom.timeIntervalSince1970)|\($0.amount)" }
 			.joined(separator: ",")
+		let paused = suspensions
+			.map { "\($0.from.timeIntervalSince1970)|\($0.until?.timeIntervalSince1970 ?? 0)" }
+			.joined(separator: ",")
+		return changes + "/" + paused
 	}
 
 	private var inputSignature: String {
@@ -117,7 +123,7 @@ struct PlanView: View {
 				} else {
 					summaryTiles
 					curveCard
-					flowCard
+					adjustEntry
 					affordabilityEntry
 				}
 			}
@@ -317,18 +323,35 @@ struct PlanView: View {
 		}
 	}
 
-	@ViewBuilder
-	private var flowCard: some View {
-		Card(
-			title: "In vs out",
-			subtitle: projection.map { "Totals per \($0.granularity.periodNoun)" } ?? "Per period"
-		) {
-			if let projection, !projection.buckets.isEmpty {
-				FlowChart(projection: projection)
-			} else {
-				computingPlaceholder(height: 180)
+
+	/* the trade-off screen. it sits under the curve on purpose: you look at the
+	 * projection, don't like it, and the next thing you want is the ability to
+	 * change several things at once until you do.
+	 */
+	private var adjustEntry: some View {
+		NavigationLink {
+			PlanAdjustView(horizon: horizon)
+		} label: {
+			Card {
+				HStack(spacing: 12) {
+					Text("⚖️")
+						.font(.title2)
+					VStack(alignment: .leading, spacing: 3) {
+						Text("Adjust the plan")
+							.font(.headline)
+						Text("Everything you're committed to, priced and editable in one list")
+							.font(.caption)
+							.foregroundStyle(theme.fgColour.opacity(0.6))
+							.lineLimit(2)
+					}
+					Spacer()
+					Image(systemName: "chevron.right")
+						.font(.caption)
+						.foregroundStyle(theme.fgColour.opacity(0.5))
+				}
 			}
 		}
+		.buttonStyle(.plain)
 	}
 
 	private var affordabilityEntry: some View {

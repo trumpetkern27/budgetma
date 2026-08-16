@@ -24,6 +24,7 @@ struct AffordabilityView: View {
 	@Query private var goals: [Goal]
 	@Query private var overrides: [OccurrenceOverride]
 	@Query private var amendments: [ScheduleAmendment]
+	@Query private var suspensions: [ScheduleSuspension]
 
 	@State var horizon: DateWindow
 
@@ -45,7 +46,8 @@ struct AffordabilityView: View {
 			expenses: expectedExpenses,
 			envelopes: envelopes,
 			goals: goals,
-			amendments: amendments
+			amendments: amendments,
+			suspensions: suspensions
 		)
 	}
 

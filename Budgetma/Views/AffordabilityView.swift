@@ -23,6 +23,7 @@ struct AffordabilityView: View {
 	@Query private var envelopes: [Envelope]
 	@Query private var goals: [Goal]
 	@Query private var overrides: [OccurrenceOverride]
+	@Query private var amendments: [ScheduleAmendment]
 
 	@State var horizon: DateWindow
 
@@ -43,7 +44,8 @@ struct AffordabilityView: View {
 			incomes: expectedIncomes,
 			expenses: expectedExpenses,
 			envelopes: envelopes,
-			goals: goals
+			goals: goals,
+			amendments: amendments
 		)
 	}
 
@@ -92,6 +94,7 @@ struct AffordabilityView: View {
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
+		.dismissableKeyboard()
 		.chartPalette(for: theme.bgColour)
 		.navigationTitle("Can I afford it?")
 		.navigationBarTitleDisplayMode(.inline)

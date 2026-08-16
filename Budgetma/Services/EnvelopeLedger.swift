@@ -46,18 +46,30 @@ enum EnvelopeLedger {
 		for envelope: Envelope,
 		expenses: [Expense],
 		in range: Range<Date>,
+		amendments: [AmendmentPoint] = [],
 		calendar: Calendar = .current
 	) -> [Period] {
-		let snapshot = envelope.snapshot()
+		let snapshot = envelope.snapshot(amendments: amendments)
 
-		// funding dates bound the periods
+		/* funding dates bound the periods, and they are *days*, not instants.
+		 *
+		 * an envelope's start date carries whatever time of day it was created
+		 * at, and the projector faithfully preserves it. left alone, a fortnightly
+		 * envelope created at 15:47 produces cycles like
+		 * [Aug 1 15:47, Aug 15 15:47) while the budget window is
+		 * [Aug 15 00:00, Aug 29 00:00) — so the *previous* cycle ends after the
+		 * window begins and leaks into it as a phantom second envelope, and the
+		 * current cycle's exclusive end lands a day later than it should in every
+		 * label. snapping to the day makes cycles line up with pay periods
+		 * exactly, which is the entire point of matching their intervals.
+		 */
 		var fundingDates: [Date] = []
 		CashflowProjector.forEachEvent(
 			of: snapshot,
 			overrides: .empty,
 			in: range,
 			calendar: calendar
-		) { fundingDates.append($0.date) }
+		) { fundingDates.append(calendar.startOfDay(for: $0.date)) }
 		fundingDates.sort()
 
 		guard !fundingDates.isEmpty else { return [] }
@@ -79,7 +91,9 @@ enum EnvelopeLedger {
 			let period = Period(
 				start: start,
 				end: end,
-				funded: snapshot.amount,
+				// what the envelope was funded with *at the time* -- raising a
+				// grocery envelope today must not restate last month's budget
+				funded: snapshot.amount(effectiveOn: start),
 				carriedIn: carriedIn,
 				spent: spent,
 				expenses: inPeriod
@@ -99,6 +113,7 @@ enum EnvelopeLedger {
 		for envelope: Envelope,
 		expenses: [Expense],
 		asOf date: Date = .now,
+		amendments: [AmendmentPoint] = [],
 		calendar: Calendar = .current
 	) -> Period? {
 		// look back far enough to accumulate a sensible carryover chain without
@@ -110,6 +125,7 @@ enum EnvelopeLedger {
 			for: envelope,
 			expenses: expenses,
 			in: lookback..<lookahead,
+			amendments: amendments,
 			calendar: calendar
 		)
 		return all.last { $0.start <= date } ?? all.first

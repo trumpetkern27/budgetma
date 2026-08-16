@@ -50,13 +50,21 @@ struct StatTile: View {
 	var caption: String?
 	/// paired with the accent so state is never colour-alone
 	var systemImage: String?
+	/// draws a chevron beside the label, so a tile you can open looks like one
+	var showsDisclosure: Bool = false
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: 4) {
-			Text(label)
-				.font(.caption2)
-				.textCase(.uppercase)
-				.foregroundStyle(theme.fgColour.opacity(0.55))
+			HStack(spacing: 3) {
+				Text(label)
+					.font(.caption2)
+					.textCase(.uppercase)
+				if showsDisclosure {
+					Image(systemName: "chevron.right")
+						.font(.system(size: 8, weight: .semibold))
+				}
+			}
+			.foregroundStyle(theme.fgColour.opacity(0.55))
 
 			HStack(spacing: 5) {
 				if let systemImage {

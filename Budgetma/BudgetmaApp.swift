@@ -32,6 +32,7 @@ struct BudgetmaApp: App {
 			Envelope.self,
 			// schedule exceptions
 			OccurrenceOverride.self,
+			ScheduleAmendment.self,
 			// goals
 			Goal.self,
 			// category

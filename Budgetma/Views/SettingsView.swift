@@ -8,6 +8,17 @@ struct SettingsView: View {
 	@AppStorage("calendarViewInterval") private var interval: Int = 1
 	@AppStorage("calendarViewStartDate") private var startDate: Date = .now
 
+	@AppStorage(CurrencySettings.symbolKey) private var currencySymbol: String = ""
+	@AppStorage("logAddsAnother") private var addsAnother: Bool = true
+
+	/// a few common ones, plus whatever the device would have picked
+	private var symbolPresets: [String] {
+		var presets = ["$", "£", "€", "¥", "₹"]
+		let local = CurrencySettings.localeSymbol
+		if !presets.contains(local) { presets.insert(local, at: 0) }
+		return presets
+	}
+
 	var body: some View {
 		ScrollView {
 			VStack(spacing: 5) {
@@ -33,6 +44,79 @@ struct SettingsView: View {
 					CategoriesView()
 				}
 				.frame(maxWidth: .infinity, alignment: .leading)
+				.padding()
+
+				Divider()
+				.background(theme.fgColour)
+
+				// --- currency ---
+				// the symbol is presentational only: amounts are stored as plain
+				// Decimals, so changing this re-labels the app without touching
+				// a single stored value
+				VStack(alignment: .leading, spacing: 10) {
+					HStack {
+						Text("Currency symbol")
+
+						Spacer()
+
+						TextField(CurrencySettings.localeSymbol, text: $currencySymbol)
+							.multilineTextAlignment(.trailing)
+							.tint(theme.fgColour)
+							.frame(width: 70)
+							.onChange(of: currencySymbol) { _, new in
+								// a symbol, not a sentence
+								if new.count > 3 { currencySymbol = String(new.prefix(3)) }
+							}
+					}
+
+					HStack(spacing: 8) {
+						ForEach(symbolPresets, id: \.self) { symbol in
+							Button(symbol) { currencySymbol = symbol }
+								.frame(maxWidth: .infinity)
+								.padding(.vertical, 6)
+								.background(currencySymbol == symbol ? theme.fgColour : theme.bgColour)
+								.foregroundColor(currencySymbol == symbol ? theme.bgColour : theme.fgColour)
+								.clipShape(RoundedRectangle(cornerRadius: 8))
+								.overlay {
+									RoundedRectangle(cornerRadius: 8)
+										.stroke(theme.fgColour, lineWidth: 1)
+								}
+						}
+					}
+
+					HStack {
+						Text("Example: \(Decimal(1234.56).money)")
+							.font(.caption)
+							.foregroundStyle(theme.fgColour.opacity(0.6))
+
+						Spacer()
+
+						if !currencySymbol.isEmpty {
+							Button("Use device default") { currencySymbol = "" }
+								.font(.caption)
+						}
+					}
+				}
+				.padding()
+
+				Divider()
+				.background(theme.fgColour)
+
+				// --- logging ---
+				VStack(alignment: .leading, spacing: 4) {
+					Toggle(isOn: $addsAnother) {
+						Text("Keep logging after save")
+					}
+					.tint(theme.fgColour)
+
+					Text(
+						addsAnother
+							? "Saving clears the form so you can log the next one straight away."
+							: "Saving closes the screen."
+					)
+					.font(.caption)
+					.foregroundStyle(theme.fgColour.opacity(0.6))
+				}
 				.padding()
 
 				Divider()
@@ -95,6 +179,9 @@ struct SettingsView: View {
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
+		.dismissableKeyboard()
+		.navigationTitle("Settings")
+		.navigationBarTitleDisplayMode(.inline)
 	}
 
 }
@@ -148,6 +235,7 @@ struct CategoriesView: View {
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
+		.dismissableKeyboard()
 	}
 
 	private func delete(_ category: Category) {
@@ -187,6 +275,7 @@ struct CategoryView: View {
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
+		.dismissableKeyboard()
 		.onDisappear {
 			if category.name == "" && category.emoji == "" {
 				return
@@ -226,6 +315,7 @@ struct NewCategoryView: View {
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
+		.dismissableKeyboard()
 		.toolbar {
 			ToolbarItem(placement: .cancellationAction) {
 				Button("Cancel") {

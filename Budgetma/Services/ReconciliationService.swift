@@ -113,6 +113,22 @@ enum ReconciliationService {
 		var unmatched: [Transaction] = []
 
 		for actual in actuals {
+			/* a scheduled goal contribution is sourced from a *Goal*, not an
+			 * ExpectedTransaction, so it can't be named by `expected` -- that
+			 * relationship is typed to the expected-transaction family. a Savings
+			 * names its goal instead, and that's what it settles against.
+			 *
+			 * without this, goal contributions were the one scheduled thing in the
+			 * app that could never be settled by anything.
+			 */
+			if let savings = actual as? Savings,
+			   let goalID = savings.goal?.persistentModelID {
+				let slotDate = savings.occurrenceDate ?? savings.date
+				let slot = OccurrenceSlot(sourceID: goalID, occurrenceDate: slotDate, calendar: calendar)
+				bySlot[slot, default: []].append(actual)
+				continue
+			}
+
 			guard let expectedID = actual.expected?.persistentModelID else {
 				unmatched.append(actual)
 				continue
@@ -132,10 +148,13 @@ enum ReconciliationService {
 		 * funding cycle. that's what makes "did i stay inside the envelope"
 		 * answerable on this screen.
 		 */
+		// normalised to the day for the same reason EnvelopeLedger does it: a
+		// funding occurrence at 15:47 would otherwise push everything you spent
+		// that morning into the *previous* cycle
 		let fundingDates = Dictionary(
 			grouping: events.filter { $0.kind == .envelopeFunding },
 			by: { $0.sourceID }
-		).compactMapValues { $0.map(\.date).sorted() }
+		).compactMapValues { $0.map { calendar.startOfDay(for: $0.date) }.sorted() }
 
 		let expenses = actuals.compactMap { $0 as? Expense }
 
@@ -148,11 +167,12 @@ enum ReconciliationService {
 			if let sourceID = event.sourceID {
 				if event.kind == .envelopeFunding {
 					// this cycle runs until the next funding, or the window ends
-					let next = fundingDates[sourceID]?.first { $0 > event.date }
+					let cycleStart = calendar.startOfDay(for: event.date)
+					let next = fundingDates[sourceID]?.first { $0 > cycleStart }
 					let end = next ?? range.upperBound
 					matched = expenses.filter {
 						$0.envelope?.persistentModelID == sourceID
-							&& $0.date >= event.date
+							&& $0.date >= cycleStart
 							&& $0.date < end
 					}
 				} else {

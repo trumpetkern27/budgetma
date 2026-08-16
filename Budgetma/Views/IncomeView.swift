@@ -38,7 +38,7 @@ struct IncomeView: View {
 
 										Spacer()
 
-										Text(income.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+										Text(income.amount.money)
 									}
 								}
 							}
@@ -72,7 +72,8 @@ struct IncomeView: View {
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
-
+		.navigationTitle("Expected income")
+		.navigationBarTitleDisplayMode(.inline)
 	}
 
 	private func toggleCategory(_ key: String) {
@@ -100,7 +101,7 @@ struct CategoryHeader: View {
 					.font(.headline)
 					.foregroundStyle(.primary)
 				Spacer()
-				Text(total, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+				Text(total.money)
 					.font(.subheadline)
 					.foregroundStyle(.secondary)
 				Image(systemName: "chevron.right")
@@ -131,6 +132,7 @@ struct SingleIncomeView: View {
 	@State private var startDate: Date
 	@State private var regularity: RecurrenceRule?
 	@State private var category: Category?
+	@State private var askingAboutAmount = false
 
 	@Query(
 		filter: #Predicate<Category> {
@@ -182,6 +184,16 @@ struct SingleIncomeView: View {
 				}
 				.padding()
 
+				// a raise is the canonical case for this whole mechanism
+				if let income {
+					AmendmentsCard(
+						expected: income,
+						baseAmount: income.amount,
+						startDate: income.startDate
+					)
+					.padding()
+				}
+
 				Spacer()
 
 				HStack {
@@ -203,6 +215,14 @@ struct SingleIncomeView: View {
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
+		.dismissableKeyboard()
+		.amountChangeDialog(
+			isPresented: $askingAboutAmount,
+			from: income?.amount ?? 0,
+			to: amount,
+			onCorrect: { commit(amendFrom: nil) },
+			onAmend: { commit(amendFrom: .now) }
+		)
 		.toolbar {
 			ToolbarItem(placement: .cancellationAction) {
 				Button("Cancel") {
@@ -210,28 +230,53 @@ struct SingleIncomeView: View {
 				}
 			}
 			ToolbarItem(placement: .confirmationAction) {
-				Button("Save") {
-					if let income {
-						income.name = name
-						income.amount = amount
-						income.startDate = startDate
-						income.regularity = regularity
-						income.category = category
-					} else {
-						context.insert(
-							ExpectedIncome(
-								name: name.isEmpty ? "the air" : name,
-								amount: amount,
-								startDate: startDate,
-								regularity: regularity,
-								category: category
-							)
-						)
-					}
-					try? context.save()
-					dismiss()
-				}
+				Button("Save") { save() }
 			}
 		}
+	}
+
+	private func save() {
+		guard let income, income.amount != amount else {
+			commit(amendFrom: nil)
+			return
+		}
+		askingAboutAmount = true
+	}
+
+	/* the raise case. editing the base amount would rewrite every paycheck you
+	 * have already reconciled -- six months of correct budgets would silently
+	 * restate themselves as underpaid. an amendment applies from its date only.
+	 */
+	private func commit(amendFrom: Date?) {
+		if let income {
+			income.name = name
+			income.startDate = startDate
+			income.regularity = regularity
+			income.category = category
+
+			if let amendFrom, income.amount != amount {
+				context.insert(
+					ScheduleAmendment(
+						expected: income,
+						effectiveFrom: amendFrom,
+						amount: amount
+					)
+				)
+			} else {
+				income.amount = amount
+			}
+		} else {
+			context.insert(
+				ExpectedIncome(
+					name: name.isEmpty ? "the air" : name,
+					amount: amount,
+					startDate: startDate,
+					regularity: regularity,
+					category: category
+				)
+			)
+		}
+		try? context.save()
+		dismiss()
 	}
 }

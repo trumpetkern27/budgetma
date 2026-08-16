@@ -73,7 +73,14 @@ nonisolated enum CashflowProjector {
 			if emitted > occurrenceCap { break }
 
 			var date = occurrence
-			var amount = schedule.amount
+			/* amendments first, then the per-occurrence override.
+			 *
+			 * the order is the precedence: an amendment says "from here on it's
+			 * £X", an override says "this one time it was £Y". the specific
+			 * exception has to win over the standing change, or you could never
+			 * record a one-off deviation from a post-raise salary.
+			 */
+			var amount = schedule.amount(effectiveOn: occurrence)
 
 			// apply the sparse override for this slot, if there is one
 			if hasOverrides, let sourceID = schedule.sourceID {

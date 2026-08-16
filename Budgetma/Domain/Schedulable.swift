@@ -30,7 +30,7 @@ extension Schedulable {
 	/// projection can't touch them off the main actor. snapshotting on the main
 	/// actor and projecting from snapshots fixes that -- and as a bonus the
 	/// rule conversion happens once per item instead of once per occurrence.
-	func snapshot() -> ScheduleSnapshot {
+	func snapshot(amendments: [AmendmentPoint] = []) -> ScheduleSnapshot {
 		ScheduleSnapshot(
 			sourceID: scheduleID,
 			name: scheduleName,
@@ -38,7 +38,8 @@ extension Schedulable {
 			amount: scheduleAmount,
 			start: scheduleStart,
 			rule: scheduleRule?.toRecurranceRule(),
-			kind: scheduleKind
+			kind: scheduleKind,
+			amendments: amendments
 		)
 	}
 }
@@ -51,15 +52,39 @@ nonisolated struct ScheduleSnapshot: Sendable {
 	let sourceID: PersistentIdentifier?
 	let name: String
 	let emoji: String
+	/// the item's *original* amount -- what it was worth before any amendment
 	let amount: Decimal
 	let start: Date
 	let rule: Calendar.RecurrenceRule?
 	let kind: EventKind
+	/// "from this date it's worth this instead", ascending by date
+	var amendments: [AmendmentPoint] = []
 
 	var sign: FlowSign { kind.sign }
 
+	/// what this item is worth on a given occurrence date
+	///
+	/// the latest amendment on or before the occurrence wins; occurrences before
+	/// the first amendment keep the original amount, which is what stops a raise
+	/// rewriting the paychecks you already reconciled.
+	func amount(effectiveOn date: Date) -> Decimal {
+		guard !amendments.isEmpty else { return amount }
+
+		var result = amount
+		for point in amendments {
+			// ascending, so the last one that qualifies is the answer
+			guard point.effectiveFrom <= date else { break }
+			result = point.amount
+		}
+		return result
+	}
+
 	/// same item, different price -- used by the affordability solver when it
 	/// searches for the largest amount that still fits
+	///
+	/// amendments are dropped deliberately: a candidate is hypothetical and has
+	/// no history, and keeping them would let an old amendment silently override
+	/// the very price the solver is testing.
 	func repriced(to newAmount: Decimal) -> ScheduleSnapshot {
 		ScheduleSnapshot(
 			sourceID: sourceID,
@@ -68,7 +93,8 @@ nonisolated struct ScheduleSnapshot: Sendable {
 			amount: newAmount,
 			start: start,
 			rule: rule,
-			kind: kind
+			kind: kind,
+			amendments: []
 		)
 	}
 }

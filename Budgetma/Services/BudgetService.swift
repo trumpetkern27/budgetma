@@ -28,30 +28,39 @@ struct BudgetService {
 		incomes: [ExpectedIncome] = [],
 		expenses: [ExpectedExpense] = [],
 		envelopes: [Envelope] = [],
-		goals: [Goal] = []
+		goals: [Goal] = [],
+		amendments: [ScheduleAmendment] = []
 	) -> [ScheduleSnapshot] {
-		incomes.map { $0.snapshot() }
-			+ expenses.map { $0.snapshot() }
-			+ envelopes.map { $0.snapshot() }
+		let index = AmendmentIndex(amendments)
+
+		func points(_ id: PersistentIdentifier?) -> [AmendmentPoint] {
+			guard let id, !index.isEmpty else { return [] }
+			return index.points(for: id)
+		}
+
+		return incomes.map { $0.snapshot(amendments: points($0.persistentModelID)) }
+			+ expenses.map { $0.snapshot(amendments: points($0.persistentModelID)) }
+			+ envelopes.map { $0.snapshot(amendments: points($0.persistentModelID)) }
+			// a goal's contribution schedule isn't an ExpectedTransaction, so it
+			// has no amendments to resolve -- change the contribution and the
+			// simulator is the place that shows you what it does
 			+ goals.filter(\.participatesInProjection).map { $0.snapshot() }
 	}
 
 	/// every schedule that should participate in a cashflow projection
 	func scheduleSnapshots(includeGoals: Bool = true) -> [ScheduleSnapshot] {
-		var snapshots: [ScheduleSnapshot] = []
+		BudgetService.snapshots(
+			incomes: fetch(ExpectedIncome.self),
+			expenses: fetch(ExpectedExpense.self),
+			envelopes: fetch(Envelope.self),
+			goals: includeGoals ? fetch(Goal.self) : [],
+			amendments: fetch(ScheduleAmendment.self)
+		)
+	}
 
-		snapshots += fetch(ExpectedIncome.self).map { $0.snapshot() }
-		snapshots += fetch(ExpectedExpense.self).map { $0.snapshot() }
-		snapshots += fetch(Envelope.self).map { $0.snapshot() }
-
-		if includeGoals {
-			// only goals with a real contribution schedule move money
-			snapshots += fetch(Goal.self)
-				.filter(\.participatesInProjection)
-				.map { $0.snapshot() }
-		}
-
-		return snapshots
+	/// the standing amount changes, flattened for O(1) lookup
+	func amendmentIndex(calendar: Calendar = .current) -> AmendmentIndex {
+		AmendmentIndex(fetch(ScheduleAmendment.self), calendar: calendar)
 	}
 
 	/// the sparse schedule exceptions, flattened for O(1) lookup

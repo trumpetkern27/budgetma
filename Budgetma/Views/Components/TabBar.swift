@@ -32,6 +32,15 @@ struct TabBar: View {
 		.padding(.horizontal, 10)
 		.padding(.top, 12)
 		.padding(.bottom, 12)
+		/* the bar paints its own background rather than relying on the one the
+		 * root VStack draws. presenting a sheet over the root re-composites what's
+		 * behind it, and the tab bar was left sitting on nothing -- transparent,
+		 * with the scrolled content showing through from under it. it also has to
+		 * reach into the bottom safe area, or the home-indicator strip stays clear.
+		 */
+		.background {
+			theme.bgColour.ignoresSafeArea(edges: .bottom)
+		}
 	}
 
 	@ViewBuilder func tabButton(_ tab: Tab) -> some View {

@@ -19,12 +19,17 @@ struct PlanView: View {
 	@Query private var envelopes: [Envelope]
 	@Query private var goals: [Goal]
 	@Query private var overrides: [OccurrenceOverride]
+	@Query private var amendments: [ScheduleAmendment]
+	@Query private var transactions: [Transaction]
 
 	@AppStorage("planHorizonCount") private var horizonCount: Int = 1
 	@AppStorage("planHorizonUnit") private var horizonUnitRaw: String = DateWindow.Unit.year.rawValue
 
 	@State private var projection: Projection?
 	@State private var isComputing = false
+	@State private var cachedRecommendations: [RecommendationEngine.Recommendation] = []
+	/// observed so silencing a recommendation elsewhere updates this card
+	@AppStorage(DismissedRecommendations.key) private var dismissedRaw: String = "[]"
 
 	private var horizon: DateWindow {
 		get {
@@ -48,22 +53,63 @@ struct PlanView: View {
 			incomes: expectedIncomes,
 			expenses: expectedExpenses,
 			envelopes: envelopes,
-			goals: goals
+			goals: goals,
+			amendments: amendments
 		)
 	}
 
 	/// changes whenever anything the projection depends on changes, so the
 	/// async recompute refires on edits as well as on horizon changes
+
+	/// recommendations depend on logged actuals, which the projection signature
+	/// deliberately ignores
+	private var recommendationSignature: String {
+		"\(transactions.count)|\(transactions.reduce(Decimal(0)) { $0 + $1.amount })|\(amendmentSignature)"
+	}
+
+	/// amendments change what an occurrence is worth without changing the item's
+	/// own fields, so the snapshot signature alone can't see them
+	private var amendmentSignature: String {
+		amendments
+			.map { "\($0.effectiveFrom.timeIntervalSince1970)|\($0.amount)" }
+			.joined(separator: ",")
+	}
+
 	private var inputSignature: String {
 		let items = snapshots
 			.map { "\($0.name)|\($0.amount)|\($0.start.timeIntervalSince1970)|\($0.kind.rawValue)|\($0.rule == nil ? 0 : 1)" }
 			.joined(separator: ";")
-		return "\(horizonCount)\(horizonUnitRaw)|\(overrides.count)|\(items)"
+		return "\(horizonCount)\(horizonUnitRaw)|\(overrides.count)|\(amendmentSignature)|\(items)"
 	}
+
+	/// a cheap look-ahead so the card can say something specific without running
+	/// the whole engine on every Plan render
+	private var summaryRecommendations: [RecommendationEngine.Recommendation] {
+		let end = Date.now
+		let start = Calendar.current.date(byAdding: .month, value: -12, to: end) ?? end
+		let events = CashflowProjector.events(
+			for: snapshots,
+			overrides: OverrideIndex(overrides),
+			in: start..<end
+		)
+		return RecommendationEngine.recommendations(events: events, transactions: transactions)
+	}
+
+	/// silenced ones must not be counted here either, or the card keeps nagging
+	/// about something you've explicitly dismissed
+	private var visibleRecommendations: [RecommendationEngine.Recommendation] {
+		let dismissed = DismissedRecommendations.all
+		return cachedRecommendations.filter { !dismissed.contains($0.id) }
+	}
+
+	private var recommendationCount: Int { visibleRecommendations.count }
+	private var topRecommendationTitle: String? { visibleRecommendations.first?.title }
 
 	var body: some View {
 		ScrollView {
 			VStack(alignment: .leading, spacing: 20) {
+				planSetup
+				recommendationsEntry
 				header
 
 				if snapshots.isEmpty {
@@ -83,9 +129,111 @@ struct PlanView: View {
 		.navigationTitle("Plan")
 		.navigationBarTitleDisplayMode(.inline)
 		.task(id: inputSignature) { await recompute() }
+		.task(id: recommendationSignature) { cachedRecommendations = summaryRecommendations }
 	}
 
 	// MARK: - Sections
+
+	/* --- what you're planning ---
+	 * these used to sit at the bottom of Home, which put "edit the plan" on the
+	 * screen whose job is "what's happening this period". the plan and the
+	 * projection it produces belong together: this is the tab where you decide
+	 * what the future looks like.
+	 */
+	private var planSetup: some View {
+		Card(title: "What you're planning", subtitle: "The inputs behind every projection below") {
+			VStack(spacing: 0) {
+				setupRow(
+					emoji: "💰",
+					label: "Expected income",
+					count: expectedIncomes.count
+				) { IncomeView() }
+
+				Divider().background(theme.fgColour.opacity(0.15))
+
+				setupRow(
+					emoji: "💸",
+					label: "Expected expenses",
+					count: expectedExpenses.count
+				) { ExpenseView(focus: .transactions) }
+
+				Divider().background(theme.fgColour.opacity(0.15))
+
+				setupRow(
+					emoji: "✉️",
+					label: "Envelopes",
+					count: envelopes.count
+				) { ExpenseView(focus: .envelopes) }
+			}
+		}
+	}
+
+	/* --- worth a look ---
+	 * a summary that opens the full list. it lives here because Plan is where
+	 * you decide what the future looks like, and every recommendation is
+	 * literally "your plan disagrees with your life".
+	 */
+	@ViewBuilder
+	private var recommendationsEntry: some View {
+		let count = recommendationCount
+
+		NavigationLink {
+			RecommendationsView()
+		} label: {
+			Card {
+				HStack(spacing: 12) {
+					Text("💡")
+						.font(.title3)
+
+					VStack(alignment: .leading, spacing: 3) {
+						Text(count == 0 ? "Nothing to flag" : "\(count) worth a look")
+							.font(.headline)
+						Text(
+							count == 0
+								? "Your plan matches what's happening"
+								: topRecommendationTitle ?? "Where your plan and reality disagree"
+						)
+						.font(.caption)
+						.foregroundStyle(theme.fgColour.opacity(0.6))
+						.lineLimit(1)
+					}
+
+					Spacer()
+
+					Image(systemName: "chevron.right")
+						.font(.caption)
+						.foregroundStyle(theme.fgColour.opacity(0.4))
+				}
+			}
+		}
+		.buttonStyle(.plain)
+	}
+
+	private func setupRow<Destination: View>(
+		emoji: String,
+		label: String,
+		count: Int,
+		@ViewBuilder destination: @escaping () -> Destination
+	) -> some View {
+		NavigationLink(destination: destination) {
+			HStack(spacing: 12) {
+				Text(emoji)
+				Text(label)
+					.font(.subheadline)
+				Spacer()
+				Text("\(count)")
+					.font(.subheadline)
+					.monospacedDigit()
+					.foregroundStyle(theme.fgColour.opacity(0.5))
+				Image(systemName: "chevron.right")
+					.font(.caption)
+					.foregroundStyle(theme.fgColour.opacity(0.4))
+			}
+			.padding(.vertical, 11)
+			.contentShape(Rectangle())
+		}
+		.buttonStyle(.plain)
+	}
 
 	private var header: some View {
 		VStack(alignment: .leading, spacing: 10) {

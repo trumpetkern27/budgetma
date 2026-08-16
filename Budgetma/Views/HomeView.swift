@@ -2,11 +2,13 @@ import SwiftUI
 import SwiftData
 
 /* --- Home ---
- * the glance: a calendar of what's coming, and the way in to everything else
+ * the glance: a calendar of what's coming
  *
- * the calendar period is itself defined by a recurrence rule (see the settings
- * at the top), so "my pay period" can be biweekly, or every 10 days, or monthly
- * -- the grid doesn't assume months any more than the rest of the app does.
+ * the calendar period is itself defined by a recurrence rule (Settings > Calendar
+ * frequency), so "my pay period" can be biweekly, or every 10 days, or monthly --
+ * the grid doesn't assume months any more than the rest of the app does. the
+ * period maths lives in PeriodRule, shared with the Budget screen so the two
+ * always agree on which window you're in.
  */
 @available(iOS 26, *)
 struct HomeView: View {
@@ -22,33 +24,74 @@ struct HomeView: View {
 	@Query private var envelopes: [Envelope]
 	@Query private var goals: [Goal]
 	@Query private var overrides: [OccurrenceOverride]
+	@Query private var amendments: [ScheduleAmendment]
+	@Query private var transactions: [Transaction]
 
 	@State private var periodOffset: Int = 0
+	@State private var inspectedDay: InspectedDay?
+
+	/// Date isn't Identifiable and shouldn't be taught to be -- a retroactive
+	/// conformance on a stdlib type is somebody else's bug waiting to happen
+	private struct InspectedDay: Identifiable {
+		let id: Date
+	}
+
+	/* the projection is computed once per change and held, rather than being a
+	 * computed property. as a computed property it re-ran on every access -- and
+	 * `dayCell` accessed it once per cell, so opening the month projected every
+	 * schedule in the app thirty-odd times over.
+	 */
+	@State private var events: [ScheduledEvent] = []
+	@State private var eventsByDay: [Date: [ScheduledEvent]] = [:]
+	/// the reconciled view of the period: which occurrences have been settled,
+	/// and what was actually logged on each day
+	@State private var lines: [ReconciliationService.Line] = []
+	@State private var actualsByDay: [Date: [Transaction]] = [:]
+	/// occurrence ids that something has already been logged against
+	@State private var settledIDs: Set<String> = []
+	@State private var trackingPoints: [WindowTrackingChart.Point] = []
 
 	private var palette: ChartPalette { .forSurface(theme.bgColour) }
+
+	private var rule: PeriodRule {
+		PeriodRule(anchor: periodStart, frequency: frequency, interval: interval)
+	}
+
+	private var period: BudgetPeriod { rule.period(offset: periodOffset) }
 
 	private var snapshots: [ScheduleSnapshot] {
 		BudgetService.snapshots(
 			incomes: expectedIncomes,
 			expenses: expectedExpenses,
 			envelopes: envelopes,
-			goals: goals
+			goals: goals,
+			amendments: amendments
 		)
 	}
 
-	private var bounds: (start: Date, end: Date) { currentPeriodBounds() }
+	/// everything the grid depends on, flattened -- drives the recompute
 
-	private var events: [ScheduledEvent] {
-		CashflowProjector.events(
-			for: snapshots,
-			overrides: OverrideIndex(overrides),
-			in: bounds.start..<bounds.end
-		)
+	/// amendments change what an occurrence is worth without changing the item's
+	/// own fields, so the snapshot signature alone can't see them
+	private var amendmentSignature: String {
+		amendments
+			.map { "\($0.effectiveFrom.timeIntervalSince1970)|\($0.amount)" }
+			.joined(separator: ",")
+	}
+
+	private var inputSignature: String {
+		let items = snapshots
+			.map { "\($0.name)|\($0.amount)|\($0.start.timeIntervalSince1970)|\($0.kind.rawValue)|\($0.rule == nil ? 0 : 1)" }
+			.joined(separator: ";")
+		let actuals = transactions
+			.map { "\($0.persistentModelID.hashValue)|\($0.amount)|\($0.date.timeIntervalSince1970)" }
+			.joined(separator: ";")
+		return "\(period.start.timeIntervalSince1970)-\(period.end.timeIntervalSince1970)"
+			+ "|\(overrides.count)|\(amendmentSignature)|\(items)|\(actuals)"
 	}
 
 	private var groupedByDay: [(day: Date, items: [ScheduledEvent])] {
-		let dict = Dictionary(grouping: events) { Calendar.current.startOfDay(for: $0.date) }
-		return dict.keys.sorted().map { ($0, dict[$0]!.sorted { $0.date < $1.date }) }
+		eventsByDay.keys.sorted().map { ($0, eventsByDay[$0]!) }
 	}
 
 	private var totalIncome: Decimal { events.filter(\.isInflow).reduce(0) { $0 + $1.amount } }
@@ -61,7 +104,6 @@ struct HomeView: View {
 				calendarGrid
 				summaryCard
 				upcomingCard
-				setupLinks
 			}
 			.padding()
 		}
@@ -71,6 +113,13 @@ struct HomeView: View {
 		.navigationTitle("Budgetma")
 		.navigationBarTitleDisplayMode(.inline)
 		.toolbar {
+			ToolbarItem(placement: .topBarLeading) {
+				NavigationLink {
+					HistoryView()
+				} label: {
+					Image(systemName: "clock.arrow.circlepath")
+				}
+			}
 			ToolbarItem(placement: .primaryAction) {
 				NavigationLink {
 					LogTransactionView()
@@ -79,23 +128,118 @@ struct HomeView: View {
 				}
 			}
 		}
+		.task(id: inputSignature) { recompute() }
+		.sheet(item: $inspectedDay) { inspected in
+			NavigationStack {
+				DayDetailView(
+					day: inspected.id,
+					expected: eventsByDay[inspected.id] ?? [],
+					actuals: actualsByDay[inspected.id] ?? [],
+					settledIDs: settledIDs
+				)
+			}
+		}
+	}
+
+	// MARK: - Compute
+
+	private func recompute() {
+		let calendar = Calendar.current
+		let projected = CashflowProjector.events(
+			for: snapshots,
+			overrides: OverrideIndex(overrides),
+			in: period.range
+		)
+		events = projected
+		eventsByDay = Dictionary(grouping: projected) {
+			calendar.startOfDay(for: $0.date)
+		}
+		.mapValues { $0.sorted { $0.date < $1.date } }
+
+		// same reconciliation the Budget screen runs, so "settled" means the same
+		// thing on both -- there is only one definition of it in the app
+		let summary = ReconciliationService.summary(
+			events: projected,
+			actuals: transactions.filter { period.contains($0.date) || $0.occurrenceDate != nil },
+			in: period.range
+		)
+		lines = summary.lines
+		settledIDs = Set(summary.lines.filter(\.hasActuals).map(\.id))
+
+		actualsByDay = Dictionary(
+			grouping: transactions.filter { period.contains($0.date) }
+		) {
+			calendar.startOfDay(for: $0.date)
+		}
+		.mapValues { $0.sorted { $0.date < $1.date } }
+
+		trackingPoints = buildTrackingPoints(events: projected, calendar: calendar)
+	}
+
+	/// planned vs actual as a running total across the period -- the same shape
+	/// the Budget screen draws, at a glance size
+	private func buildTrackingPoints(
+		events: [ScheduledEvent],
+		calendar: Calendar
+	) -> [WindowTrackingChart.Point] {
+		let today = calendar.startOfDay(for: .now)
+		let days = rule.days(in: period, calendar: calendar)
+		guard !days.isEmpty else { return [] }
+
+		let plan = events.sorted { $0.date < $1.date }
+		let logged = transactions
+			.filter { period.contains($0.date) }
+			.sorted { $0.date < $1.date }
+
+		var plannedRunning: Decimal = 0
+		var actualRunning: Decimal = 0
+		var planIndex = 0
+		var loggedIndex = 0
+
+		return days.map { day in
+			let dayEnd = calendar.date(byAdding: .day, value: 1, to: day) ?? day
+
+			while planIndex < plan.count, plan[planIndex].date < dayEnd {
+				plannedRunning += plan[planIndex].signedAmount
+				planIndex += 1
+			}
+			while loggedIndex < logged.count, logged[loggedIndex].date < dayEnd {
+				let transaction = logged[loggedIndex]
+				actualRunning += transaction is Income ? transaction.amount : -transaction.amount
+				loggedIndex += 1
+			}
+
+			// the future has no actuals; a flat line across it would read as
+			// "spent nothing" rather than "hasn't happened yet"
+			return WindowTrackingChart.Point(
+				date: day,
+				planned: plannedRunning,
+				actual: day <= today ? actualRunning : nil
+			)
+		}
 	}
 
 	// MARK: - Period
 
 	private var periodHeader: some View {
 		HStack {
+			// paging back is unbounded now: the old version generated occurrences
+			// forward from the anchor, so with the anchor at "today" there was
+			// nothing behind you to page into
 			Button { periodOffset -= 1 } label: { Image(systemName: "chevron.left") }
 
 			Spacer()
 
 			VStack(spacing: 2) {
-				Text(bounds.start.formatted(.dateTime.month(.wide).year()))
+				Text(period.start.formatted(.dateTime.month(.wide).year()))
 					.font(.headline)
-				Text(bounds.start.formatted(.dateTime.month(.abbreviated).day()) + " – "
-					 + bounds.end.addingTimeInterval(-1).formatted(.dateTime.month(.abbreviated).day()))
+				Text(period.label())
 					.font(.caption2)
 					.foregroundStyle(theme.fgColour.opacity(0.55))
+				if periodOffset != 0 {
+					Button("Back to today") { periodOffset = 0 }
+						.font(.caption2)
+				}
 			}
 
 			Spacer()
@@ -107,9 +251,17 @@ struct HomeView: View {
 
 	// MARK: - Calendar
 
+	/* the grid is drawn eagerly, a row at a time.
+	 *
+	 * it used to be a LazyVGrid, which is what made the cell borders vanish and
+	 * come back as you scrolled: lazy containers discard and rebuild cells as they
+	 * leave and re-enter the viewport, and rebuilding one was expensive enough
+	 * (see the note on `events` above) to drop frames mid-scroll. a period is at
+	 * most six rows of seven -- there was never anything to be lazy about.
+	 */
 	var calendarGrid: some View {
-		VStack(spacing: 8) {
-			HStack {
+		VStack(spacing: 0) {
+			HStack(spacing: 0) {
 				// keyed by position, not value -- S/M/T/W/T/F/S repeats letters
 				// and \.self makes SwiftUI collapse the duplicates
 				ForEach(Array(weekdaySymbols.enumerated()), id: \.offset) { _, symbol in
@@ -119,34 +271,63 @@ struct HomeView: View {
 						.frame(maxWidth: .infinity)
 				}
 			}
+			.padding(.bottom, 6)
 
-			LazyVGrid(columns: columns, spacing: 0) {
-				ForEach(calendarCells) { cell in
-					if let date = cell.date {
-						dayCell(for: date)
-					} else {
-						Color.clear.frame(height: 52)
-							.overlay { Rectangle().stroke(theme.fgColour.opacity(0.15), lineWidth: 1) }
+			VStack(spacing: 0) {
+				ForEach(Array(weeks.enumerated()), id: \.offset) { _, week in
+					HStack(spacing: 0) {
+						ForEach(week) { cell in
+							cellView(cell)
+						}
 					}
 				}
 			}
 		}
 	}
 
-	private let columns = Array(repeating: GridItem(.flexible(), spacing: 0), count: 7)
-
 	private struct CalendarCell: Identifiable {
 		let id: Int
 		let date: Date?
 	}
 
+	@ViewBuilder
+	private func cellView(_ cell: CalendarCell) -> some View {
+		if let date = cell.date {
+			dayCell(for: date)
+		} else {
+			// a blank still draws its border, so the grid stays a grid
+			Color.clear
+				.frame(maxWidth: .infinity)
+				.frame(height: cellHeight)
+				.overlay { Rectangle().stroke(theme.fgColour.opacity(0.15), lineWidth: 1) }
+		}
+	}
+
+	private let cellHeight: CGFloat = 56
+
+	/// leading blanks + the period's days + trailing blanks, so every row is full
 	private var calendarCells: [CalendarCell] {
-		let (start, end) = bounds
-		let days = daysInPeriod(start: start, end: end)
-		let leadingBlanks = (Calendar.current.component(.weekday, from: start) - Calendar.current.firstWeekday + 7) % 7
-		let blanks = (0..<leadingBlanks).map { CalendarCell(id: $0, date: nil) }
-		let realDays = days.enumerated().map { CalendarCell(id: leadingBlanks + $0.offset, date: $0.element) }
-		return blanks + realDays
+		let days = rule.days(in: period)
+		guard let first = days.first else { return [] }
+
+		let calendar = Calendar.current
+		let leading = (calendar.component(.weekday, from: first) - calendar.firstWeekday + 7) % 7
+
+		var cells = (0..<leading).map { CalendarCell(id: $0, date: nil) }
+		cells += days.enumerated().map { CalendarCell(id: leading + $0.offset, date: $0.element) }
+
+		let remainder = cells.count % 7
+		if remainder != 0 {
+			let trailing = 7 - remainder
+			cells += (0..<trailing).map { CalendarCell(id: cells.count + $0, date: nil) }
+		}
+		return cells
+	}
+
+	private var weeks: [[CalendarCell]] {
+		stride(from: 0, to: calendarCells.count, by: 7).map {
+			Array(calendarCells[$0 ..< min($0 + 7, calendarCells.count)])
+		}
 	}
 
 	private var weekdaySymbols: [String] {
@@ -156,94 +337,124 @@ struct HomeView: View {
 		return Array(symbols[offset...] + symbols[..<offset])
 	}
 
-	func currentPeriodBounds(reference: Date = .now) -> (start: Date, end: Date) {
-		let calendar = Calendar.current
-		let today = calendar.startOfDay(for: reference)
-		let rule = Calendar.RecurrenceRule(calendar: calendar, frequency: frequency, interval: interval, end: .never)
-
-		let searchStart = calendar.date(byAdding: .day, value: -400, to: today)!
-		let searchEnd = calendar.date(byAdding: .day, value: 400, to: today)!
-
-		let occurrences = Array(rule.recurrences(of: periodStart, in: searchStart..<searchEnd))
-
-		guard let base = occurrences.lastIndex(where: { $0 <= today }) else {
-			return (periodStart, periodStart)
-		}
-
-		let index = min(max(base + periodOffset, 0), max(occurrences.count - 1, 0))
-		let start = occurrences[index]
-		let end = index + 1 < occurrences.count
-			? occurrences[index + 1]
-			: calendar.date(byAdding: .day, value: 1, to: start)!
-		return (start, end)
-	}
-
-	func daysInPeriod(start: Date, end: Date) -> [Date] {
-		var days: [Date] = []
-		var day = start
-		let calendar = Calendar.current
-		while day < end {
-			days.append(day)
-			day = calendar.date(byAdding: .day, value: 1, to: day)!
-		}
-		return days
-	}
-
 	private func dayCell(for date: Date) -> some View {
 		let calendar = Calendar.current
+		let day = calendar.startOfDay(for: date)
 		let isToday = calendar.isDateInToday(date)
-		let dayItems = groupedByDay.first { calendar.isDate($0.day, inSameDayAs: date) }?.items ?? []
+		let dayItems = eventsByDay[day] ?? []
+		let dayActuals = actualsByDay[day] ?? []
 		let net = dayItems.reduce(Decimal(0)) { $0 + $1.signedAmount }
+		let hasAnything = !dayItems.isEmpty || !dayActuals.isEmpty
 
-		return VStack(spacing: 2) {
-			Text("\(calendar.component(.day, from: date))")
-				.frame(width: 32, height: 20)
-				.background(isToday ? theme.fgColour : .clear)
-				.foregroundColor(isToday ? theme.bgColour : theme.fgColour)
-				.clipShape(Circle())
+		return Button {
+			guard hasAnything else { return }
+			inspectedDay = InspectedDay(id: day)
+		} label: {
+			VStack(spacing: 2) {
+				Text("\(calendar.component(.day, from: date))")
+					.font(.caption)
+					.frame(width: 26, height: 20)
+					.background(isToday ? theme.fgColour : .clear)
+					.foregroundColor(isToday ? theme.bgColour : theme.fgColour)
+					.clipShape(Circle())
 
-			Text(net.moneyRounded)
-				.font(.system(size: 9, weight: .medium))
-				.monospacedDigit()
-				.lineLimit(1)
-				.minimumScaleFactor(0.6)
-				.foregroundStyle(net >= 0 ? palette.inflow : palette.outflow)
-				.opacity(dayItems.isEmpty ? 0 : 1)
-				.frame(width: 32, height: 32)
+				Text(net.moneyRounded)
+					.font(.system(size: 9, weight: .medium))
+					.monospacedDigit()
+					.lineLimit(1)
+					.minimumScaleFactor(0.6)
+					.foregroundStyle(net >= 0 ? palette.inflow : palette.outflow)
+					.opacity(dayItems.isEmpty ? 0 : 1)
+					.padding(.horizontal, 2)
+
+				// a dot per logged actual, so the grid shows what really happened
+				// and not only what was meant to
+				if !dayActuals.isEmpty {
+					HStack(spacing: 2) {
+						ForEach(0..<min(dayActuals.count, 4), id: \.self) { _ in
+							Circle()
+								.fill(theme.fgColour.opacity(0.55))
+								.frame(width: 3, height: 3)
+						}
+					}
+				}
+			}
+			.padding(.top, 5)
+			.frame(maxWidth: .infinity, alignment: .top)
+			.frame(height: cellHeight)
+			.contentShape(Rectangle())
 		}
-		.frame(maxWidth: .infinity, alignment: .top)
+		.buttonStyle(.plain)
 		.overlay { Rectangle().stroke(theme.fgColour.opacity(0.15), lineWidth: 1) }
 	}
 
 	// MARK: - Cards
 
+	/* three numbers told you the totals but not the shape: whether the money
+	 * arrives before the bills or after it, and where in the period you are
+	 * standing right now. the curve says both, and the figures still sit under
+	 * it for when you just want the total.
+	 */
 	private var summaryCard: some View {
 		let net = totalIncome - totalExpense
 
 		return Card(title: "This period") {
-			HStack(alignment: .top, spacing: 12) {
-				StatTile(label: "In", value: totalIncome.moneyCompact, accent: palette.inflow)
-				StatTile(label: "Out", value: totalExpense.moneyCompact, accent: palette.outflow)
-				StatTile(
-					label: "Net",
-					value: net.moneySigned,
-					accent: net >= 0 ? palette.good : palette.critical,
-					systemImage: net >= 0 ? "arrow.up.right" : "arrow.down.right"
-				)
+			VStack(alignment: .leading, spacing: 12) {
+				WindowTrackingChart(points: trackingPoints, height: 150)
+
+				Divider().background(theme.fgColour.opacity(0.15))
+
+				HStack(alignment: .top, spacing: 12) {
+					StatTile(label: "In", value: totalIncome.moneyCompact, accent: palette.inflow)
+					StatTile(label: "Out", value: totalExpense.moneyCompact, accent: palette.outflow)
+					StatTile(
+						label: "Net",
+						value: net.moneySigned,
+						accent: net == 0 ? theme.fgColour : (net > 0 ? palette.good : palette.critical),
+						systemImage: net >= 0 ? "arrow.up.right" : "arrow.down.right"
+					)
+				}
 			}
 		}
 	}
 
+	/* --- coming up ---
+	 * what's still outstanding. anything you've already logged against drops off:
+	 * a list headed "coming up" that keeps showing last week's settled rent is
+	 * just a list of things you have to mentally filter yourself.
+	 */
+	private var outstandingByDay: [(day: Date, items: [ScheduledEvent])] {
+		groupedByDay.compactMap { group in
+			let remaining = group.items.filter { !settledIDs.contains($0.id) }
+			return remaining.isEmpty ? nil : (group.day, remaining)
+		}
+	}
+
+	private var settledCount: Int {
+		events.filter { settledIDs.contains($0.id) }.count
+	}
+
 	@ViewBuilder
 	private var upcomingCard: some View {
-		Card(title: "Coming up") {
+		Card(
+			title: "Coming up",
+			subtitle: settledCount > 0 ? "\(settledCount) already settled, hidden" : nil
+		) {
 			if events.isEmpty {
 				Text("Nothing expected in this period.")
 					.font(.callout)
 					.foregroundStyle(theme.fgColour.opacity(0.6))
+			} else if outstandingByDay.isEmpty {
+				HStack(spacing: 8) {
+					Image(systemName: "checkmark.circle.fill")
+						.foregroundStyle(palette.good)
+					Text("Everything this period is logged.")
+						.font(.callout)
+						.foregroundStyle(theme.fgColour.opacity(0.7))
+				}
 			} else {
 				VStack(spacing: 0) {
-					ForEach(groupedByDay, id: \.day) { group in
+					ForEach(outstandingByDay, id: \.day) { group in
 						HStack {
 							Text(group.day, format: .dateTime.weekday(.abbreviated).month(.abbreviated).day())
 								.font(.caption.weight(.semibold))
@@ -275,37 +486,6 @@ struct HomeView: View {
 					}
 				}
 			}
-		}
-	}
-
-	private var setupLinks: some View {
-		HStack(spacing: 12) {
-			NavigationLink {
-				IncomeView()
-			} label: {
-				setupTile(emoji: "💰", label: "Income")
-			}
-			.buttonStyle(.plain)
-
-			NavigationLink {
-				ExpenseView()
-			} label: {
-				setupTile(emoji: "💸", label: "Expenses")
-			}
-			.buttonStyle(.plain)
-		}
-	}
-
-	private func setupTile(emoji: String, label: String) -> some View {
-		VStack(spacing: 6) {
-			Text(emoji).font(.title3)
-			Text(label).font(.caption)
-		}
-		.frame(maxWidth: .infinity)
-		.padding(.vertical, 14)
-		.overlay {
-			RoundedRectangle(cornerRadius: 14)
-				.stroke(theme.fgColour.opacity(0.25), lineWidth: 1)
 		}
 	}
 }

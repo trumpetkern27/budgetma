@@ -9,8 +9,17 @@ struct ExpenseView: View {
 
 	@State var expandedTransactionCategories: Set<String> = []
 	@State var expandedEnvelopeCategories: Set<String> = []
-	@State private var transactionsExpanded: Bool = false
-	@State private var envelopesExpanded: Bool = false
+	@State private var transactionsExpanded: Bool
+	@State private var envelopesExpanded: Bool
+
+	/// which half of the screen to open on -- Plan links straight at one or the
+	/// other, and arriving on two collapsed headers reads as an empty screen
+	enum Focus { case none, transactions, envelopes }
+
+	init(focus: Focus = .none) {
+		_transactionsExpanded = State(initialValue: focus == .transactions)
+		_envelopesExpanded = State(initialValue: focus == .envelopes)
+	}
 
 	var groupedTransactions: [(key: String, category: Category?, transactions: [ExpectedExpense])] {
 		let dict = Dictionary(grouping: expectedTransactions) {transaction in
@@ -69,7 +78,7 @@ struct ExpenseView: View {
 
 											Spacer()
 
-											Text(transaction.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+											Text(transaction.amount.money)
 										}
 									}
 									.padding()
@@ -117,7 +126,7 @@ struct ExpenseView: View {
 
 											Spacer()
 
-											Text(envelope.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+											Text(envelope.amount.money)
 										}
 									}
 									.padding()
@@ -140,7 +149,8 @@ struct ExpenseView: View {
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
-
+		.navigationTitle("Expenses & envelopes")
+		.navigationBarTitleDisplayMode(.inline)
 	}
 
 	private func toggleTransactionCategory(_ key: String) {
@@ -173,6 +183,7 @@ struct SingleExpectedTransactionView: View {
 	@State private var startDate: Date
 	@State private var category: Category?
 	@State private var regularity: RecurrenceRule?
+	@State private var askingAboutAmount = false
 	@Query(
 		filter: #Predicate<Category> {
 			$0.isActive
@@ -222,6 +233,15 @@ struct SingleExpectedTransactionView: View {
 					RecurrenceRulePicker(rule: $regularity, startDate: $startDate)
 				}
 
+				if let transaction {
+					AmendmentsCard(
+						expected: transaction,
+						baseAmount: transaction.amount,
+						startDate: transaction.startDate
+					)
+					.padding()
+				}
+
 				Spacer()
 
 				HStack {
@@ -243,6 +263,14 @@ struct SingleExpectedTransactionView: View {
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
+		.dismissableKeyboard()
+		.amountChangeDialog(
+			isPresented: $askingAboutAmount,
+			from: transaction?.amount ?? 0,
+			to: amount,
+			onCorrect: { commit(amendFrom: nil) },
+			onAmend: { commit(amendFrom: .now) }
+		)
 		.toolbar {
 			ToolbarItem(placement: .cancellationAction) {
 				Button("Cancel") {
@@ -250,29 +278,55 @@ struct SingleExpectedTransactionView: View {
 				}
 			}
 			ToolbarItem(placement: .confirmationAction) {
-				Button("Save") {
-					if let transaction {
-						transaction.name = name
-						transaction.amount = amount
-						transaction.startDate = startDate
-						transaction.regularity = regularity
-						transaction.category = category
-					} else {
-						context.insert(
-							ExpectedExpense(
-								name: name.isEmpty ? "the air" : name,
-								amount: amount,
-								startDate: startDate,
-								regularity: regularity,
-								category: category
-							)
-						)
-					}
-					try? context.save()
-					dismiss()
-				}
+				Button("Save") { save() }
 			}
 		}
+	}
+
+	/* changing the amount of something that already exists is ambiguous, so ask.
+	 * a new item has no history to protect, and an unchanged amount has nothing
+	 * to decide -- both save straight through.
+	 */
+	private func save() {
+		guard let transaction, transaction.amount != amount else {
+			commit(amendFrom: nil)
+			return
+		}
+		askingAboutAmount = true
+	}
+
+	/// `amendFrom == nil` rewrites the base amount, which moves history with it
+	private func commit(amendFrom: Date?) {
+		if let transaction {
+			transaction.name = name
+			transaction.startDate = startDate
+			transaction.regularity = regularity
+			transaction.category = category
+
+			if let amendFrom, transaction.amount != amount {
+				context.insert(
+					ScheduleAmendment(
+						expected: transaction,
+						effectiveFrom: amendFrom,
+						amount: amount
+					)
+				)
+			} else {
+				transaction.amount = amount
+			}
+		} else {
+			context.insert(
+				ExpectedExpense(
+					name: name.isEmpty ? "the air" : name,
+					amount: amount,
+					startDate: startDate,
+					regularity: regularity,
+					category: category
+				)
+			)
+		}
+		try? context.save()
+		dismiss()
 	}
 }
 
@@ -291,6 +345,7 @@ struct SingleEnvelopeView: View {
 	@State private var category: Category?
 	@State private var carryOver: Bool
 	@State private var regularity: RecurrenceRule?
+	@State private var askingAboutAmount = false
 
 	@Query(
 		filter: #Predicate<Category> {
@@ -343,6 +398,15 @@ struct SingleEnvelopeView: View {
 					RecurrenceRulePicker(rule: $regularity, startDate: $startDate)
 				}
 
+				if let envelope {
+					AmendmentsCard(
+						expected: envelope,
+						baseAmount: envelope.amount,
+						startDate: envelope.startDate
+					)
+					.padding()
+				}
+
 				Spacer()
 
 				HStack {
@@ -365,6 +429,14 @@ struct SingleEnvelopeView: View {
 		}
 		.scrollContentBackground(.hidden)
 		.themed()
+		.dismissableKeyboard()
+		.amountChangeDialog(
+			isPresented: $askingAboutAmount,
+			from: envelope?.amount ?? 0,
+			to: amount,
+			onCorrect: { commit(amendFrom: nil) },
+			onAmend: { commit(amendFrom: .now) }
+		)
 		.toolbar {
 			ToolbarItem(placement: .cancellationAction) {
 				Button("Cancel") {
@@ -372,32 +444,55 @@ struct SingleEnvelopeView: View {
 				}
 			}
 			ToolbarItem(placement: .confirmationAction) {
-				Button("Save") {
-					if let envelope {
-						envelope.name = name
-						envelope.amount = amount
-						envelope.startDate = startDate
-						envelope.regularity = regularity
-						envelope.category = category
-						envelope.carryOver = carryOver
-					} else {
-						context.insert(
-							Envelope(
-								name: name.isEmpty ? "the air" : name,
-								amount: amount,
-								startDate: startDate,
-								// was hardcoded nil -- new envelopes silently
-								// dropped whatever recurrence you'd just set
-								regularity: regularity,
-								category: category,
-								carryOver: carryOver
-							)
-						)
-					}
-					try? context.save()
-					dismiss()
-				}
+				Button("Save") { save() }
 			}
 		}
+	}
+
+	private func save() {
+		guard let envelope, envelope.amount != amount else {
+			commit(amendFrom: nil)
+			return
+		}
+		askingAboutAmount = true
+	}
+
+	/// an envelope's funding amount amends exactly like an income or an expense:
+	/// raising your grocery envelope must not retroactively re-fund last month
+	private func commit(amendFrom: Date?) {
+		if let envelope {
+			envelope.name = name
+			envelope.startDate = startDate
+			envelope.regularity = regularity
+			envelope.category = category
+			envelope.carryOver = carryOver
+
+			if let amendFrom, envelope.amount != amount {
+				context.insert(
+					ScheduleAmendment(
+						expected: envelope,
+						effectiveFrom: amendFrom,
+						amount: amount
+					)
+				)
+			} else {
+				envelope.amount = amount
+			}
+		} else {
+			context.insert(
+				Envelope(
+					name: name.isEmpty ? "the air" : name,
+					amount: amount,
+					startDate: startDate,
+					// was hardcoded nil -- new envelopes silently
+					// dropped whatever recurrence you'd just set
+					regularity: regularity,
+					category: category,
+					carryOver: carryOver
+				)
+			)
+		}
+		try? context.save()
+		dismiss()
 	}
 }

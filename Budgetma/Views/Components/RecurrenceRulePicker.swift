@@ -9,6 +9,10 @@ struct RecurrenceRulePicker: View {
 
 	@Binding var rule: RecurrenceRule?
 	@Binding var startDate: Date
+	/// false for hypothetical items (an affordability candidate), so we don't
+	/// leave orphan RecurrenceRule rows behind for something you only asked
+	/// "what if" about
+	var persists: Bool = true
 	@State private var enabled: Bool = false
 	@State private var frequency: Calendar.RecurrenceRule.Frequency = .monthly
 	@State private var interval: Int = 1
@@ -153,8 +157,10 @@ struct RecurrenceRulePicker: View {
 			let newRule = RecurrenceRule(
 				frequency: frequency, interval: interval, endDate: endDateValue, occuranceCount: countValue, daysOfWeek: weekdays
 			)
-			context.insert(newRule)
-			try? context.save()
+			if persists {
+				context.insert(newRule)
+				try? context.save()
+			}
 			rule = newRule
 		}
 	}

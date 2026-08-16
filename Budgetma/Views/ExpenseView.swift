@@ -306,7 +306,9 @@ struct SingleEnvelopeView: View {
 		_startDate = State(initialValue: envelope?.startDate ?? Date.now)
 		_category = State(initialValue: envelope?.category)
 		_carryOver = State(initialValue: envelope?.carryOver ?? false)
-		_regularity = State(initialValue: regularity)
+		// was `initialValue: regularity` -- the property referencing itself, so
+		// editing an envelope always opened with its recurrence blanked out
+		_regularity = State(initialValue: envelope?.regularity)
 	}
 
 	var body: some View {
@@ -373,7 +375,6 @@ struct SingleEnvelopeView: View {
 				Button("Save") {
 					if let envelope {
 						envelope.name = name
-						envelope.name = name
 						envelope.amount = amount
 						envelope.startDate = startDate
 						envelope.regularity = regularity
@@ -385,7 +386,9 @@ struct SingleEnvelopeView: View {
 								name: name.isEmpty ? "the air" : name,
 								amount: amount,
 								startDate: startDate,
-								regularity: nil,
+								// was hardcoded nil -- new envelopes silently
+								// dropped whatever recurrence you'd just set
+								regularity: regularity,
 								category: category,
 								carryOver: carryOver
 							)

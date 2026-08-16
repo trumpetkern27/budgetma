@@ -24,11 +24,16 @@ struct BudgetmaApp: App {
 			Transaction.self,
 			Expense.self,
 			Income.self,
+			Savings.self,
 			// expected transactions
 			ExpectedTransaction.self,
 			ExpectedIncome.self,
 			ExpectedExpense.self,
 			Envelope.self,
+			// schedule exceptions
+			OccurrenceOverride.self,
+			// goals
+			Goal.self,
 			// category
 			Category.self
 		])

@@ -16,16 +16,21 @@ struct ContentView: View {
 						HomeView()
 					}
 					.tag("Home")
-				case .expenses:
+				case .budget:
 					NavigationStack {
-						ExpenseView()
+						BudgetView()
 					}
-					.tag("Expenses")
-				case .income:
+					.tag("Budget")
+				case .plan:
 					NavigationStack {
-						IncomeView()
+						PlanView()
 					}
-					.tag("Income")
+					.tag("Plan")
+				case .goals:
+					NavigationStack {
+						GoalsView()
+					}
+					.tag("Goals")
 				case .settings:
 					NavigationStack {
 						SettingsView()
@@ -40,6 +45,13 @@ struct ContentView: View {
 		.themed()
 		.ignoresSafeArea(.keyboard)
 		.task {
+			#if DEBUG
+			SampleData.seedIfRequested(into: context)
+			if let requested = SampleData.requestedTab,
+			   let tab = Tab.allCases.first(where: { $0.rawValue.lowercased() == requested.lowercased() }) {
+				selected = tab
+			}
+			#endif
 			await createDefaultCategoryIfNeeded()
 		}
 	}

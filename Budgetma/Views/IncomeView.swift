@@ -228,12 +228,7 @@ struct SingleIncomeView: View {
 							)
 						)
 					}
-					do {
-						try context.save()
-						print("regularity id right after save: \(String(describing: income?.regularity?.persistentModelID))")
-					} catch {
-						print("SAVE FAILED: \(error)")
-					}
+					try? context.save()
 					dismiss()
 				}
 			}

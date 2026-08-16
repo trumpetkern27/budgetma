@@ -1,134 +1,132 @@
 import SwiftUI
 import SwiftData
 
+/* --- Home ---
+ * the glance: a calendar of what's coming, and the way in to everything else
+ *
+ * the calendar period is itself defined by a recurrence rule (see the settings
+ * at the top), so "my pay period" can be biweekly, or every 10 days, or monthly
+ * -- the grid doesn't assume months any more than the rest of the app does.
+ */
+@available(iOS 26, *)
 struct HomeView: View {
 	@EnvironmentObject var theme: ThemeManager
 
-	// settings
+	// how the calendar chunks time -- arbitrary, like everything else
 	@AppStorage("calendarViewFrequency") private var frequency: Calendar.RecurrenceRule.Frequency = .monthly
 	@AppStorage("calendarViewInterval") private var interval: Int = 1
-	@AppStorage("calendarViewStartDate") private var startDate: Date = .now
+	@AppStorage("calendarViewStartDate") private var periodStart: Date = .now
 
-	// expected transactions / envelopes
 	@Query private var expectedIncomes: [ExpectedIncome]
 	@Query private var expectedExpenses: [ExpectedExpense]
 	@Query private var envelopes: [Envelope]
+	@Query private var goals: [Goal]
+	@Query private var overrides: [OccurrenceOverride]
 
-	@State private var windowDays: Int = 30
+	@State private var periodOffset: Int = 0
 
-	private var windowRange: Range<Date> {
-		let start = Calendar.current.startOfDay(for: .now)
-		let end = Calendar.current.date(byAdding: .day, value: windowDays, to: start)!
-		return start..<end
+	private var palette: ChartPalette { .forSurface(theme.bgColour) }
+
+	private var snapshots: [ScheduleSnapshot] {
+		BudgetService.snapshots(
+			incomes: expectedIncomes,
+			expenses: expectedExpenses,
+			envelopes: envelopes,
+			goals: goals
+		)
 	}
 
-	private var upcoming: [UpcomingItem] {
-		var items: [UpcomingItem] = []
+	private var bounds: (start: Date, end: Date) { currentPeriodBounds() }
 
-		for income in expectedIncomes {
-			items += RecurrenceProjector
-				.occurrences(startDate: income.startDate, regularity: income.regularity, in: windowRange)
-				.map { UpcomingItem(date: $0, source: .income(income)) }
-		}
-
-		for expense in expectedExpenses {
-			items += RecurrenceProjector
-				.occurrences(startDate: expense.startDate, regularity: expense.regularity, in: windowRange)
-				.map { UpcomingItem(date: $0, source: .expense(expense)) }
-		}
-
-		for envelope in envelopes {
-			items += RecurrenceProjector
-				.occurrences(startDate: envelope.startDate, regularity: envelope.regularity, in: windowRange)
-				.map { UpcomingItem(date: $0, source: .envelope(envelope)) }
-		}
-
-		return items.sorted { $0.date < $1.date }
+	private var events: [ScheduledEvent] {
+		CashflowProjector.events(
+			for: snapshots,
+			overrides: OverrideIndex(overrides),
+			in: bounds.start..<bounds.end
+		)
 	}
 
-	private var groupedByDay: [(day: Date, items: [UpcomingItem])] {
-		let dict = Dictionary(grouping: upcoming) { Calendar.current.startOfDay(for: $0.date) }
+	private var groupedByDay: [(day: Date, items: [ScheduledEvent])] {
+		let dict = Dictionary(grouping: events) { Calendar.current.startOfDay(for: $0.date) }
 		return dict.keys.sorted().map { ($0, dict[$0]!.sorted { $0.date < $1.date }) }
 	}
 
-	private var totalIncome: Decimal { upcoming.filter(\.isIncome).reduce(0) { $0 + $1.amount } }
-	private var totalExpense: Decimal { upcoming.filter { !$0.isIncome }.reduce(0) { $0 + $1.amount } }
+	private var totalIncome: Decimal { events.filter(\.isInflow).reduce(0) { $0 + $1.amount } }
+	private var totalExpense: Decimal { events.filter { !$0.isInflow }.reduce(0) { $0 + $1.amount } }
 
 	var body: some View {
-		VStack {
-
-			calendarGrid
-				.padding()
-
-			Divider()
-
-			ScrollView {
-				VStack(spacing: 0) {
-					Picker("Window", selection: $windowDays) {
-						Text("7 days").tag(7)
-						Text("30 days").tag(30)
-						Text("90 days").tag(90)
-					}
-					.pickerStyle(.segmented)
-					.padding()
-
-					SummaryCard(totalIncome: totalIncome, totalExpense: totalExpense)
-						.padding(.horizontal)
-						.padding(.vertical)
-
-					ForEach(groupedByDay, id: \.day) { group in 
-						Text(group.day, format: .dateTime.weekday(.wide).month().day())
-							.font(.headline)
-							.frame(maxWidth: .infinity, alignment: .leading)
-							.padding(.horizontal)
-							.padding(.top)
-
-						ForEach(group.items) { item in 
-							HStack {
-								Text("\(item.emoji) \(item.name)")
-								Spacer()
-								Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-									.foregroundStyle(item.isIncome ? .green : theme.fgColour)
-							}
-							.padding(.horizontal)
-							.padding(.vertical, 6)
-						}
-
-						Divider()
-					}
-
-					if upcoming.isEmpty {
-						Text("Nothing expected in this window.")
-							.foregroundStyle(.secondary)
-							.padding()
-					}
+		ScrollView {
+			VStack(alignment: .leading, spacing: 18) {
+				periodHeader
+				calendarGrid
+				summaryCard
+				upcomingCard
+				setupLinks
+			}
+			.padding()
+		}
+		.scrollContentBackground(.hidden)
+		.themed()
+		.chartPalette(for: theme.bgColour)
+		.navigationTitle("Budgetma")
+		.navigationBarTitleDisplayMode(.inline)
+		.toolbar {
+			ToolbarItem(placement: .primaryAction) {
+				NavigationLink {
+					LogTransactionView()
+				} label: {
+					Image(systemName: "plus.circle.fill")
 				}
 			}
-			.scrollContentBackground(.hidden)
-			.themed()
 		}
-		.themed()
 	}
+
+	// MARK: - Period
+
+	private var periodHeader: some View {
+		HStack {
+			Button { periodOffset -= 1 } label: { Image(systemName: "chevron.left") }
+
+			Spacer()
+
+			VStack(spacing: 2) {
+				Text(bounds.start.formatted(.dateTime.month(.wide).year()))
+					.font(.headline)
+				Text(bounds.start.formatted(.dateTime.month(.abbreviated).day()) + " – "
+					 + bounds.end.addingTimeInterval(-1).formatted(.dateTime.month(.abbreviated).day()))
+					.font(.caption2)
+					.foregroundStyle(theme.fgColour.opacity(0.55))
+			}
+
+			Spacer()
+
+			Button { periodOffset += 1 } label: { Image(systemName: "chevron.right") }
+		}
+		.tint(theme.fgColour)
+	}
+
+	// MARK: - Calendar
 
 	var calendarGrid: some View {
 		VStack(spacing: 8) {
-
 			HStack {
-				ForEach(weekdaySymbols, id: \.self) { symbol in
+				// keyed by position, not value -- S/M/T/W/T/F/S repeats letters
+				// and \.self makes SwiftUI collapse the duplicates
+				ForEach(Array(weekdaySymbols.enumerated()), id: \.offset) { _, symbol in
 					Text(symbol)
 						.font(.caption)
-						.foregroundStyle(.secondary)
+						.foregroundStyle(theme.fgColour.opacity(0.6))
 						.frame(maxWidth: .infinity)
 				}
 			}
 
 			LazyVGrid(columns: columns, spacing: 0) {
-				ForEach(calendarCells) { cell in 
+				ForEach(calendarCells) { cell in
 					if let date = cell.date {
 						dayCell(for: date)
 					} else {
 						Color.clear.frame(height: 52)
-						.overlay { RoundedRectangle(cornerRadius: 0).stroke(.secondary, lineWidth: 1) }
+							.overlay { Rectangle().stroke(theme.fgColour.opacity(0.15), lineWidth: 1) }
 					}
 				}
 			}
@@ -136,13 +134,14 @@ struct HomeView: View {
 	}
 
 	private let columns = Array(repeating: GridItem(.flexible(), spacing: 0), count: 7)
+
 	private struct CalendarCell: Identifiable {
 		let id: Int
 		let date: Date?
 	}
 
 	private var calendarCells: [CalendarCell] {
-		let (start, end) = currentPeriodBounds()
+		let (start, end) = bounds
 		let days = daysInPeriod(start: start, end: end)
 		let leadingBlanks = (Calendar.current.component(.weekday, from: start) - Calendar.current.firstWeekday + 7) % 7
 		let blanks = (0..<leadingBlanks).map { CalendarCell(id: $0, date: nil) }
@@ -165,14 +164,17 @@ struct HomeView: View {
 		let searchStart = calendar.date(byAdding: .day, value: -400, to: today)!
 		let searchEnd = calendar.date(byAdding: .day, value: 400, to: today)!
 
-		let occurrences = Array(rule.recurrences(of: startDate, in: searchStart..<searchEnd))
+		let occurrences = Array(rule.recurrences(of: periodStart, in: searchStart..<searchEnd))
 
-		guard let idx = occurrences.lastIndex(where: { $0 <= today }) else {
-			return (startDate, startDate)
+		guard let base = occurrences.lastIndex(where: { $0 <= today }) else {
+			return (periodStart, periodStart)
 		}
 
-		let start = occurrences[idx]
-		let end = idx + 1 < occurrences.count ? occurrences[idx + 1] : calendar.date(byAdding: .day, value: 1, to: start)!
+		let index = min(max(base + periodOffset, 0), max(occurrences.count - 1, 0))
+		let start = occurrences[index]
+		let end = index + 1 < occurrences.count
+			? occurrences[index + 1]
+			: calendar.date(byAdding: .day, value: 1, to: start)!
 		return (start, end)
 	}
 
@@ -191,8 +193,7 @@ struct HomeView: View {
 		let calendar = Calendar.current
 		let isToday = calendar.isDateInToday(date)
 		let dayItems = groupedByDay.first { calendar.isDate($0.day, inSameDayAs: date) }?.items ?? []
-		let hasItems = !dayItems.isEmpty
-		let net = dayItems.reduce(Decimal(0)) {$0 + ($1.isIncome ? $1.amount : -$1.amount) }
+		let net = dayItems.reduce(Decimal(0)) { $0 + $1.signedAmount }
 
 		return VStack(spacing: 2) {
 			Text("\(calendar.component(.day, from: date))")
@@ -201,50 +202,110 @@ struct HomeView: View {
 				.foregroundColor(isToday ? theme.bgColour : theme.fgColour)
 				.clipShape(Circle())
 
-			Text(net, format: .currency(code: Locale.current.currency?.identifier ?? "USD").precision(.fractionLength(0)))
+			Text(net.moneyRounded)
 				.font(.system(size: 9, weight: .medium))
 				.monospacedDigit()
 				.lineLimit(1)
 				.minimumScaleFactor(0.6)
-				.foregroundStyle(net >= 0 ? .green : .red)
-				.opacity(hasItems ? 1 : 0)
+				.foregroundStyle(net >= 0 ? palette.inflow : palette.outflow)
+				.opacity(dayItems.isEmpty ? 0 : 1)
 				.frame(width: 32, height: 32)
 		}
 		.frame(maxWidth: .infinity, alignment: .top)
-		.overlay{ RoundedRectangle(cornerRadius: 0).stroke(.secondary, lineWidth: 1) }
+		.overlay { Rectangle().stroke(theme.fgColour.opacity(0.15), lineWidth: 1) }
 	}
-}
 
-struct SummaryCard: View {
-	let totalIncome: Decimal
-	let totalExpense: Decimal
+	// MARK: - Cards
 
-	private var net: Decimal { totalIncome - totalExpense }
+	private var summaryCard: some View {
+		let net = totalIncome - totalExpense
 
-	var body: some View {
-		VStack(spacing: 8) {
-			HStack {
-				Text("Expected income")
-				Spacer()
-				Text(totalIncome, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-					.foregroundStyle(.green)
-			}
-			HStack {
-				Text("Expected expenses")
-				Spacer()
-				Text(totalExpense, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-			}
-			Divider()
-			HStack {
-				Text("Net").bold()
-				Spacer()
-				Text(net, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-					.bold()
-					.foregroundStyle(net >= 0 ? .green : .red)
+		return Card(title: "This period") {
+			HStack(alignment: .top, spacing: 12) {
+				StatTile(label: "In", value: totalIncome.moneyCompact, accent: palette.inflow)
+				StatTile(label: "Out", value: totalExpense.moneyCompact, accent: palette.outflow)
+				StatTile(
+					label: "Net",
+					value: net.moneySigned,
+					accent: net >= 0 ? palette.good : palette.critical,
+					systemImage: net >= 0 ? "arrow.up.right" : "arrow.down.right"
+				)
 			}
 		}
-		.padding()
-		.overlay { RoundedRectangle(cornerRadius: 12).stroke(.secondary, lineWidth: 1) }
+	}
+
+	@ViewBuilder
+	private var upcomingCard: some View {
+		Card(title: "Coming up") {
+			if events.isEmpty {
+				Text("Nothing expected in this period.")
+					.font(.callout)
+					.foregroundStyle(theme.fgColour.opacity(0.6))
+			} else {
+				VStack(spacing: 0) {
+					ForEach(groupedByDay, id: \.day) { group in
+						HStack {
+							Text(group.day, format: .dateTime.weekday(.abbreviated).month(.abbreviated).day())
+								.font(.caption.weight(.semibold))
+								.foregroundStyle(theme.fgColour.opacity(0.65))
+							Spacer()
+						}
+						.padding(.top, 10)
+						.padding(.bottom, 4)
+
+						ForEach(group.items) { item in
+							NavigationLink {
+								LogTransactionView(prefill: item)
+							} label: {
+								HStack {
+									Text("\(item.emoji)  \(item.name)")
+										.font(.subheadline)
+										.lineLimit(1)
+									Spacer()
+									Text(item.amount.money)
+										.font(.subheadline)
+										.monospacedDigit()
+										.foregroundStyle(item.isInflow ? palette.inflow : theme.fgColour)
+								}
+								.padding(.vertical, 5)
+								.contentShape(Rectangle())
+							}
+							.buttonStyle(.plain)
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private var setupLinks: some View {
+		HStack(spacing: 12) {
+			NavigationLink {
+				IncomeView()
+			} label: {
+				setupTile(emoji: "💰", label: "Income")
+			}
+			.buttonStyle(.plain)
+
+			NavigationLink {
+				ExpenseView()
+			} label: {
+				setupTile(emoji: "💸", label: "Expenses")
+			}
+			.buttonStyle(.plain)
+		}
+	}
+
+	private func setupTile(emoji: String, label: String) -> some View {
+		VStack(spacing: 6) {
+			Text(emoji).font(.title3)
+			Text(label).font(.caption)
+		}
+		.frame(maxWidth: .infinity)
+		.padding(.vertical, 14)
+		.overlay {
+			RoundedRectangle(cornerRadius: 14)
+				.stroke(theme.fgColour.opacity(0.25), lineWidth: 1)
+		}
 	}
 }
-

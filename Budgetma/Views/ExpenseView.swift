@@ -207,12 +207,6 @@ struct SingleExpectedTransactionView: View {
 	@State private var category: Category?
 	@State private var regularity: RecurrenceRule?
 	@State private var askingAboutAmount = false
-	@Query(
-		filter: #Predicate<Category> {
-			$0.isActive
-		},
-		sort: \Category.name
-	) private var categories: [Category]
 
 	init(transaction: ExpectedExpense?) {
 		_transaction = State(initialValue: transaction)
@@ -233,19 +227,7 @@ struct SingleExpectedTransactionView: View {
 				InputFieldCurrency(field: "Amount", amount: $amount)
 				.padding()
 
-				HStack {
-					Text("Category")
-
-					Spacer()
-
-					Picker("Category", selection: $category) {
-						Text("None").tag(nil as Category?)
-						ForEach(categories) { category in
-							Text(category.name)
-							.tag(category as Category?)
-						}
-					}
-				}
+				CategoryPicker(category: $category)
 				.padding()
 
 				HStack {
@@ -358,6 +340,8 @@ struct SingleExpectedTransactionView: View {
 
 // view for single envelope crud
 struct SingleEnvelopeView: View {
+	@EnvironmentObject var theme: ThemeManager
+
 	@Environment(\.modelContext)
 	private var context
 
@@ -373,12 +357,6 @@ struct SingleEnvelopeView: View {
 	@State private var regularity: RecurrenceRule?
 	@State private var askingAboutAmount = false
 
-	@Query(
-		filter: #Predicate<Category> {
-			$0.isActive
-		},
-		sort: \Category.name
-	) private var categories: [Category]
 
 	init(envelope: Envelope?) {
 		_envelope = State(initialValue: envelope)
@@ -401,19 +379,15 @@ struct SingleEnvelopeView: View {
 				InputFieldCurrency(field: "Amount", amount: $amount)
 				.padding()
 
-				HStack {
-					Text("Category")
+				CategoryPicker(category: $category)
+				.padding()
 
-					Spacer()
-
-					Picker("Category", selection: $category) {
-						Text("None").tag(nil as Category?)
-						ForEach(categories) { category in
-							Text(category.name)
-							.tag(category as Category?)
-						}
-					}
-				}
+				/* carryOver was already modelled, already saved and already read
+				 * by the ledger -- it just had no control, so every envelope
+				 * ever created was silently pinned to false
+				 */
+				Toggle("Carry unspent money over", isOn: $carryOver)
+				.tint(theme.fgColour)
 				.padding()
 
 				HStack {

@@ -22,13 +22,18 @@ echo "==> Looking for a connected iPhone..."
 # "connected (no DDI)" means the developer disk image isn't mounted -- usually
 # Developer Mode off, or the device hasn't been unlocked since it was plugged
 # in. Such a device can't be built for or installed to, so it isn't a candidate.
-DEVICES=$(xcrun devicectl list devices 2>/dev/null | grep -i "connected" || true)
+#
+# The state column is not always the literal word "connected": a phone reached
+# over the network tunnel reports "available (paired)" and installs perfectly
+# well, so matching only "connected" silently found nothing.
+DEVICES=$(xcrun devicectl list devices 2>/dev/null \
+  | grep -iE "connected|available \(paired\)" || true)
 
 DEVICE=$(echo "$DEVICES" \
   | grep -v "no DDI" \
   | grep -E '\(iPhone[0-9]+,[0-9]+\)' \
   | grep -oE '[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}' \
-  | head -1)
+  | head -1 || true)
 
 if [ -z "${DEVICE:-}" ]; then
   echo "No usable iPhone found."

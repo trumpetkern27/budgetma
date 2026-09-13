@@ -13,7 +13,14 @@ import SwiftData
  * picking a slot also *fills the form in*: name, amount, date, category, and the
  * envelope if it's envelope funding. everything stays editable afterwards -- the
  * autofill only ever overwrites a field you haven't touched, or one it filled in
- * itself last time round.
+ * itself last time round. picking an envelope by hand pulls its category through
+ * the same way, so spending out of the groceries envelope can't end up filed
+ * under nothing.
+ *
+ * slots that already have something logged against them are hidden by default.
+ * they're still reachable behind a disclosure, because a second real payment
+ * against one occurrence (a split bill, a correction) is a thing that happens --
+ * it just shouldn't be the first thing you see.
  */
 @available(iOS 26, *)
 struct LogTransactionView: View {
@@ -28,8 +35,6 @@ struct LogTransactionView: View {
 	/// open a blank entry already dated -- from tapping a day on the calendar
 	var prefillDate: Date?
 
-	@Query(filter: #Predicate<Category> { $0.isActive }, sort: \Category.name)
-	private var categories: [Category]
 	@Query private var envelopes: [Envelope]
 	@Query private var goals: [Goal]
 
@@ -46,7 +51,10 @@ struct LogTransactionView: View {
 	@State private var goal: Goal?
 	@State private var settles: ScheduledEvent?
 	@State private var candidateSlots: [ScheduledEvent] = []
+	/// occurrences that already have an actual against them
+	@State private var takenSlots: Set<OccurrenceSlot> = []
 	@State private var showAllSlots = false
+	@State private var showSettledSlots = false
 
 	/// what the settles autocomplete last wrote, so we can tell our own values
 	/// apart from ones you typed and never clobber yours
@@ -140,6 +148,9 @@ struct LogTransactionView: View {
 			guard let new else { return }
 			autocomplete(from: new)
 		}
+		// choosing where the money comes from says what kind of spending it is,
+		// whether you got there via a slot or picked the envelope yourself
+		.onChange(of: envelope) { _, new in adoptCategory(new?.category) }
 	}
 
 	// MARK: - Sections
@@ -161,17 +172,7 @@ struct LogTransactionView: View {
 				InputFieldCurrency(field: "Amount", amount: $amount)
 				DatePill(label: "Date", date: $date)
 
-				HStack {
-					Text("Category")
-					Spacer()
-					Picker("Category", selection: $category) {
-						Text("None").tag(nil as Category?)
-						ForEach(categories) { category in
-							Text("\(category.emoji) \(category.name)").tag(category as Category?)
-						}
-					}
-					.tint(theme.fgColour)
-				}
+				CategoryPicker(category: $category)
 
 				InputField(field: "Note", placeholder: "optional", text: $note)
 			}
@@ -196,6 +197,16 @@ struct LogTransactionView: View {
 					.foregroundStyle(theme.fgColour.opacity(0.55))
 			} else {
 				VStack(spacing: 0) {
+					/* the collapse control sits at *both* ends of the list. by the
+					 * time you've read six rows you're at the bottom, and by the
+					 * time you come back to shorten it again you're at the top --
+					 * whichever end you're at, it's the one you need.
+					 */
+					if isOverflowing {
+						collapseToggle
+						Divider().background(theme.fgColour.opacity(0.12))
+					}
+
 					settleRow(nil)
 
 					// in date order: these are things happening around now, and a
@@ -205,25 +216,21 @@ struct LogTransactionView: View {
 						settleRow(slot)
 					}
 
-					if candidateSlots.count > collapsedSlotLimit {
+					if isOverflowing {
 						Divider().background(theme.fgColour.opacity(0.12))
-						Button {
-							withAnimation(.easeInOut(duration: 0.18)) { showAllSlots.toggle() }
-						} label: {
-							HStack {
-								Text(showAllSlots
-									 ? "Show fewer"
-									 : "Show all \(candidateSlots.count)")
-									.font(.caption)
-								Spacer()
-								Image(systemName: showAllSlots ? "chevron.up" : "chevron.down")
-									.font(.caption2)
+						collapseToggle
+					}
+
+					if !settledSlots.isEmpty {
+						Divider().background(theme.fgColour.opacity(0.12))
+						settledToggle
+
+						if showSettledSlots {
+							ForEach(settledSlots) { slot in
+								Divider().background(theme.fgColour.opacity(0.12))
+								settleRow(slot, isSettled: true)
 							}
-							.padding(.vertical, 9)
-							.contentShape(Rectangle())
 						}
-						.buttonStyle(.plain)
-						.foregroundStyle(theme.fgColour.opacity(0.7))
 					}
 				}
 			}
@@ -232,12 +239,80 @@ struct LogTransactionView: View {
 
 	private let collapsedSlotLimit = 6
 
+	/* --- open vs settled ---
+	 * a slot with something already logged against it is the wrong answer
+	 * almost every time, so it doesn't compete for attention with the one you
+	 * actually want. it stays reachable, because splitting one bill across two
+	 * payments and correcting a mistyped amount both need it.
+	 *
+	 * whatever is currently selected always counts as open: opening an entry to
+	 * edit it must not hide the very slot it settles.
+	 */
+	private var openSlots: [ScheduledEvent] {
+		candidateSlots.filter { !isSettled($0) || $0 == settles }
+	}
+
+	private var settledSlots: [ScheduledEvent] {
+		candidateSlots.filter { isSettled($0) && $0 != settles }
+	}
+
 	private var visibleSlots: [ScheduledEvent] {
-		showAllSlots ? candidateSlots : Array(candidateSlots.prefix(collapsedSlotLimit))
+		showAllSlots ? openSlots : Array(openSlots.prefix(collapsedSlotLimit))
+	}
+
+	private var isOverflowing: Bool { openSlots.count > collapsedSlotLimit }
+
+	/* envelope funding is never "used up": you fund the groceries envelope once
+	 * and spend against it all fortnight, so hiding it after the first pint of
+	 * milk would hide the only slot you ever want there.
+	 */
+	private func isSettled(_ slot: ScheduledEvent) -> Bool {
+		guard slot.kind != .envelopeFunding, let sourceID = slot.sourceID else { return false }
+		return takenSlots.contains(
+			OccurrenceSlot(sourceID: sourceID, occurrenceDate: slot.occurrenceDate)
+		)
+	}
+
+	private var collapseToggle: some View {
+		disclosure(
+			label: showAllSlots ? "Show fewer" : "Show all \(openSlots.count)",
+			isOpen: showAllSlots
+		) { showAllSlots.toggle() }
+	}
+
+	private var settledToggle: some View {
+		disclosure(
+			label: showSettledSlots
+				? "Hide settled"
+				: "Show \(settledSlots.count) already settled",
+			isOpen: showSettledSlots
+		) { showSettledSlots.toggle() }
+	}
+
+	private func disclosure(
+		label: String,
+		isOpen: Bool,
+		action: @escaping () -> Void
+	) -> some View {
+		Button {
+			withAnimation(.easeInOut(duration: 0.18)) { action() }
+		} label: {
+			HStack {
+				Text(label)
+					.font(.caption)
+				Spacer()
+				Image(systemName: isOpen ? "chevron.up" : "chevron.down")
+					.font(.caption2)
+			}
+			.padding(.vertical, 9)
+			.contentShape(Rectangle())
+		}
+		.buttonStyle(.plain)
+		.foregroundStyle(theme.fgColour.opacity(0.7))
 	}
 
 	/// one selectable slot; `nil` is the "this settles nothing" row
-	private func settleRow(_ slot: ScheduledEvent?) -> some View {
+	private func settleRow(_ slot: ScheduledEvent?, isSettled: Bool = false) -> some View {
 		let isSelected = settles == slot
 
 		return Button {
@@ -251,9 +326,21 @@ struct LogTransactionView: View {
 				if let slot {
 					Text(slot.emoji)
 					VStack(alignment: .leading, spacing: 1) {
-						Text(slot.name)
-							.font(.subheadline)
-							.lineLimit(1)
+						HStack(spacing: 5) {
+							Text(slot.name)
+								.font(.subheadline)
+								.lineLimit(1)
+							if isSettled {
+								// a badge, not just dimming -- "why is this one
+								// greyed out" is a question the row should answer
+								Text("settled")
+									.font(.system(size: 8, weight: .semibold))
+									.padding(.horizontal, 4)
+									.padding(.vertical, 1)
+									.overlay { Capsule().stroke(theme.fgColour.opacity(0.3), lineWidth: 1) }
+									.foregroundStyle(theme.fgColour.opacity(0.5))
+							}
+						}
 						Text(slot.date.formatted(.dateTime.weekday(.abbreviated).month(.abbreviated).day()))
 							.font(.caption2)
 							.foregroundStyle(theme.fgColour.opacity(0.5))
@@ -276,6 +363,7 @@ struct LogTransactionView: View {
 			}
 			.padding(.vertical, 9)
 			.contentShape(Rectangle())
+			.opacity(isSettled ? 0.6 : 1)
 		}
 		.buttonStyle(.plain)
 	}
@@ -350,24 +438,35 @@ struct LogTransactionView: View {
 			if let expense = editing as? Expense { envelope = expense.envelope; kind = .expense }
 			if editing is Income { kind = .income }
 			if let saving = editing as? Savings { goal = saving.goal; kind = .savings }
+			// a logged date is a fact; re-picking a slot must not move it
 			userEditedDate = true
 		} else if let prefill {
 			name = prefill.name
 			amount = prefill.amount
 			date = prefill.date
+			/* claim the date as ours. setting it here fires onChange, which would
+			 * otherwise read as you having typed it -- and a date we're told to
+			 * use isn't a date you edited. that flag is what decides whether
+			 * picking a slot is allowed to move the date, so getting it wrong
+			 * here is exactly why the date used to stay put.
+			 */
+			autofilled.date = prefill.date
 			// a goal contribution is an outflow, but it is *not* an expense --
 			// opening it as one is why tapping a scheduled contribution used to
 			// land you on the wrong form with no way to settle it
 			kind = EntryKind(settling: prefill.kind)
 		} else if let prefillDate {
 			date = prefillDate
+			autofilled.date = prefillDate
 		}
 
 		refreshSlots()
 
-		// pre-select the slot this most likely settles
-		if editing == nil, settles == nil {
-			if let prefill {
+		// pre-select the slot this settles, or the one it most likely will
+		if settles == nil {
+			if let editing {
+				settles = existingSlot(for: editing)
+			} else if let prefill {
 				settles = candidateSlots.first { $0.id == prefill.id } ?? prefill
 			} else {
 				suggestMatch()
@@ -383,6 +482,65 @@ struct LogTransactionView: View {
 		candidateSlots = service.events(in: range)
 			.filter { kind.settles($0.kind) }
 			.sorted { $0.date < $1.date }
+		takenSlots = alreadySettled(near: range)
+	}
+
+	/* --- which occurrences are spoken for ---
+	 * the slot an actual claims, for every actual logged anywhere near this
+	 * window. the search is widened past the slot window on purpose: an actual
+	 * logged three weeks late still settles its occurrence, and that occurrence
+	 * is still taken.
+	 *
+	 * the row being edited is skipped, or it would hide its own slot from the
+	 * form that's meant to show you what it settles.
+	 */
+	private func alreadySettled(near range: Range<Date>) -> Set<OccurrenceSlot> {
+		let slack = 21.0 * 86_400
+		let lower = range.lowerBound.addingTimeInterval(-slack)
+		let upper = range.upperBound.addingTimeInterval(slack)
+		let descriptor = FetchDescriptor<Transaction>(
+			predicate: #Predicate { $0.date >= lower && $0.date < upper }
+		)
+		let actuals = (try? context.fetch(descriptor)) ?? []
+		let editingID = editing?.persistentModelID
+
+		var taken: Set<OccurrenceSlot> = []
+		for actual in actuals where actual.persistentModelID != editingID {
+			guard let sourceID = settledSource(of: actual) else { continue }
+			taken.insert(
+				OccurrenceSlot(
+					sourceID: sourceID,
+					occurrenceDate: actual.occurrenceDate ?? actual.date
+				)
+			)
+		}
+		return taken
+	}
+
+	/* a savings settles through its *goal*, which isn't an ExpectedTransaction
+	 * and so can never appear in `expected` -- the same asymmetry
+	 * ReconciliationService has to unpick when it reconciles a window
+	 */
+	private func settledSource(of actual: Transaction) -> PersistentIdentifier? {
+		if let savings = actual as? Savings, let goal = savings.goal {
+			return goal.persistentModelID
+		}
+		return actual.expected?.persistentModelID
+	}
+
+	/* the slot this entry already settles.
+	 *
+	 * without it, opening a reconciled transaction to fix a typo showed
+	 * "Unplanned" selected -- and saving then wrote that back, quietly
+	 * unlinking the actual from the occurrence it had settled.
+	 */
+	private func existingSlot(for transaction: Transaction) -> ScheduledEvent? {
+		guard let sourceID = settledSource(of: transaction) else { return nil }
+		let calendar = Calendar.current
+		let day = calendar.startOfDay(for: transaction.occurrenceDate ?? transaction.date)
+		return candidateSlots.first {
+			$0.sourceID == sourceID && calendar.startOfDay(for: $0.occurrenceDate) == day
+		}
 	}
 
 	/// the same matcher the import pipeline uses
@@ -420,10 +578,7 @@ struct LogTransactionView: View {
 
 		// the category the plan says this belongs to -- so settling something
 		// carries its category through instead of leaving the actual uncategorised
-		if let planned = source?.category, category == nil || category == autofilled.category {
-			category = planned
-			autofilled.category = planned
-		}
+		adoptCategory(source?.category)
 
 		// an envelope funding occurrence knows exactly which envelope it funds
 		if let fundedEnvelope = source as? Envelope,
@@ -439,10 +594,24 @@ struct LogTransactionView: View {
 			autofilled.goal = sourceGoal
 		}
 
+		/* the date the plan says this lands on, on the same terms as the amount:
+		 * filled in for you, still yours to change. set ours *before* the binding
+		 * so the onChange that follows recognises its own handwriting.
+		 */
 		if !userEditedDate {
 			autofilled.date = slot.date
 			date = slot.date
 		}
+	}
+
+	/// a category the plan already knows, taken on unless you've chosen your own
+	///
+	/// same rule as every other autofilled field: ours to write while it's empty
+	/// or still holds what we last put there, never once you've picked something
+	private func adoptCategory(_ planned: Category?) {
+		guard let planned, category == nil || category == autofilled.category else { return }
+		category = planned
+		autofilled.category = planned
 	}
 
 	// MARK: - Saving
@@ -527,7 +696,13 @@ struct LogTransactionView: View {
 		envelope = nil
 		goal = nil
 		settles = nil
-		autofilled = Autofill()
+		showSettledSlots = false
+		/* the date carries over to the next entry, so it's still ours rather than
+		 * something you typed -- otherwise the second entry of a session would
+		 * never follow the slot it settles
+		 */
+		autofilled = Autofill(date: date)
+		userEditedDate = false
 
 		refreshSlots()
 	}

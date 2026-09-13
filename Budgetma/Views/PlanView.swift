@@ -124,6 +124,7 @@ struct PlanView: View {
 					summaryTiles
 					curveCard
 					adjustEntry
+					playgroundEntry
 					affordabilityEntry
 				}
 			}
@@ -340,6 +341,36 @@ struct PlanView: View {
 						Text("Adjust the plan")
 							.font(.headline)
 						Text("Everything you're committed to, priced and editable in one list")
+							.font(.caption)
+							.foregroundStyle(theme.fgColour.opacity(0.6))
+							.lineLimit(2)
+					}
+					Spacer()
+					Image(systemName: "chevron.right")
+						.font(.caption)
+						.foregroundStyle(theme.fgColour.opacity(0.5))
+				}
+			}
+		}
+		.buttonStyle(.plain)
+	}
+
+	/* the sandbox next to the real thing. "Adjust the plan" commits; this one
+	 * cannot, which is what makes it the safe place to find out whether a change
+	 * is worth committing at all.
+	 */
+	private var playgroundEntry: some View {
+		NavigationLink {
+			PlaygroundView(horizon: horizon)
+		} label: {
+			Card {
+				HStack(spacing: 12) {
+					Text("🧪")
+						.font(.title2)
+					VStack(alignment: .leading, spacing: 3) {
+						Text("Playground")
+							.font(.headline)
+						Text("Mock up changes to anything you're planning and see how you'd fare. Nothing gets saved.")
 							.font(.caption)
 							.foregroundStyle(theme.fgColour.opacity(0.6))
 							.lineLimit(2)

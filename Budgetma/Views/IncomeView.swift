@@ -140,13 +140,6 @@ struct SingleIncomeView: View {
 	@State private var category: Category?
 	@State private var askingAboutAmount = false
 
-	@Query(
-		filter: #Predicate<Category> {
-			$0.isActive
-		},
-		sort: \Category.name
-	) private var categories: [Category]
-
 	init(income: ExpectedIncome?) {
 		_income = State(initialValue: income)
 		_name = State(initialValue: income?.name ?? "")
@@ -166,19 +159,7 @@ struct SingleIncomeView: View {
 				InputFieldCurrency(field: "Amount", amount: $amount)
 				.padding()
 
-				HStack {
-					Text("Category")
-
-					Spacer()
-
-					Picker("Category", selection: $category) {
-						Text("None").tag(nil as Category?)
-						ForEach(categories) { category in
-							Text(category.name)
-							.tag(category as Category?)
-						}
-					}
-				}
+				CategoryPicker(category: $category)
 				.padding()
 
 				HStack {

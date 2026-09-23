@@ -2,13 +2,13 @@ import Foundation
 import SwiftData
 
 /* --- Occurrence Override ---
- * the sparse exception half of the schedule
  *
- * recurrence rules are the source of truth and occurrences are computed, never
- * stored -- that's what lets a projection run to any horizon without the db
- * exploding. but real life deviates: rent got paid late, you skipped a month of
- * the gym, the subscription went up $2. those deviations get stored *here*, one
- * row per deviation, and nowhere else.
+ * recurrence rules are the source of truth and are computed, not stored,
+ * allowing a projection run to any horizon without the db exploding
+ * 
+ * but, life. things don't go as planned. perhaps you failed to pay rent,
+ * or perhaps microsoft started asking for more money to steal your data.
+ * these deviations are stored with this
  *
  * keyed against the base ExpectedTransaction, so this single model covers
  * income, expenses and envelopes without three parallel types -- the payoff for
@@ -17,15 +17,14 @@ import SwiftData
 @available(iOS 26, *)
 @Model
 final class OccurrenceOverride {
-	/// the slot being overridden -- the date the *rule* originally produced
+	// occurence date being overridden
 	var occurrenceDate: Date
-	/// this occurrence just doesn't happen
+	// if expected transaction skipped
 	var isSkipped: Bool
-	/// this occurrence happens, but on a different date
+	// expected transaction occurs on a different date
 	var movedTo: Date?
-	/// this occurrence happens, but for a different amount
-	var amountOverride: Decimal?
 
+	var amountOverride: Decimal?
 	var expected: ExpectedTransaction?
 
 	init(
@@ -42,8 +41,7 @@ final class OccurrenceOverride {
 		self.amountOverride = amountOverride
 	}
 
-	/// an override that no longer deviates from the rule is just noise --
-	/// the caller should delete it rather than persist a no-op
+	// an override that doesn't deviate from the rule is a no-op, caller should delete
 	var isNoOp: Bool {
 		!isSkipped && movedTo == nil && amountOverride == nil
 	}
@@ -57,7 +55,7 @@ final class OccurrenceOverride {
  */
 @available(iOS 26, *)
 nonisolated struct OverrideIndex: Sendable {
-	/// the deviation, stripped of its model reference
+	// the deviation, stripped of its model reference
 	struct Resolution: Sendable {
 		let isSkipped: Bool
 		let movedTo: Date?
@@ -85,21 +83,21 @@ nonisolated struct OverrideIndex: Sendable {
 		self.map = map
 	}
 
-	/// nonisolated, so `empty` can be too
+	// nonisolated, so `empty` can be too
 	private init(map: [OccurrenceSlot: Resolution]) {
 		self.map = map
 	}
 
-	/// an empty index -- for candidates and previews, which never have overrides
-	///
-	/// deliberately built without touching the @Model initialiser: that one is
-	/// main-actor-isolated, which would make `empty` unusable as a default
-	/// argument on the concurrent projection path.
+	// an empty index -- for candidates and previews, which never have overrides
+	//
+	// deliberately built without touching the @Model initialiser: that one is
+	// main-actor-isolated, which would make `empty` unusable as a default
+	// argument on the concurrent projection path.
 	nonisolated static var empty: OverrideIndex { OverrideIndex(map: [:]) }
 
-	/// the overwhelmingly common case, and worth checking: with no exceptions
-	/// the projector can skip per-occurrence slot construction entirely, which
-	/// is the difference between a long horizon being usable or not
+	// the overwhelmingly common case, and worth checking: with no exceptions
+	// the projector can skip per-occurrence slot construction entirely, which
+	// is the difference between a long horizon being usable or not
 	var isEmpty: Bool { map.isEmpty }
 
 	func resolution(for slot: OccurrenceSlot) -> Resolution? { map[slot] }

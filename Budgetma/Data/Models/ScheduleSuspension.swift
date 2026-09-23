@@ -25,11 +25,8 @@ import SwiftData
 @available(iOS 26, *)
 @Model
 final class ScheduleSuspension {
-	/// first date on which the item no longer happens
 	var from: Date
-	/// first date on which it happens again; nil while still suspended
 	var until: Date?
-	/// why you cancelled, shown in the archive list
 	var note: String?
 	var createdAt: Date
 
@@ -82,8 +79,6 @@ nonisolated struct SuspensionIndex: Sendable {
 			guard let sourceID = suspension.expected?.persistentModelID else { continue }
 			map[sourceID, default: []].append(
 				SuspensionSpan(
-					// day-normalised: an item cancelled "today" must not still
-					// produce an occurrence generated at midnight this morning
 					from: calendar.startOfDay(for: suspension.from),
 					until: suspension.until.map { calendar.startOfDay(for: $0) }
 				)

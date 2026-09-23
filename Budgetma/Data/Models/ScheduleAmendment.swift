@@ -24,13 +24,10 @@ import SwiftData
 @available(iOS 26, *)
 @Model
 final class ScheduleAmendment {
-	/// the first occurrence date this amount applies to
 	var effectiveFrom: Date
-	/// what the item is worth from `effectiveFrom` onwards
 	var amount: Decimal
-	/// why -- "annual raise", "rent review". shown in the history list.
 	var note: String?
-	/// when the amendment was recorded, purely for display ordering of ties
+	// when the amendment was recorded, purely for display ordering of ties
 	var createdAt: Date
 
 	var expected: ExpectedTransaction?
@@ -77,14 +74,11 @@ nonisolated struct AmendmentIndex: Sendable {
 			guard let sourceID = amendment.expected?.persistentModelID else { continue }
 			map[sourceID, default: []].append(
 				AmendmentPoint(
-					// normalised to the day: an amendment effective "today" must
-					// catch an occurrence generated at midnight today
 					effectiveFrom: calendar.startOfDay(for: amendment.effectiveFrom),
 					amount: amendment.amount
 				)
 			)
 		}
-		// sorted once here so resolution is a walk, never a sort
 		self.map = map.mapValues { $0.sorted { $0.effectiveFrom < $1.effectiveFrom } }
 	}
 

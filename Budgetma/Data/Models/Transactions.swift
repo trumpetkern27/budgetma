@@ -35,22 +35,9 @@ class Transaction {
 	var category: Category? = nil
 	var note: String? = nil
 
-	/* --- reconciliation ---
-	 * which expected item this settles, and which of its occurrences.
-	 * kept on the *base* class deliberately: one relationship covers income,
-	 * expenses and envelope funding, so reconciliation is a single code path
-	 * instead of three near-identical ones.
-	 * both nil == an unplanned, one-off transaction, which is perfectly valid.
-	 */
 	var expected: ExpectedTransaction? = nil
 	var occurrenceDate: Date? = nil
 
-	/* --- provenance ---
-	 * sourceRaw/externalID are the hooks for automated ingestion.
-	 * externalID is whatever stable id the provider gives us; the import
-	 * pipeline dedupes on (source, externalID) so re-importing the same csv or
-	 * re-syncing a bank feed can't create duplicates.
-	 */
 	var sourceRaw: String = TransactionSource.manual.rawValue
 	var externalID: String? = nil
 

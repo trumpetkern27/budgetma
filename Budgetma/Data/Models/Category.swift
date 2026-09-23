@@ -26,9 +26,3 @@ final class Category {
 		self.isActive = isActive
 	}
 }
-
-// note: the "Misc" fallback category is created on first launch by
-// ContentView.createDefaultCategoryIfNeeded(), inside the model context.
-// there used to be a global `defaultCategory` here, which built a @Model
-// instance at process start with no container attached -- unused, and not
-// something you want happening at launch.

@@ -18,27 +18,10 @@ final class Goal {
 	var targetAmount: Decimal
 	var targetDate: Date?
 	var isActive: Bool
-
-	/* --- money already in the pot ---
-	 * a goal you start tracking halfway through isn't at zero, and not every
-	 * contribution is a transaction: moving savings you already had into this
-	 * goal doesn't change your cashflow, so it must not appear as an outflow.
-	 * that money lives here instead of as a Savings row.
-	 */
 	var seedAmount: Decimal = 0
-
-	/* --- interest ---
-	 * a house deposit in a 4% HYSA doesn't sit still, and over the years it
-	 * takes to save one, compounding is not a rounding error. stored as a
-	 * fraction (0.04 == 4% APY) -- the rate your bank quotes, which already
-	 * includes compounding.
-	 */
 	var annualInterestRate: Decimal = 0
 
-	/* --- optional contribution schedule ---
-	 * nil contributionAmount == an untargeted "chip away at it" goal that
-	 * doesn't participate in projections
-	 */
+	// optional contribution schedule
 	var contributionAmount: Decimal?
 	var contributionStart: Date
 	var contributionRule: RecurrenceRule?
@@ -70,12 +53,10 @@ final class Goal {
 		self.contributionRule = contributionRule
 	}
 
-	/// what's in the pot: logged contributions plus whatever was already there
 	var currentAmount: Decimal {
 		contributedAmount + seedAmount
 	}
 
-	/// only the part that moved through your cashflow as a logged transaction
 	var contributedAmount: Decimal {
 		contributions.reduce(0) { $0 + $1.amount }
 	}
@@ -86,15 +67,13 @@ final class Goal {
 
 	var isComplete: Bool { currentAmount >= targetAmount && targetAmount > 0 }
 
-	/// 0...1, for progress bars
+	// 0...1, for progress bars
 	var progress: Double {
 		guard targetAmount > 0 else { return 0 }
 		let ratio = currentAmount / targetAmount
 		return min(max(NSDecimalNumber(decimal: ratio).doubleValue, 0), 1)
 	}
 
-	/// whether the scheduled contributions actually land the goal by its target
-	/// date -- nil when there's no target date or no schedule to judge
 	func projectedCompletion(calendar: Calendar = .current) -> Date? {
 		guard let contributionAmount, contributionAmount > 0 else { return nil }
 		guard remaining > 0 else { return nil }
@@ -119,9 +98,7 @@ final class Goal {
 	}
 }
 
-/* --- Goal as a Schedulable ---
- * planned contributions are just another outflow in the projection
- */
+ // make goal schedulable
 @available(iOS 26, *)
 extension Goal: Schedulable {
 	var scheduleID: PersistentIdentifier? { persistentModelID }
@@ -132,7 +109,7 @@ extension Goal: Schedulable {
 	var scheduleRule: RecurrenceRule? { contributionRule }
 	var scheduleKind: EventKind { .goalContribution }
 
-	/// only goals with a real contribution schedule affect cashflow
+	/// only goals with a scheduled contribution affect projection
 	var participatesInProjection: Bool {
 		isActive && (contributionAmount ?? 0) > 0
 	}
